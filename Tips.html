@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Info On The Tech Sector</title>
+
+  <!-- Teko Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      font-family: 'Teko', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background-color: #f8f9fa;
+      transition: background-color 0.4s ease;
+    }
+
+    /* Sticky Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #002244;
+      color: white;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+    }
+
+    .navbar-title {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .menu-toggle {
+      position: absolute;
+      left: 1rem;
+      top: 1.1rem;
+      width: 30px;
+      height: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      z-index: 1100;
+    }
+
+    .menu-toggle span {
+      display: block;
+      height: 4px;
+      background: white;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .menu-toggle.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    .menu-items {
+      max-height: 0;
+      overflow: hidden;
+      background-color: #011d3a;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      transition: max-height 0.4s ease-in-out;
+      border-top: 2px solid #007acc;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .menu-items.show {
+      max-height: 500px;
+    }
+
+    .menu-items li a {
+      display: block;
+      padding: 0.8rem 2rem;
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 500;
+      transition: background 0.3s, padding-left 0.3s;
+    }
+
+    .menu-items li a:hover {
+      background-color: #003366;
+      padding-left: 2.5rem;
+    }
+
+    main {
+      padding: 2rem;
+      padding-top: 200px;
+      position: relative;
+      z-index: 1;
+    }
+
+    h3.section-heading {
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      text-align: center;
+      color: #003366;
+      margin-top: 3rem;
+    }
+
+    /* Accordion */
+    .accordion-container {
+      max-width: 1000px;
+      margin: 2rem auto;
+    }
+
+    .accordion-title {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.5rem;
+      text-align: left;
+      background-color: #003366;
+      color: white;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      transition: background 0.3s;
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+    }
+
+    .accordion-title:hover {
+      background-color: #007acc;
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      background: #f1f1f1;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      border-radius: 0 0 10px 10px;
+      padding: 0 1rem;
+      display: block;
+    }
+
+    .accordion-content p {
+      margin: 1rem 0;
+      font-size: 1.2rem;
+      color: #003366;
+    }
+
+    .accordion-item.active .accordion-content {
+      max-height: 500px;
+      overflow-y: auto;
+      padding: 1rem;
+      scrollbar-width: thin;
+      scrollbar-color: #003366 #e0e0e0;
+    }
+
+    .accordion-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .accordion-content::-webkit-scrollbar-track {
+      background: #e0e0e0;
+    }
+
+    .accordion-content::-webkit-scrollbar-thumb {
+      background-color: #003366;
+      border-radius: 5px;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #002244;
+      color: white;
+      padding: 2rem 1rem;
+      margin-top: 4rem;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #00bfff;
+    }
+
+    @media (max-width: 768px) {
+      footer div {
+        text-align: center !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="menu-toggle" id="hamburger" onclick="toggleMenu(this)">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="navbar-title">Info On The Tech Sector</div>
+  </header>
+
+  <!-- Dropdown Nav -->
+  <ul class="menu-items" id="menu">
+    <br>
+    <br>
+    <br>
+    <li><a href="Index.html">Homepage</a></li>
+    <li><a href="#">Uni Degrees</a></li>
+    <li><a href="#">Jobs in Tech</a></li>
+    <li><a href="#">Certifications</a></li>
+    <li><a href="#">Job Interviews To-Do</a></li>
+    <li><a href="#">Enhancement for Career</a></li>
+  </ul>
+
+  <!-- Main Content -->
+  <main id="main-content">
+
+    <!-- Accordion Section -->
+    <section class="accordion-container">
+      <h3 class="section-heading">Study Tips </h3>
+      <div class="accordion">
+        <div class="accordion-item">
+          <button class="accordion-title">1. Read Over Notes</button>
+          <div class="accordion-content">
+            <p>
+                Reading over your notes each day for 30 minutes is one of the most effective habits you can build when working on or learning about website development. The process of creating and maintaining a website involves a wide range of concepts—from front-end languages like HTML, CSS, and JavaScript to backend frameworks, databases, user interface design, accessibility standards, and SEO principles. Because of this complexity, it's easy to forget the finer details if you’re not consistently reviewing them. Dedicating just half an hour daily to go over your notes helps solidify this information in your long-term memory, so it becomes second nature when you need to apply it. Rather than relearning concepts repeatedly or getting stuck on the same problems, you’ll be able to work more efficiently and solve issues faster.
+                <br /><br />
+                In addition to strengthening memory, daily note review helps you identify patterns and connections between different parts of web development. For instance, you might start to see how flexbox properties in CSS relate to JavaScript layout behavior, or how front-end design choices impact page loading speed and user engagement. This kind of integrated understanding leads to better decision-making when building or optimizing your website. You'll find it easier to debug code, structure pages correctly, and apply best practices because the logic behind them is clearer in your mind. Reading notes regularly also sharpens your problem-solving abilities by keeping troubleshooting steps and past solutions fresh, reducing the time you spend looking up fixes online.
+                <br /><br />
+                Another benefit of this daily habit is that it creates a consistent rhythm of reflection and improvement. Rather than rushing ahead to build feature after feature, taking time each day to review your notes allows you to revisit decisions you’ve made, evaluate what worked and what didn’t, and make more thoughtful updates to your website. This reflective practice improves the quality of your work and helps you grow as a developer. It also gives you space to think creatively—sometimes reading your old notes can spark new ideas or lead to better design solutions you hadn’t considered before.
+                <br /><br />
+                Finally, developing this kind of routine shows discipline and commitment to your growth. Whether you’re a student learning web design, a freelancer building a portfolio, or an entrepreneur managing your own site, consistency is what turns knowledge into mastery. A focused 30-minute review session can be enough to keep your mind sharp, reinforce complex ideas, and gradually elevate the standard of your work. Over weeks and months, that small investment of time can lead to more professional, functional, and user-friendly websites that reflect both your technical skill and thoughtful development process.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-title">2. DO Extra Practice</button>
+          <div class="accordion-content">
+            <p> Doing extra practice in your free time for university is a powerful and often underrated method of solidifying knowledge, improving academic performance, and gaining long-term confidence in your field of study. While lectures, tutorials, and assigned homework lay the foundation, it’s often the effort you put in outside of mandatory classwork that truly sharpens your understanding. When you revisit concepts on your own through additional exercises, problem sets, or research, you're actively reinforcing the material rather than passively absorbing it. This kind of reinforcement strengthens neural connections in the brain, making it easier to retrieve and apply information when it matters—whether during exams, in discussions, or in future courses that build on prior knowledge.
+                <br /><br />
+                Extra practice also helps reveal gaps in your understanding that might not be obvious during regular classwork. Often in structured academic settings, students follow along without realizing that they’ve only grasped a superficial layer of the material. But when you're working independently and encounter a problem you can't solve, it forces you to pause, revisit theory, seek help, or try different approaches. This process builds problem-solving skills, resilience, and academic independence—qualities that are crucial not just for university success, but for real-world application in any professional setting. Essentially, you stop relying on being shown the answer and start learning how to find it on your own.
+                <br /><br />
+                Moreover, consistently practicing in your free time builds a habit of discipline and self-motivation. University can often feel overwhelming, with deadlines stacking up and information being delivered at a fast pace. Students who set aside even small windows of time for self-guided practice often find themselves better prepared when challenges arise because they’ve already put in the groundwork. It also reduces the pressure during exam season since they’ve been building understanding gradually, rather than cramming everything last-minute.
+                <br /><br />
+                In the long term, this kind of extra effort distinguishes top-performing students from the rest. It shows initiative, dedication, and a true interest in mastering the subject—not just passing it. Professors notice students who go the extra mile, and these habits often lead to better references, research opportunities, and stronger resumes. More importantly, the knowledge you gain through self-directed practice stays with you longer, giving you a solid base for future courses or even jobs that require you to apply what you've learned. Simply put, doing extra practice in your free time is not just helpful—it’s one of the smartest investments you can make in your education.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-title">3. Taking A Break</button>
+          <div class="accordion-content">
+            <p>
+            Taking breaks during university is just as important as studying—perhaps even more so when it comes to maintaining long-term success, mental health, and overall well-being. University life is intense, filled with deadlines, heavy reading loads, exams, and constant mental engagement. Without deliberate breaks, students risk falling into burnout, a state of physical and emotional exhaustion that can negatively affect academic performance and personal life. Taking regular breaks helps to reset the mind, reduce stress, and maintain a healthy balance between productivity and rest, allowing you to return to your work more focused and refreshed.
+                <br /><br />
+                From a cognitive perspective, the human brain isn’t wired for continuous concentration over long stretches of time. Research shows that mental performance drops when the brain is overloaded, leading to poor retention, increased errors, and decreased creativity. Stepping away from work—even for short periods—gives your brain a chance to consolidate information, process learning in the background, and recharge. Whether it’s a walk, a meal with friends, a quick nap, or just time away from screens, breaks are crucial for sustaining the focus needed for deep learning.
+                <br /><br />
+                Emotionally, breaks help regulate mood and reduce feelings of anxiety or frustration that often come with academic pressure. They allow time for self-care, whether that means exercising, pursuing hobbies, or simply relaxing. These moments of pause not only protect mental health but also help you stay motivated throughout the semester. When you give yourself permission to rest without guilt, you create a healthier and more sustainable relationship with your studies. This balance is what often separates students who thrive over time from those who struggle despite working hard.
+                <br /><br />
+                In a broader sense, taking breaks also offers the opportunity to reflect and re-evaluate goals. University isn’t just about assignments and exams—it’s a time for personal growth, social connection, and figuring out what you want from your future. Regular pauses give you the space to step back, look at the bigger picture, and make thoughtful decisions about your path forward. In this way, taking breaks isn’t about being lazy or unproductive—it’s an essential part of working smarter, not harder. By respecting your need for rest, you ensure you have the energy, clarity, and drive to truly succeed in university and beyond.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-title">4. Bad Grades</button>
+          <div class="accordion-content">
+            <p>
+                Getting a bad grade in university can feel disappointing, especially when you’ve put in effort and expected more. But dwelling on it—sulking, beating yourself up, or thinking it's the end of your academic potential—won’t help you move forward. In fact, a single bad grade does not define your intelligence, your value, or your future. What truly matters is how you respond to it. Every student, even the most successful ones, faces setbacks. What separates those who grow from those who stay stuck is the ability to reflect, learn, and bounce back stronger.
+                <br /><br />
+                Instead of seeing a poor grade as a failure, try to view it as feedback. It’s a signal, not a sentence. Ask yourself: *What didn’t go well? Did I understand the material fully? Was my time management off? Did I study effectively?* These are valuable insights that can guide you to do better next time. Often, a low grade uncovers blind spots—areas you didn’t realize needed attention. This awareness is powerful. It gives you a chance to adjust your approach, try new strategies, and ask for help if needed. In this way, a bad grade can actually become a turning point for growth.
+                <br /><br />
+                Emotionally, sulking builds a cycle of negativity that drains motivation and self-belief. It can lead to procrastination, self-doubt, and even disconnection from your goals. But reminding yourself that one mark doesn't erase your progress or potential helps break that cycle. Everyone has off days or off semesters—it’s normal. What’s not helpful is letting that one moment hold you back. Focus instead on small wins, improving gradually, and trusting that with consistent effort, your grades will rise.
+                <br /><br />
+                In the long run, resilience matters more than perfection. Employers and professors often respect students who face challenges head-on and grow from them. So don’t let a bad grade weigh you down—acknowledge it, learn from it, then move forward with confidence and a stronger mindset. One grade can sting, but it doesn’t define you. What defines you is how you rise after the fall.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-title">5. Ask Questions Always </button>
+          <div class="accordion-content">
+            <p> 
+                Asking questions in class or reaching out to your professor outside of lectures is one of the most effective ways to take ownership of your learning. It shows that you're actively engaged, thinking critically about the material, and seeking to deepen your understanding rather than just memorizing facts. When you ask questions, you're not just clarifying something for yourself—you’re also helping others who might be confused but too shy to speak up. It creates a more interactive learning environment where dialogue replaces silence and confusion turns into clarity.
+                <br /><br />
+                Professors appreciate students who ask thoughtful questions because it shows initiative and genuine interest in the subject. It opens the door to academic relationships that can lead to mentorship, research opportunities, or helpful guidance on career paths. You become more than just a name on a class list—you become someone the professor remembers and is more likely to support, whether it's with extra help, advice, or even a reference letter down the line.
+                <br /><br />
+                From a learning perspective, asking questions forces you to engage more deeply with the material. When you try to form a question, you're actively identifying what you understand and what you don’t. This process helps reinforce concepts in your mind and builds your critical thinking skills. It also makes study sessions more efficient—rather than re-reading the same section of a textbook, you can get straight answers and explanations from the expert who teaches it.
+                <br /><br />
+                Finally, asking questions builds confidence. At first, it may feel intimidating, especially in large lecture halls or unfamiliar topics. But the more you speak up, the more you realize that it's okay not to know everything—and that curiosity is a strength, not a weakness. Over time, you become more comfortable advocating for your own learning, which is a skill that will benefit you far beyond university—in your career, relationships, and personal growth. So don’t hold back. If something doesn’t make sense, ask. That simple step could change your entire understanding—and even your academic journey.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-title">6. Importance Of Study Groups</button>
+          <div class="accordion-content">
+            Study groups are one of the most powerful and underrated tools for success in university. While studying alone helps you focus, studying with a group brings out an entirely different level of learning. When you collaborate with classmates, you gain new perspectives, catch mistakes you might have missed, and fill in knowledge gaps through discussion. Each person brings their own strengths to the table—what one person struggles with, another might explain with ease. This kind of shared understanding makes difficult topics easier to digest and promotes deeper, more meaningful learning.
+                <br /><br />
+                Being part of a study group also keeps you accountable. It’s easy to fall behind when you're working alone and no one knows if you did the readings or practiced problems. But when you're part of a group that meets regularly, it motivates you to stay on track, prepare in advance, and show up ready to contribute. This structure helps reduce procrastination and builds consistent study habits, which are crucial during a fast-paced semester. Over time, it turns into a cycle of motivation: you help others, they help you, and everyone benefits.
+                <br /><br />
+                Study groups also create a space to ask questions without fear or judgment. Sometimes, students feel too embarrassed to ask questions in class. In a smaller, more comfortable setting with peers, it becomes easier to speak up, clarify doubts, and reinforce concepts together. Explaining something to someone else is also one of the best ways to learn—it forces you to process the information clearly and find the simplest way to communicate it, which deepens your own understanding.
+                <br /><br />
+                Beyond academics, study groups offer emotional support. University can be stressful, but having a group of people going through the same challenges makes it feel less isolating. You’re not just learning together—you’re encouraging each other, celebrating small wins, and pushing through tough times as a team. These bonds often lead to lasting friendships and networks that go beyond just grades. In short, study groups help you grow academically, socially, and personally—making them an essential part of any successful university experience.
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;">
+        <div style="flex: 1 1 200px;">
+          <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">Pages</h4>
+          <ul style="list-style: none; padding: 0; font-size: 1.2rem; line-height: 2;">
+            <li><a href="Index.html">Homepage</a></li>
+            <li><a href="#">Uni Degrees</a></li>
+            <li><a href="Tips.html">Tips for Uni</a></li>
+            <li><a href="#">Jobs in Tech</a></li>
+            <li><a href="#">Certifications</a></li>
+            <li><a href="#">Job Interviews To‑Do</a></li>
+            <li><a href="#">Enhancement for Career</a></li>
+          </ul>
+        </div>
+        <div style="flex: 1 1 200px;">
+          <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">Contact Me</h4>
+          <p style="font-size: 1.2rem; line-height: 1.8;">
+            Have questions or suggestions?<br />
+            <a href="mailto:vrijsheth@gmail.com">Email me</a>
+          </p>
+        </div>
+        <div style="flex: 1 1 200px; text-align: right;">
+          <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">Follow Me</h4>
+          <a href="https://www.linkedin.com/in/vrij-sheth/" target="_blank" style="margin-right: 10px;">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="30" height="30" style="filter: invert(100%);" />
+          </a>
+          <a href="https://www.instagram.com/_vrij.s" target="_blank" style="margin-right: 10px;">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="30" height="30" style="filter: invert(100%);" />
+          </a>
+          <a href="https://www.facebook.com/vrij.sheth.7" target="_blank">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="30" height="30" style="filter: invert(100%);" />
+          </a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- JavaScript -->
+  <script>
+    function toggleMenu(icon) {
+      const menu = document.getElementById('menu');
+      icon.classList.toggle('open');
+      menu.classList.toggle('show');
+    }
+
+    document.querySelectorAll('.accordion-title').forEach(button => {
+      button.addEventListener('click', () => {
+        const accordionItem = button.parentElement;
+
+        // Close all others
+        document.querySelectorAll('.accordion-item').forEach(item => {
+          if (item !== accordionItem) {
+            item.classList.remove('active');
+          }
+        });
+
+        // Toggle current
+        accordionItem.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
+
+

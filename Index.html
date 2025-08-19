@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Info On The Tech Sector</title>
+
+  <!-- Teko Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      transition: background-color 0.4s ease;
+    }
+
+    /* Sticky Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #002244;
+      color: white;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      font-family: 'Teko', sans-serif;
+
+    }
+
+    .navbar-title {
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        font-family: 'Teko', sans-serif;
+    }
+
+    .menu-toggle {
+      position: absolute;
+      left: 1rem;
+      top: 1.1rem;
+      width: 30px;
+      height: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      z-index: 1100;
+      font-family: 'Teko', sans-serif;
+    }
+
+    .menu-toggle span {
+      display: block;
+      height: 4px;
+      background: white;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .menu-toggle.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    .menu-items {
+      max-height: 0;
+      overflow: hidden;
+      background-color: #011d3a;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      transition: max-height 0.4s ease-in-out;
+      border-top: 2px solid #007acc;
+      border-radius: 0 0 10px 10px;
+      font-family: 'Teko', sans-serif;
+    }
+
+    .menu-items.show {
+      max-height: 500px;
+    }
+
+    .menu-items li a {
+      display: block;
+      padding: 0.8rem 2rem;
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 500;
+      transition: background 0.3s, padding-left 0.3s;
+      font-family: 'Teko' sans-serif;
+    }
+
+    .menu-items li a:hover {
+      background-color: #003366;
+      padding-left: 2.5rem;
+    }
+
+    main {
+      padding: 2rem;
+      padding-top: 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    hr {
+      margin: 2rem 0;
+      border: none;
+      border-top: 2px solid #ccc;
+    }
+
+    .bubble-card {
+      font-family: 'Teko', sans-serif;
+      background: linear-gradient(135deg, #007acc, #003366);
+      color: white;
+      border-radius: 25px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      margin: 2rem auto;
+      max-width: 1000px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease;
+    }
+
+    .bubble-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .bubble-card h3 {
+      font-size: clamp(2rem, 6vw, 3rem);
+      margin-bottom: 1rem;
+    }
+
+    .bubble-card p {
+      font-size: clamp(1rem, 3.5vw, 1.4rem);
+      line-height: 1.5;
+      color: #f1f1f1;
+    }
+
+    h3.section-heading {
+      font-family: 'Teko', sans-serif;
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      text-align: center;
+      color: #003366;
+      margin-top: 3rem;
+    }
+
+    .flex-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .flex-item {
+      flex: 1 1 300px;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: 'Teko', sans-serif;
+      transition: all 0.8s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .flex-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .flex-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #007acc;
+    }
+
+    h4 {
+      font-size: 1.5rem;
+      color: #003366;
+    }
+
+    
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="menu-toggle" id="hamburger" onclick="toggleMenu(this)">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="navbar-title">Info On The Tech Sector</div>
+  </header>
+
+  <!-- Dropdown Nav -->
+  <ul class="menu-items" id="menu">
+    <br>
+    <br>
+    <br>
+    <li><a href="#">Uni Degrees</a></li>
+    <li><a href="Tips.html">Tips for Uni</a></li>
+    <li><a href="#">Jobs in Tech</a></li>
+    <li><a href="#">Certifications</a></li>
+    <li><a href="#">Job Interviews To-Do</a></li>
+    <li><a href="#">Enhancement for Career</a></li>
+  </ul>
+
+  <!-- Main Content -->
+  <main id="main-content">
+
+    <!-- Bubble Card -->
+    <div class="bubble-card fade-section">
+      <h3>Why Choose The Tech Sector</h3>
+      <p>
+        The tech sector is one of the fastest-growing industries worldwide, offering students a future-proof and impactful career path.
+        With the rise of artificial intelligence, cloud computing, and data analytics, the demand for skilled tech professionals continues to surge.
+        The World Economic Forum estimates that AI alone will create 97 million new jobs by 2025, while global spending on cloud services is projected to exceed $1 trillion by 2027.
+        <br /><br />
+        These advancements are transforming every sector — from healthcare to finance — and students with coding, analytical, or system design skills are uniquely positioned to drive this change.
+        Tech careers not only offer competitive salaries and remote flexibility but also provide the opportunity to solve real-world problems and innovate on a global scale.
+        Choosing the tech field means building a career that is resilient, high-impact, and central to shaping the future.
+      </p>
+    </div>
+
+    <!-- Section Heading -->
+    <hr />
+    <h3 class="section-heading fade-section">A Brief History of Computers</h3>
+
+    <!-- Computer History Grid -->
+    <div class="flex-row">
+      <div class="flex-item fade-section">
+        <h4>Early Mechanical Computers (1822–1930):</h4>
+        <p>Charles Babbage's Difference Engine laid the foundation for computing, introducing key modern ideas.</p>
+      </div>
+      <div class="flex-item fade-section">
+        <h4>Electro-Mechanical Computers (1930s):</h4>
+        <p>Machines like the Differential Analyzer used motors and gears to automate math operations.</p>
+      </div>
+      <div class="flex-item fade-section">
+        <h4>Electronic Computers (1940s):</h4>
+        <p>Colossus was one of the first electronic computers used to decrypt German codes during WWII.</p>
+      </div>
+      <div class="flex-item fade-section">
+        <h4>The First Commercial Computers (1950s):</h4>
+        <p>UNIVAC I brought computing to government and business operations.</p>
+      </div>
+      <div class="flex-item fade-section">
+        <h4>Transistor Computers (Mid-1950s):</h4>
+        <p>Transistors allowed faster and smaller computers than ever before.</p>
+      </div>
+      <div class="flex-item fade-section">
+        <h4>The Microchip and Microprocessor (1960s):</h4>
+        <p>Silicon chips made computing even more affordable and accessible.</p>
+      </div>
+      <div class="flex-item fade-section">
+        <h4>Personal Computers (1970s):</h4>
+        <p>Hobbyist kits like the Altair 8800 helped launch Apple and Microsoft.</p>
+      </div>
+      <div class="flex-item fade-section">
+        <h4>The Early Notebooks and Laptops (1980s–1990s):</h4>
+        <p>Laptops revolutionized mobile work, from the Osborne 1 to the ThinkPad.</p>
+      </div>
+    </div>
+
+    <!-- About Me Section -->
+    <hr />
+    <h3 class="section-heading fade-section" id="about-me">About Me</h3>
+    <div class="flex-row" style="align-items: center; flex-wrap: wrap;">
+      <div class="fade-section" style="flex: 1 1 250px; text-align: center;">
+        <img src="images/Vrij.JPG" 
+        alt="Your Name" 
+        style="width: 100%; max-width: 400px; height: 400px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);" 
+        />
+      </div>
+      <div class="fade-section" style="flex: 2 1 400px; padding: 1rem;">
+        <p style="font-family: 'Teko', sans-serif; font-size: 1.4rem; line-height: 1.5;">
+            Hi, my name is Vrij Sheth. I am currently pursuing a degree in Computer Information Systems at Mount Royal University.
+
+Born and raised in Calgary, Alberta, I’ve had a lifelong passion for technology. From building custom PCs to repairing phones, laptops, and gaming consoles, I’ve always enjoyed working with tech in any form.
+
+When it came time to choose a career path in high school, I knew I wanted to pursue something in the tech field—but with so many options available, I wished I had more guidance in making the right choice.
+
+That’s exactly why I created this website: to help the next generation of students explore their interests in technology and find the direction that’s right for them.
+          <br><br>
+          Thank you for visiting my site!
+        </p>
+      </div>
+    </div>
+
+<!-- Footer -->
+<footer style="background-color: #002244; color: white; padding: 2rem 1rem; font-family: 'Teko', sans-serif; margin-top: 4rem;">
+  <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;">
+
+    <!-- Footer Navigation Links -->
+    <div style="flex: 1 1 200px;">
+      <h4 style="font-size: 1.5rem; margin-bottom: 1rem; color: white;">Pages</h4>
+      <ul style="list-style: none; padding: 0; font-size: 1.2rem; line-height: 2;">
+        <li><a href="Index.html" style="color: white; text-decoration: none;">Homepage</a></li>
+        <li><a href="#" style="color: white; text-decoration: none;">Uni Degrees</a></li>
+        <li><a href="Tips.html" style="color: white; text-decoration: none;">Tips for Uni</a></li>
+        <li><a href="#" style="color: white; text-decoration: none;">Jobs in Tech</a></li>
+        <li><a href="#" style="color: white; text-decoration: none;">Certifications</a></li>
+        <li><a href="#" style="color: white; text-decoration: none;">Job Interviews To‑Do</a></li>
+        <li><a href="#" style="color: white; text-decoration: none;">Enhancement for Career</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Info -->
+    <div style="flex: 1 1 200px;">
+      <h4 style="font-size: 1.5rem; margin-bottom: 1rem; color: white;">Contact Me</h4>
+      <p style="font-size: 1.2rem; line-height: 1.8;">
+        Have questions or suggestions?<br />
+        <a href="mailto:vrijsheth@gmail.com" style="color: #00bfff; text-decoration: underline;">Email me</a>
+      </p>
+    </div>
+
+    <!-- Social Media Links -->
+    <div style="flex: 1 1 200px; text-align: right;">
+      <h4 style="font-size: 1.5rem; margin-bottom: 1rem; color: white;">Follow Me</h4>
+      <a href="https://www.linkedin.com/in/vrij-sheth/" target="_blank" style="margin-right: 10px;">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="30" height="30" style="filter: invert(100%);" />
+      </a>
+      <a href="https://www.instagram.com/_vrij.s?igsh=bnJwenRtb2pjMTFr&utm_source=qr" target="_blank" style="margin-right: 10px;">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="30" height="30" style="filter: invert(100%);" />
+      </a>
+      <a href="https://www.facebook.com/vrij.sheth.7" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="30" height="30" style="filter: invert(100%);" />
+      </a>
+    </div>
+  </div>
+</footer>
+
+
+  </main>
+
+  <!-- Scroll Faders -->
+  <div class="scroll-fade-top"></div>
+  <div class="scroll-fade-bottom"></div>
+
+  <!-- JavaScript -->
+  <script>
+    function toggleMenu(icon) {
+      const menu = document.getElementById('menu');
+      const hamburger = document.getElementById('hamburger');
+      menu.classList.toggle('show');
+      hamburger.classList.toggle('open');
+    }
+
+    const sections = document.querySelectorAll('.fade-section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible');
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+</body>
+</html>
