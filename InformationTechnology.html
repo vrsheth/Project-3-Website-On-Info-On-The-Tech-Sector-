@@ -1,0 +1,407 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Info On The Tech Sector</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    * { font-family: 'Teko', sans-serif; }
+
+    body {
+      margin: 0;
+      background-color: #f8f9fa;
+      transition: background-color 0.4s ease;
+    }
+
+    /* Sticky Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #002244;
+      color: white;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+
+    .navbar-title {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .menu-toggle {
+      position: absolute;
+      left: 1rem;
+      top: 1.1rem;
+      width: 30px;
+      height: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      z-index: 1100;
+    }
+    .menu-toggle span {
+      display: block;
+      height: 4px;
+      background: white;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    .menu-toggle.open span:nth-child(1){ transform: rotate(45deg) translate(5px,5px); }
+    .menu-toggle.open span:nth-child(2){ opacity: 0; }
+    .menu-toggle.open span:nth-child(3){ transform: rotate(-45deg) translate(6px,-6px); }
+
+    /* Dropdown container (mobile-first collapsed) */
+    .menu-items {
+      max-height: 0;
+      overflow: hidden;
+      background-color: #011d3a;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      transition: max-height 0.4s ease-in-out;
+      border-top: 2px solid #007acc;
+      border-radius: 0 0 10px 10px;
+    }
+    .menu-items.show { max-height: 700px; }
+
+    /* Top-level links */
+    .menu-items > li a {
+      display: block;
+      padding: 0.8rem 2rem;
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 500;
+      transition: background 0.3s, padding-left 0.3s;
+    }
+    .menu-items > li a:hover {
+      background-color: #003366;
+      padding-left: 2.5rem;
+    }
+
+    .menu-items li { position: relative; }
+
+    /* Toggle anchor row with caret */
+    .has-submenu > .submenu-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .has-submenu > .submenu-toggle .caret {
+      margin-left: 8px;
+      width: 0; height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid #fff;
+      transition: transform .2s ease;
+    }
+
+    /* Base submenu rules (mobile-first) */
+    .submenu {
+      display: none;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      background-color: #011d3a;
+      border-top: 1px solid #007acc;
+    }
+    .submenu a {
+      display: block;
+      padding: 0.7rem 2.5rem;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+    .submenu a:hover { background-color: #003366; }
+
+    /* Mobile/keyboard open state */
+    .has-submenu.open > .submenu { display: block; }
+    .has-submenu.open > .submenu-toggle .caret { transform: rotate(180deg); }
+
+    /* Desktop: submenu expands in-flow and pushes content down */
+    @media (min-width: 768px) {
+      .menu-items { position: relative; }
+      .has-submenu { display: block; }
+
+      .has-submenu .submenu {
+        position: static;
+        display: block;          /* make it part of flow */
+        overflow: hidden;
+        max-height: 0;           /* collapsed by default */
+        border: 0;
+        border-top: 1px solid #007acc;
+        border-radius: 0 0 10px 10px;
+        transition: max-height 0.35s ease;
+      }
+      .has-submenu:hover > .submenu {
+        max-height: 800px;       /* enough to reveal items; pushes below content down */
+      }
+      .has-submenu:hover > .submenu-toggle .caret {
+        transform: rotate(180deg);
+      }
+    }
+
+    main {
+      padding: 2rem;
+      padding-top: 200px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Info boxes */
+    .info-container { max-width: 1000px; margin: 0 auto; }
+
+    .info-box {
+      display: flex;
+      border: 2px solid #003366;
+      border-radius: 10px;
+      overflow: hidden;
+      background: white;
+      margin-bottom: 2rem;
+    }
+
+    .info-title {
+      min-width: 220px;
+      background: #003366;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1rem;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700;
+    }
+
+    .info-text {
+      flex: 1;
+      padding: 1.5rem;
+      font-size: 1.2rem;
+      color: #003366;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #002244;
+      color: white;
+      padding: 2rem 1rem;
+      margin-top: 4rem;
+    }
+    footer a { color: white; text-decoration: none; }
+    footer a:hover { color: #00bfff; }
+
+    /* Scroll fade-in */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 700ms ease, transform 700ms ease;
+      will-change: opacity, transform;
+    }
+    .reveal.show {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="menu-toggle" id="hamburger" onclick="toggleMenu(this)">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="navbar-title">Info On The Tech Sector</div>
+  </header>
+
+  <!-- Dropdown Nav -->
+  <ul class="menu-items" id="menu" aria-label="Primary">
+    <br><br><br>
+    <li><a href="Index.html">Homepage</a></li>
+    <li><a href="Tips.html">Tips for Uni</a></li>
+
+    <li class="has-submenu">
+      <a href="UniDegrees.html" class="submenu-toggle" aria-haspopup="true" aria-expanded="false">
+        Uni Degrees
+        <span class="caret" aria-hidden="true"></span>
+      </a>
+      <ul class="submenu" role="menu">
+        <li role="none"><a role="menuitem" href="SoftwareEngineering.html">Software Engineering</a></li>
+        <li role="none"><a role="menuitem" href="ComputerScience.html">Computer Science</a></li>
+        <li role="none"><a role="menuitem" href="InformationTechnology.html">Information Technology</a></li>
+        <li role="none"><a role="menuitem" href="ComputerInformationSystems.html">Computer Information Systems</a></li>
+        <li role="none"><a role="menuitem" href="DataScience.html">Data Science</a></li>
+        <li role="none"><a role="menuitem" href="ComputerEngineering.html">Computer Engineering</a></li>
+      </ul>
+    </li>
+
+    <li><a href="Jobs.html">Jobs in Tech</a></li>
+    <li><a href="JobInterviews.html">Interview To-Do's</a></li>
+  </ul>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <section class="info-container">
+      <h1 style="text-align:center; font-size:clamp(2rem, 5vw, 2.5rem); color:#003366; margin-bottom:2rem;">
+        University Tech Degrees
+      </h1>
+
+      <div class="info-box reveal">
+        <div class="info-title">Computer Science</div>
+        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
+          <div style="flex:1;">Placeholder</div>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-title">Software Engineering</div>
+        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
+          <div style="flex:1;">Placeholder</div>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-title">Computer Engineering</div>
+        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
+          <div style="flex:1;">Placeholder</div>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-title">Information Technology</div>
+        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
+          <div style="flex:1;">Placeholder</div>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-title">Computer Information Systems</div>
+        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
+          <div style="flex:1;">Placeholder</div>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-title">Data Science</div>
+        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
+          <div style="flex:1;">Placeholder</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;">
+      <div style="flex: 1 1 200px;">
+        <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">Pages</h4>
+        <ul style="list-style: none; padding: 0; font-size: 1.2rem; line-height: 2;">
+          <li><a href="Index.html">Homepage</a></li>
+          <li><a href="UniDegrees.html">Uni Degrees</a></li>
+          <li><a href="Tips.html">Tips for Uni</a></li>
+          <li><a href="Jobs.html">Jobs in Tech</a></li>
+          <li><a href="JobInterviews.html">Interviews To-Do's</a></li>
+          <li><a href="Enhance.html">Enhancement for Career</a></li>
+        </ul>
+      </div>
+      <div style="flex: 1 1 200px;">
+        <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">Contact Me</h4>
+        <p style="font-size: 1.2rem; line-height: 1.8;">
+          Have questions or suggestions?<br/>
+          <a href="mailto:vrijsheth@gmail.com">Email me</a>
+        </p>
+      </div>
+      <div style="flex: 1 1 200px; text-align: right;">
+        <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">Follow Me</h4>
+        <a href="https://www.linkedin.com/in/vrij-sheth/" target="_blank" style="margin-right: 10px;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="30" height="30" style="filter: invert(100%);"/>
+        </a>
+        <a href="https://www.instagram.com/_vrij.s" target="_blank" style="margin-right: 10px;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="30" height="30" style="filter: invert(100%);"/>
+        </a>
+        <a href="https://www.facebook.com/vrij.sheth.7" target="_blank">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="30" height="30" style="filter: invert(100%);"/>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu(icon){
+      const menu = document.getElementById('menu');
+      icon.classList.toggle('open');
+      menu.classList.toggle('show');
+    }
+
+    // Scroll reveal
+    (function(){
+      const io = new IntersectionObserver((entries)=>{
+        for(const e of entries){
+          if(e.isIntersecting){ e.target.classList.add('show'); }
+          else { e.target.classList.remove('show'); }
+        }
+      }, { threshold: 0.15, rootMargin: "0px 0px -10% 0px" });
+
+      document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    })();
+
+    // Submenu behavior (mobile + accessibility)
+    (function(){
+      const parent = document.querySelector('.has-submenu');
+      if(!parent) return;
+      const toggle = parent.querySelector('.submenu-toggle');
+      const submenu = parent.querySelector('.submenu');
+
+      toggle.addEventListener('click', (e)=>{
+        const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+        if(!isDesktop){
+          e.preventDefault();             // prevent navigation only on mobile
+          parent.classList.toggle('open');
+          const expanded = parent.classList.contains('open');
+          toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        }
+      });
+
+      toggle.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown'){
+          e.preventDefault();
+          parent.classList.add('open');
+          toggle.setAttribute('aria-expanded','true');
+          const firstItem = submenu.querySelector('a');
+          if(firstItem) firstItem.focus();
+        }
+        if(e.key === 'Escape'){
+          parent.classList.remove('open');
+          toggle.setAttribute('aria-expanded','false');
+          toggle.focus();
+        }
+      });
+
+      document.addEventListener('click', (e)=>{
+        if(!parent.contains(e.target)){
+          parent.classList.remove('open');
+          toggle.setAttribute('aria-expanded','false');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
+```
