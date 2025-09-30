@@ -1,5 +1,7 @@
 A lightweight, student-friendly site that helps newcomers explore the tech world. It covers university pathways (Software Engineering, Computer Science, IT, CIS, Data Science, Computer Engineering), popular job roles, interview prep, and practical ways to level up (internships, projects, certifications, networking). Everything is built with semantic HTML, modern CSS, and a sprinkle of accessible, vanilla JavaScript—no frameworks required.
 
+LINK:https://vrsheth.github.io/Project-3-Website-On-Info-On-The-Tech-Sector-/
+
 ## Features
 
 * **Clean navigation:** Sticky header with a mobile hamburger menu and keyboard-friendly submenu.
@@ -61,3 +63,4 @@ Issues and PRs are welcome! Please:
 ## License
 
 MIT—use, modify, and share freely. If you build on this, a star or mention is appreciated!
+
