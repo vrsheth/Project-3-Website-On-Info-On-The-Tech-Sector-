@@ -189,14 +189,32 @@
       gap: 15px;
     }
 
-    footer {
-      background-color:#002244;
-      color:white;
+    /* --- NEW: site footer styles --- */
+    .site-footer {
+      background-color:#002244; /* Your blue */
+      color:#ffffff;
       padding:2rem 1rem;
-      font-family:'Teko',sans-serif;
       margin-top:4rem;
       width:100%;
-      box-sizing:border-box;
+      border:0;                /* no borders */
+      box-shadow:none;         /* ensure no shadow either */
+    }
+    .site-footer a {
+      color:#ffffff;           /* make all links same color as footer text */
+      text-decoration:none;    /* match style */
+    }
+    .site-footer a:hover,
+    .site-footer a:focus {
+      text-decoration:underline; /* optional: show affordance on hover/focus */
+    }
+    .site-footer__inner {
+      width:100%;
+      max-width:1200px;        /* content nicely centered but footer still full-bleed */
+      margin:0 auto;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      gap:2rem;
     }
 
     .reveal {
@@ -432,7 +450,7 @@
         </div>
       </div>
 
-      <div class="info-box reveal">
+       <div class="info-box reveal">
         <div class="info-media">
           <img src="images/Western.png" alt="Western University logo" style="width:210px; height:65px;"/>
         </div>
@@ -452,51 +470,52 @@
           </div>
         </div>
       </div>
+    </section>
+  </main>
 
-      <footer style="background-color:#002244;color:white;padding:2rem 1rem;font-family:'Teko',sans-serif;margin-top:4rem;width:100%;box-sizing:border-box;">
-        <div style="width:100%;display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem;">
-          <div style="flex:1 1 200px;">
-            <h4 style="font-size:1.5rem;margin-bottom:1rem;color:white;">Pages</h4>
-            <ul style="list-style:none;padding:0;font-size:1.2rem;line-height:2;">
-              <li><a href="index.html" style="color:white;text-decoration:none;">Homepage</a></li>
-              <li><a href="UniDegrees.html" style="color:white;text-decoration:none;">Uni Degrees</a></li>
-              <li><a href="Tips.html" style="color:white;text-decoration:none;">Tips for Uni</a></li>
-              <li><a href="Jobs.html" style="color:white;text-decoration:none;">Jobs in Tech</a></li>
-              <li><a href="JobInterviews.html" style="color:white;text-decoration:none;">Interviews To-Do's</a></li>
-              <li><a href="Enhance.html" style="color:white;text-decoration:none;">Enhancement for Career</a></li>
-            </ul>
-          </div>
+  <!-- MOVED: Footer OUTSIDE the constrained .info-container so it spans full width -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div style="flex:1 1 200px;">
+        <h4 style="font-size:1.5rem;margin-bottom:1rem;">Pages</h4>
+        <ul style="list-style:none;padding:0;font-size:1.2rem;line-height:2;">
+          <li><a href="index.html">Homepage</a></li>
+          <li><a href="UniDegrees.html">Uni Degrees</a></li>
+          <li><a href="Tips.html">Tips for Uni</a></li>
+          <li><a href="Jobs.html">Jobs in Tech</a></li>
+          <li><a href="JobInterviews.html">Interviews To-Do's</a></li>
+          <li><a href="Enhance.html">Enhancement for Career</a></li>
+        </ul>
+      </div>
 
-          <div style="flex:1 1 200px;">
-            <h4 style="font-size:1.5rem;margin-bottom:1rem;color:white;">Contact Me</h4>
-            <p style="font-size:1.2rem;line-height:1.8;">
-              Have questions or suggestions?<br />
-              <a href="mailto:vrijsheth@gmail.com" style="color:#00bfff;text-decoration:underline;">Email me</a>
-            </p>
-            <!-- References link added here -->
+      <div style="flex:1 1 200px;">
+        <h4 style="font-size:1.5rem;margin-bottom:1rem;">Contact Me</h4>
+        <p style="font-size:1.2rem;line-height:1.8;">
+          Have questions or suggestions?<br />
+          <a href="mailto:vrijsheth@gmail.com">Email me</a>
+        </p>
+        <!-- FIXED: References link styled like other footer text (white, no special color) -->
         <p style="font-size:1.2rem;line-height:1.8;margin:.3rem 0 0;">
           <a href="https://docs.google.com/document/d/1nL6xvg3iPARvubePDFuu2vIOSWxPJbZY6LOc5hBLge0/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
             References (Google Doc)
           </a>
         </p>
-          </div>
+      </div>
 
-          <div style="flex:1 1 200px;text-align:right;">
-            <h4 style="font-size:1.5rem;margin-bottom:1rem;color:white;">Follow Me</h4>
-            <a aria-label="LinkedIn profile" href="https://www.linkedin.com/in/vrij-sheth/" target="_blank" style="margin-right:10px;">
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="30" height="30" style="filter:invert(100%);" />
-            </a>
-            <a aria-label="Instagram profile" href="https://www.instagram.com/_vrij.s?igsh=bnJwenRtb2pjMTFr&utm_source=qr" target="_blank" style="margin-right:10px;">
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="30" height="30" style="filter:invert(100%);" />
-            </a>
-            <a aria-label="Facebook profile" href="https://www.facebook.com/vrij.sheth.7" target="_blank">
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="30" height="30" style="filter:invert(100%);" />
-            </a>
-          </div>
-        </div>
-      </footer>
-    </section>
-  </main>
+      <div style="flex:1 1 200px;text-align:right;">
+        <h4 style="font-size:1.5rem;margin-bottom:1rem;">Follow Me</h4>
+        <a aria-label="LinkedIn profile" href="https://www.linkedin.com/in/vrij-sheth/" target="_blank" style="margin-right:10px;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="30" height="30" style="filter:invert(100%);" />
+        </a>
+        <a aria-label="Instagram profile" href="https://www.instagram.com/_vrij.s?igsh=bnJwenRtb2pjMTFr&utm_source=qr" target="_blank" style="margin-right:10px;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="30" height="30" style="filter:invert(100%);" />
+        </a>
+        <a aria-label="Facebook profile" href="https://www.facebook.com/vrij.sheth.7" target="_blank">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="30" height="30" style="filter:invert(100%);" />
+        </a>
+      </div>
+    </div>
+  </footer>
 
   <script>
     function toggleMenu(icon){
@@ -558,4 +577,3 @@
   </script>
 </body>
 </html>
-
