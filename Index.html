@@ -9,11 +9,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
-     :root {
+    :root {
       --nav: #002244;
       --nav-darker: #011d3a;
       --accent: #007acc;
       --accent-dark: #003366;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
     }
 
     body {
@@ -28,7 +34,7 @@
       position: fixed;
       top: 0;
       width: 100%;
-      background-color: #002244;
+      background-color: var(--nav);
       color: white;
       height: 60px;
       display: flex;
@@ -37,14 +43,13 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
       z-index: 1000;
       font-family: 'Teko', sans-serif;
-
     }
 
     .navbar-title {
-        text-align: center;
-        font-size: 1.5rem;
-        font-weight: bold;
-        font-family: 'Teko', sans-serif;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      font-family: 'Teko', sans-serif;
     }
 
     .menu-toggle {
@@ -84,12 +89,12 @@
     .menu-items {
       max-height: 0;
       overflow: hidden;
-      background-color: #011d3a;
+      background-color: var(--nav-darker);
       list-style: none;
       margin: 0;
       padding: 0;
       transition: max-height 0.4s ease-in-out;
-      border-top: 2px solid #007acc;
+      border-top: 2px solid var(--accent);
       border-radius: 0 0 10px 10px;
       font-family: 'Teko', sans-serif;
     }
@@ -106,11 +111,11 @@
       font-size: 1.2rem;
       font-weight: 500;
       transition: background 0.3s, padding-left 0.3s;
-      font-family: 'Teko' sans-serif;
+      font-family: 'Teko', sans-serif; /* fixed missing comma */
     }
 
     .menu-items li a:hover {
-      background-color: #003366;
+      background-color: var(--accent-dark);
       padding-left: 2.5rem;
     }
 
@@ -119,6 +124,7 @@
       padding-top: 80px;
       position: relative;
       z-index: 1;
+      min-height: 60vh;
     }
 
     hr {
@@ -200,8 +206,54 @@
       color: #003366;
     }
 
-    
-    
+    /* Full-width footer */
+    .site-footer {
+      background-color: var(--nav);
+      color: white;
+      width: 100%;
+      padding: 2rem 1rem;
+      font-family: 'Teko', sans-serif;
+      margin-top: 4rem;
+    }
+
+    .site-footer .footer-inner {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .site-footer a {
+      color: #00bfff;
+      text-decoration: underline;
+    }
+
+    .site-footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 1.2rem;
+      line-height: 2;
+    }
+
+    .site-footer h4 {
+      color: #ffffff;
+      margin: 0 0 1rem 0;
+      font-size: 1.5rem;
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    @media (max-width: 600px) {
+      .footer-right {
+        text-align: left;
+      }
+    }
   </style>
 </head>
 <body>
@@ -218,9 +270,7 @@
 
   <!-- Dropdown Nav -->
   <ul class="menu-items" id="menu">
-    <br>
-    <br>
-    <br>
+    <br><br><br>
     <li><a href="UniDegrees.html">Uni Degrees</a></li>
     <li><a href="Tips.html">Tips for Uni</a></li>
     <li><a href="Jobs.html">Jobs in Tech</a></li>
@@ -290,70 +340,74 @@
     <h3 class="section-heading fade-section" id="about-me">About Me</h3>
     <div class="flex-row" style="align-items: center; flex-wrap: wrap;">
       <div class="fade-section" style="flex: 1 1 250px; text-align: center;">
-        <img src="images/Vrij.JPG" 
-        alt="Your Name" 
-        style="width: 100%; max-width: 400px; height: 400px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);" 
-        />
+        <img src="images/Vrij.JPG"
+             alt="Your Name"
+             style="width: 100%; max-width: 400px; height: 400px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);" />
       </div>
       <div class="fade-section" style="flex: 2 1 400px; padding: 1rem;">
         <p style="font-family: 'Teko', sans-serif; font-size: 1.4rem; line-height: 1.5;">
-            Hi, my name is Vrij Sheth. I am currently pursuing a degree in Computer Information Systems at Mount Royal University.
-
-Born and raised in Calgary, Alberta, I’ve had a lifelong passion for technology. From building custom PCs to repairing phones, laptops, and gaming consoles, I’ve always enjoyed working with tech in any form.
-
-When it came time to choose a career path in high school, I knew I wanted to pursue something in the tech field—but with so many options available, I wished I had more guidance in making the right choice.
-
-That’s exactly why I created this website: to help the next generation of students explore their interests in technology and find the direction that’s right for them.
+          Hi, my name is Vrij Sheth. I am currently pursuing a degree in Computer Information Systems at Mount Royal University.
+          <br><br>
+          Born and raised in Calgary, Alberta, I’ve had a lifelong passion for technology. From building custom PCs to repairing phones, laptops, and gaming consoles, I’ve always enjoyed working with tech in any form.
+          <br><br>
+          When it came time to choose a career path in high school, I knew I wanted to pursue something in the tech field—but with so many options available, I wished I had more guidance in making the right choice.
+          <br><br>
+          That’s exactly why I created this website: to help the next generation of students explore their interests in technology and find the direction that’s right for them.
           <br><br>
           Thank you for visiting my site!
         </p>
       </div>
     </div>
 
-<!-- Footer -->
-<footer style="background-color:#002244;color:white;padding:2rem 1rem;font-family:'Teko',sans-serif;margin-top:4rem;width:100%;box-sizing:border-box;">
-  <div style="width:100%;display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem;">
-
-    <!-- Footer Navigation Links -->
-    <div style="flex:1 1 200px;">
-      <h4 style="font-size:1.5rem;margin-bottom:1rem;color:white;">Pages</h4>
-      <ul style="list-style:none;padding:0;font-size:1.2rem;line-height:2;">
-        <li><a href="Index.html" style="color:white;text-decoration:none;">Homepage</a></li>
-        <li><a href="UniDegrees.html" style="color:white;text-decoration:none;">Uni Degrees</a></li>
-        <li><a href="Tips.html" style="color:white;text-decoration:none;">Tips for Uni</a></li>
-        <li><a href="Jobs.html" style="color:white;text-decoration:none;">Jobs in Tech</a></li>
-        <li><a href="JobInterviews.html" style="color:white;text-decoration:none;">Interviews To-Do's</a></li>
-        <li><a href="Enhance.html" style="color:white;text-decoration:none;">Enhancement for Career</a></li>
-      </ul>
-    </div>
-
-    <!-- Contact Info -->
-    <div style="flex:1 1 200px;">
-      <h4 style="font-size:1.5rem;margin-bottom:1rem;color:white;">Contact Me</h4>
-      <p style="font-size:1.2rem;line-height:1.8;">
-        Have questions or suggestions?<br />
-        <a href="mailto:vrijsheth@gmail.com" style="color:#00bfff;text-decoration:underline;">Email me</a>
-      </p>
-    </div>
-
-    <!-- Social Media Links -->
-    <div style="flex:1 1 200px;text-align:right;">
-      <h4 style="font-size:1.5rem;margin-bottom:1rem;color:white;">Follow Me</h4>
-      <a href="https://www.linkedin.com/in/vrij-sheth/" target="_blank" style="margin-right:10px;">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="30" height="30" style="filter:invert(100%);" />
-      </a>
-      <a href="https://www.instagram.com/_vrij.s?igsh=bnJwenRtb2pjMTFr&utm_source=qr" target="_blank" style="margin-right:10px;">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="30" height="30" style="filter:invert(100%);" />
-      </a>
-      <a href="https://www.facebook.com/vrij.sheth.7" target="_blank">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="30" height="30" style="filter:invert(100%);" />
-      </a>
-    </div>
-  </div>
-</footer>
-
-
   </main>
+
+  <!-- Footer (now outside main, full-width) -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+
+      <!-- Footer Navigation Links -->
+      <div style="flex:1 1 200px;">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="Index.html" style="text-decoration:none;color:white;">Homepage</a></li>
+          <li><a href="UniDegrees.html" style="text-decoration:none;color:white;">Uni Degrees</a></li>
+          <li><a href="Tips.html" style="text-decoration:none;color:white;">Tips for Uni</a></li>
+          <li><a href="Jobs.html" style="text-decoration:none;color:white;">Jobs in Tech</a></li>
+          <li><a href="JobInterviews.html" style="text-decoration:none;color:white;">Interviews To-Do's</a></li>
+          <li><a href="Enhance.html" style="text-decoration:none;color:white;">Enhancement for Career</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div style="flex:1 1 200px;">
+        <h4>Contact Me</h4>
+        <p style="font-size:1.2rem;line-height:1.8;margin:0 0 0.5rem 0;">
+          Have questions or suggestions?<br />
+          <a href="mailto:vrijsheth@gmail.com">Email me</a>
+        </p>
+        <!-- Added References link here -->
+        <p style="font-size:1.2rem;line-height:1.8;margin:0;">
+          <a href="https://docs.google.com/document/d/1nL6xvg3iPARvubePDFuu2vIOSWxPJbZY6LOc5hBLge0/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+            References (Google Doc)
+          </a>
+        </p>
+      </div>
+
+      <!-- Social Media Links -->
+      <div class="footer-right" style="flex:1 1 200px;">
+        <h4>Follow Me</h4>
+        <a href="https://www.linkedin.com/in/vrij-sheth/" target="_blank" style="margin-right:10px;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="30" height="30" style="filter:invert(100%);" />
+        </a>
+        <a href="https://www.instagram.com/_vrij.s?igsh=bnJwenRtb2pjMTFr&utm_source=qr" target="_blank" style="margin-right:10px;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="30" height="30" style="filter:invert(100%);" />
+        </a>
+        <a href="https://www.facebook.com/vrij.sheth.7" target="_blank">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="30" height="30" style="filter:invert(100%);" />
+        </a>
+      </div>
+    </div>
+  </footer>
 
   <!-- Scroll Faders -->
   <div class="scroll-fade-top"></div>
@@ -377,11 +431,10 @@ That’s exactly why I created this website: to help the next generation of stud
           entry.target.classList.remove('visible');
         }
       });
-    }, {
-      threshold: 0.2
-    });
+    }, { threshold: 0.2 });
 
     sections.forEach(section => observer.observe(section));
   </script>
 </body>
 </html>
+

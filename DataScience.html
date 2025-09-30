@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +16,6 @@
       transition: background-color 0.4s ease;
     }
 
-    /* Sticky Navigation */
     .navbar {
       position: fixed;
       top: 0;
@@ -61,7 +59,6 @@
     .menu-toggle.open span:nth-child(2){ opacity: 0; }
     .menu-toggle.open span:nth-child(3){ transform: rotate(-45deg) translate(6px,-6px); }
 
-    /* Dropdown container (mobile-first collapsed) */
     .menu-items {
       max-height: 0;
       overflow: hidden;
@@ -75,7 +72,6 @@
     }
     .menu-items.show { max-height: 700px; }
 
-    /* Top-level links */
     .menu-items > li a {
       display: block;
       padding: 0.8rem 2rem;
@@ -92,7 +88,6 @@
 
     .menu-items li { position: relative; }
 
-    /* Toggle anchor row with caret */
     .has-submenu > .submenu-toggle {
       display: flex;
       align-items: center;
@@ -107,7 +102,6 @@
       transition: transform .2s ease;
     }
 
-    /* Base submenu rules (mobile-first) */
     .submenu {
       display: none;
       list-style: none;
@@ -125,31 +119,24 @@
     }
     .submenu a:hover { background-color: #003366; }
 
-    /* Mobile/keyboard open state */
     .has-submenu.open > .submenu { display: block; }
     .has-submenu.open > .submenu-toggle .caret { transform: rotate(180deg); }
 
-    /* Desktop: submenu expands in-flow and pushes content down */
     @media (min-width: 768px) {
       .menu-items { position: relative; }
       .has-submenu { display: block; }
-
       .has-submenu .submenu {
         position: static;
-        display: block;          /* make it part of flow */
+        display: block;
         overflow: hidden;
-        max-height: 0;           /* collapsed by default */
+        max-height: 0;
         border: 0;
         border-top: 1px solid #007acc;
         border-radius: 0 0 10px 10px;
         transition: max-height 0.35s ease;
       }
-      .has-submenu:hover > .submenu {
-        max-height: 800px;       /* enough to reveal items; pushes below content down */
-      }
-      .has-submenu:hover > .submenu-toggle .caret {
-        transform: rotate(180deg);
-      }
+      .has-submenu:hover > .submenu { max-height: 800px; }
+      .has-submenu:hover > .submenu-toggle .caret { transform: rotate(180deg); }
     }
 
     main {
@@ -157,9 +144,9 @@
       padding-top: 200px;
       position: relative;
       z-index: 1;
+      min-height: 60vh;
     }
 
-    /* Info boxes */
     .info-container { max-width: 1000px; margin: 0 auto; }
 
     .info-box {
@@ -171,17 +158,20 @@
       margin-bottom: 2rem;
     }
 
-    .info-title {
+    /* New image panel replacing .info-title */
+    .info-media {
       min-width: 220px;
-      background: #003366;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 1rem;
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-      font-weight: 700;
+      max-width: 260px;
+      display: grid;
+      place-items: center;
+      background: #0184ff;
+    }
+    .info-media img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
     }
 
     .info-text {
@@ -189,19 +179,31 @@
       padding: 1.5rem;
       font-size: 1.2rem;
       color: #003366;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
 
-    /* Footer */
-    footer {
-      background-color: #002244;
-      color: white;
-      padding: 2rem 1rem;
-      margin-top: 4rem;
+    /* Full-width footer */
+    .site-footer {
+      background-color:#002244;
+      color:white;
+      padding:2rem 1rem;
+      margin-top:4rem;
+      width:100%;
+      box-sizing:border-box;
     }
-    footer a { color: white; text-decoration: none; }
-    footer a:hover { color: #00bfff; }
+    .site-footer .footer-inner{
+      width:100%;
+      max-width:1400px;
+      margin:0 auto;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      gap:2rem;
+    }
+    .site-footer a { color:#00bfff; text-decoration:underline; }
 
-    /* Scroll fade-in */
     .reveal {
       opacity: 0;
       transform: translateY(24px);
@@ -214,16 +216,17 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .reveal {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
-      }
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
+
+    @media (max-width: 640px) {
+      .info-box { flex-direction: column; }
+      .info-media { width: 100%; max-width: 100%; min-height: 200px; }
+      .info-media img { aspect-ratio: 16 / 9; }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
   <header class="navbar">
     <div class="menu-toggle" id="hamburger" onclick="toggleMenu(this)">
       <span></span><span></span><span></span>
@@ -231,12 +234,10 @@
     <div class="navbar-title">Info On The Tech Sector</div>
   </header>
 
-  <!-- Dropdown Nav -->
   <ul class="menu-items" id="menu" aria-label="Primary">
     <br><br><br>
     <li><a href="Index.html">Homepage</a></li>
     <li><a href="Tips.html">Tips for Uni</a></li>
-
     <li class="has-submenu">
       <a href="UniDegrees.html" class="submenu-toggle" aria-haspopup="true" aria-expanded="false">
         Uni Degrees
@@ -251,93 +252,357 @@
         <li role="none"><a role="menuitem" href="ComputerEngineering.html">Computer Engineering</a></li>
       </ul>
     </li>
-
     <li><a href="Jobs.html">Jobs in Tech</a></li>
     <li><a href="JobInterviews.html">Interview To-Do's</a></li>
   </ul>
 
-  <!-- Main Content -->
   <main id="main-content">
     <section class="info-container">
       <h1 style="text-align:center; font-size:clamp(2rem, 5vw, 2.5rem); color:#003366; margin-bottom:2rem;">
-        University Tech Degrees
+        Schools That Offer Data Science 
       </h1>
 
       <div class="info-box reveal">
-        <div class="info-title">Computer Science</div>
-        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
-          <div style="flex:1;">Placeholder</div>
+        <div class="info-media">
+          <img src="images/UOFC.png" alt="UOFC" style="width:205px; height:150px;"/>
+        </div>
+        <div class="info-text">
+          <div>
+            The University of Calgary’s Data Science program equips students with a strong foundation in statistics, computer science, and mathematics while emphasizing practical applications in AI, machine learning, and big data analytics. Students gain hands-on experience with tools and programming languages commonly used in the field, preparing them to tackle real-world challenges. The program integrates interdisciplinary learning, offering opportunities to apply data science to areas like business, health, and engineering. With strong ties to Calgary’s growing tech sector, it provides pathways for co-ops, internships, and industry collaboration. Graduates are prepared for roles in data analysis, AI development, and research, or for further study at the graduate level.
+            <br><br> 
+            Class Reuqirements (Compared To Alberta High Schools)
+            <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Two Of: Physics 30 Or Biology 30 Or Chemistry 30 or Math 31 or CTS Computing Science 30</li>
+              <li>One Approved Option</li>
+            </ul>
+            Competitive Average: <strong>Mid To High 80s</strong>
+            <br>
+          </div>
         </div>
       </div>
 
       <div class="info-box reveal">
-        <div class="info-title">Software Engineering</div>
-        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
-          <div style="flex:1;">Placeholder</div>
+        <div class="info-media">
+          <img src="images/MRU.png" alt="MRU" style="width:205px; height:130px;"/>
+        </div>
+        <div class="info-text">
+          <div>
+            Mount Royal University offers a Bachelor of Science in Data Science, one of the first of its kind in Western Canada. The program blends mathematics, statistics, and computer science with practical training in programming, data analysis, and machine learning. Students learn how to work with large datasets, build predictive models, and apply data science to solve complex problems across industries. Emphasis is placed on ethical data use, critical thinking, and communication of results. The program also provides opportunities for research, applied projects, and industry connections in Calgary’s tech and business sectors. Graduates are prepared for careers in analytics, AI, and data-driven decision-making, or for advanced study.
+            <br><br> 
+            Class Reuqirements (Compared To Alberta High Schools)
+            <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Two Of: Physics 30 Or Biology 30 Or Chemistry 30 or Math 31 or CTS Computing Science 30</li>
+            </ul>
+            Competitive Average: <strong>Mid 80s</strong>
+            <br>
+          </div>
         </div>
       </div>
 
       <div class="info-box reveal">
-        <div class="info-title">Computer Engineering</div>
-        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
-          <div style="flex:1;">Placeholder</div>
+        <div class="info-media">
+          <img src="images/UOFA.png" alt="UOFA" style="width:205px; height:205px;"/>
+        </div>
+        <div class="info-text">
+          <div>
+            The University of Alberta offers a strong Data Science program built on its international reputation in artificial intelligence and machine learning research. Students gain core skills in mathematics, statistics, and computing, alongside hands-on training with data management, visualization, and predictive modeling. The program emphasizes both theory and application, preparing students to solve problems across health, business, engineering, and social sciences. With the presence of Amii (Alberta Machine Intelligence Institute), students benefit from direct exposure to cutting-edge AI research and industry partnerships. Co-op and internship opportunities connect students with employers in Alberta’s growing tech sector. Graduates are well-prepared for careers in analytics, AI development, and advanced research.
+            <br><br> 
+            Class Reuqirements (Compared To Alberta High Schools)
+            <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Two Of: Physics 30 Or Biology 30 Or Chemistry 30 or Math 31 or CTS Computing Science 30</li>
+              <li>One Approved Option</li>
+            </ul>
+            Competitive Average: <strong>High 80s</strong>
+          </div>
+        </div>
+      </div>
+
+       <div class="info-box reveal">
+        <div class="info-media">
+          <img src="images/UOFW.png" alt="Waterloo" style="width:205px; height:205px;"/>
+        </div>
+        <div class="info-text">
+          <div>
+            The University of Waterloo is renowned for its Data Science programs, combining the strengths of computer science, statistics, and mathematics. Students learn advanced skills in programming, data management, machine learning, and statistical modeling, with strong emphasis on solving real-world problems. Waterloo’s world-famous co-op program offers extensive paid work opportunities with leading tech firms, startups, and research labs. The program is highly interdisciplinary, allowing applications of data science across finance, health, engineering, and social sciences. With a strong global reputation in computing and analytics, students benefit from cutting-edge research and innovation. Graduates are sought after for careers in AI, big data, and advanced analytics, as well as further academic study.
+            <br><br> 
+            Class Reuqirements (Compared To Alberta High Schools)
+            <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Two Of: Physics 30 Or Biology 30 Or Chemistry 30 or Math 31 or CTS Computing Science 30</li>
+              <li>One Approved Option</li>
+            </ul>
+            Competitive Average: <strong>High 80s To Low 90s</strong>
+          </div>
         </div>
       </div>
 
       <div class="info-box reveal">
-        <div class="info-title">Information Technology</div>
-        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
-          <div style="flex:1;">Placeholder</div>
+      <div class="info-media">
+        <img src="images/UOFO.png" alt="UOFO" style="width:205px; height:205px;"/>
+      </div>
+      <div class="info-text">
+        <div>
+          The University of Ottawa offers a comprehensive Data Science program that merges computer science, mathematics, and statistics with practical applications. Students gain expertise in programming, database systems, machine learning, and statistical analysis, preparing them to work with complex datasets. The program emphasizes bilingual learning opportunities, reflecting the university’s unique English-French environment. Strong ties to government, healthcare, and industry partners in Ottawa provide students with valuable co-op and internship experiences. Research opportunities are available in fields like AI, bioinformatics, and cybersecurity. Graduates are equipped for careers in data analytics, AI, and applied research, or for pursuing advanced graduate studies.
+          <br><br> 
+          Class Reuqirements (Compared To Alberta High Schools)
+           <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Two Of: Physics 30 Or Biology 30 Or Chemistry 30 or Math 31 or CTS Computing Science 30</li>
+              <li>One Approved Option</li>
+            </ul>
+          Competitive Average: <strong>Mid 80s</strong>
         </div>
       </div>
+    </div>
+
+    <div class="info-box reveal">
+      <div class="info-media">
+        <img src="images/CU.png" alt="Carleton" style="width:205px; height:205px;"/>
+      </div>
+      <div class="info-text">
+        <div>
+          Carleton University offers a multidisciplinary Data Science program that integrates computer science, mathematics, and statistics with domain-specific knowledge. Students learn how to analyze and interpret large datasets, apply machine learning, and develop data-driven solutions. The program allows specialization in areas like business, economics, health, and environmental studies, giving graduates flexibility in career paths. Carleton’s strong co-op program connects students with government agencies, Ottawa’s thriving tech sector, and national research organizations. The curriculum emphasizes both technical expertise and communication skills, ensuring students can present insights effectively. Graduates are well-prepared for roles in analytics, AI, and applied data research, as well as for further graduate-level education.
+          <br><br> 
+          Class Reuqirements (Compared To Alberta High Schools)
+          <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Two Of: Physics 30 Or Biology 30 Or Chemistry 30 or Math 31 or CTS Computing Science 30</li>
+              <li>One Approved Option</li>
+          </ul>
+          Competitive Average: <strong>Mid to High 80s</strong>
+        </div>
+      </div>
+    </div>
 
       <div class="info-box reveal">
-        <div class="info-title">Computer Information Systems</div>
-        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
-          <div style="flex:1;">Placeholder</div>
+      <div class="info-media">
+        <img src="images/McGill.svg" alt="McGill" style="width:180px; height:235px;"/>
+      </div>
+      <div class="info-text">
+        <div>
+          McGill University’s Data Science program combines rigorous training in mathematics, statistics, and computer science with applied problem-solving across disciplines. Students develop skills in data visualization, programming, machine learning, and statistical modeling. The program emphasizes research and innovation, benefiting from McGill’s strong international reputation in AI and data-related fields. Opportunities for internships, research projects, and collaboration with Montreal’s thriving tech and AI hub enhance practical learning. With a focus on critical thinking and ethical data use, students are prepared to address real-world challenges. Graduates pursue careers in analytics, data engineering, and AI development, or continue into advanced academic research.
+          <br><br> 
+          Class Reuqirements (Compared To Alberta High Schools)
+          <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Two Of: Physics 30 Or Biology 30 Or Chemistry 30 or Math 31 or CTS Computing Science 30</li>
+              <li>One Approved Option</li>
+          </ul>
+          Competitive Average: <strong>High 80s</strong>, 
         </div>
       </div>
+    </div>
 
-      <div class="info-box reveal">
-        <div class="info-title">Data Science</div>
-        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
-          <div style="flex:1;">Placeholder</div>
+     <div class="info-box reveal">
+      <div class="info-media">
+        <img src="images/McMaster.png" alt="McMaster" style="width:180px; height: 95px;"/>
+      </div>
+      <div class="info-text">
+        <div>
+          McGill University’s Data Science program combines rigorous training in mathematics, statistics, and computer science with applied problem-solving across disciplines. Students develop skills in data visualization, programming, machine learning, and statistical modeling. The program emphasizes research and innovation, benefiting from McGill’s strong international reputation in AI and data-related fields. Opportunities for internships, research projects, and collaboration with Montreal’s thriving tech and AI hub enhance practical learning. With a focus on critical thinking and ethical data use, students are prepared to address real-world challenges. Graduates pursue careers in analytics, data engineering, and AI development, or continue into advanced academic research.
+          <br><br> 
+          Class Reuqirements (Compared To Alberta High Schools)
+          <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Two Of: Physics 30 Or Biology 30 Or Chemistry 30 or Math 31 or CTS Computing Science 30</li>
+              <li>One Approved Option</li>
+          </ul>
+          Competitive Average: <strong>High 80s to Low 90s</strong>, 
         </div>
       </div>
-    </section>
+    </div>
+
+    <div class="info-box reveal">
+      <div class="info-media">
+        <img src="images/UOFT.png" alt="UOFT" style="width:200px; height: 200px;"/>
+      </div>
+      <div class="info-text">
+        <div>
+          The University of Toronto offers one of Canada’s leading Data Science programs, combining computer science, statistics, and mathematics with real-world applications. Students gain expertise in programming, machine learning, data mining, and statistical analysis, preparing them to work with complex datasets. U of T’s strong research environment and global reputation in AI provide opportunities to engage with cutting-edge projects. The program emphasizes both technical depth and interdisciplinary application, spanning health, business, and social sciences. With Toronto’s thriving tech and financial sectors nearby, students benefit from co-ops, internships, and industry collaborations. Graduates are highly sought after for careers in data science, AI, and advanced analytics worldwide.
+          <br><br> 
+          Class Reuqirements (Compared To Alberta High Schools)
+          <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Two Of: Physics 30 Or Biology 30 Or Chemistry 30 or Math 31 or CTS Computing Science 30</li>
+              <li>One Approved Option</li>
+          </ul>
+          Competitive Average: <strong>Low to Mid 90s</strong>, 
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box reveal">
+      <div class="info-media">
+        <img src="images/Western.png" alt="Western" style="width:210px; height:65px;"/>
+      </div>
+      <div class="info-text">
+        <div>
+          Western University’s Data Science program blends mathematics, statistics, and computer science with practical applications across diverse fields. Students develop expertise in programming, data visualization, machine learning, and advanced analytics. The program emphasizes interdisciplinary study, allowing students to apply data science in areas like health, business, and social sciences. Experiential learning opportunities, such as co-op placements and research projects, provide strong industry connections. Western’s collaborative research culture and partnerships with Canada’s tech sector prepare students for impactful careers. Graduates are equipped to pursue roles in analytics, AI, and research, or continue into advanced graduate programs.
+          <br><br> 
+          Class Reuqirements (Compared To Alberta High Schools)
+          <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Two Of: Physics 30 Or Biology 30 Or Chemistry 30 or Math 31 or CTS Computing Science 30</li>
+              <li>One Approved Option</li>
+          </ul>
+          Competitive Average: <strong>Mid 80s</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box reveal">
+      <div class="info-media">
+        <img src="images/UBC.png" alt="UBC" style="width:210px; height:210px;"/>
+      </div>
+      <div class="info-text">
+        <div>
+          The University of British Columbia offers a highly regarded Data Science program that combines computer science, statistics, and applied research. Students gain core skills in programming, machine learning, data visualization, and statistical modeling to tackle real-world challenges. The program emphasizes hands-on learning, with opportunities for capstone projects, co-ops, and industry collaborations. Located in Vancouver, UBC connects students to Canada’s west coast tech hub and a global research network. Interdisciplinary applications span health, business, environmental science, and social data. Graduates are prepared for careers in analytics, AI, and data engineering, or for pursuing advanced research degrees.
+          <br><br> 
+          Class Reuqirements (Compared To Alberta High Schools)
+          <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Two Of: Physics 30 Or Biology 30 Or Chemistry 30 or Math 31 or CTS Computing Science 30</li>
+              <li>One Approved Option</li>
+            </ul>
+          Competitive Average: <strong>High 80s</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box reveal">
+      <div class="info-media">
+        <img src="images/UOFMontreal.png" alt="Université de Montréal" style="width:180px; height:180px;"/>
+      </div>
+      <div class="info-text">
+        <div>
+          The Université de Montréal offers a strong Data Science program grounded in mathematics, statistics, and computer science. Students build expertise in programming, machine learning, statistical modeling, and big data technologies. The program emphasizes both theory and applied learning, with opportunities to work on research projects in AI, bioinformatics, and data-driven decision-making. As part of Montreal’s thriving AI ecosystem, students benefit from connections to world-class research institutes like MILA and industry partners. The bilingual academic environment prepares graduates for global opportunities in diverse sectors. Career paths include data science, AI development, analytics, and advanced academic research.
+          <br><br> 
+          Class Reuqirements (Compared To Alberta High Schools)
+          <ul>
+            <li>English Langauge Arts 30-1</li>
+            <li>Math 30-1</li>
+            <li>Three Of: Physics 30 Or Biology 30 Or Chemistry 30 or Math 31 or CTS Computing Science 30</li>
+          </ul>
+          Competitive Average: <strong>Mid 80s</strong>
+        </div>
+      </div>
+    </div>
+
+     <div class="info-box reveal">
+      <div class="info-media">
+        <img src="images/Queens.png" alt="Queens" style="width:210px; height:150px;"/>
+      </div>
+      <div class="info-text">
+        <div>
+          Queen’s University offers a comprehensive Data Science program that integrates computer science, statistics, and mathematics with applied training. Students learn programming, machine learning, statistical modeling, and data visualization while developing strong problem-solving skills. The program emphasizes interdisciplinary applications in business, health, and social sciences, supported by Queen’s strong research community. Co-op and internship opportunities connect students with employers in Kingston and beyond, offering valuable hands-on experience. The curriculum also highlights ethical data use and effective communication of insights. Graduates are prepared for careers in analytics, AI, and big data, or to pursue advanced research and graduate studies.
+          <br><br> 
+          Class Reuqirements (Compared To Alberta High Schools)
+          <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Two Of: Physics 30 Or Biology 30 Or Chemistry 30 or Math 31 or CTS Computing Science 30</li>
+              <li>One Approved Option</li>
+            </ul>
+          Competitive Average: <strong>Mid To High 80s</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box reveal">
+      <div class="info-media">
+        <img src="images/York.png" alt="York" style="width:210px; height:80px;"/>
+      </div>
+      <div class="info-text">
+        <div>
+          York University offers a Data Science program that combines computer science, statistics, and applied mathematics with real-world problem solving. Students gain skills in programming, machine learning, statistical modeling, and data management, supported by York’s focus on interdisciplinary learning. The program emphasizes ethical data use, critical thinking, and communication, ensuring graduates can translate insights into impact. Located in Toronto, York connects students with Canada’s largest financial and tech hub through co-op and internship opportunities. Research opportunities are available in areas like AI, health analytics, and business intelligence. Graduates are well-prepared for roles in data analytics, AI, and applied research, or for pursuing advanced degrees.
+          <br><br> 
+          Class Reuqirements (Compared To Alberta High Schools)
+          <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Two Of: Physics 30 Or Biology 30 Or Chemistry 30 or Math 31 or CTS Computing Science 30</li>
+              <li>One Approved Option</li>
+            </ul>
+          Competitive Average: <strong>Mid 80s</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box reveal">
+      <div class="info-media">
+        <img src="images/Dalhousie.png" alt="Dalhousie" style="width:210px; height:210px;"/>
+      </div>
+      <div class="info-text">
+        <div>
+          Dalhousie University offers a Data Science program that integrates computer science, statistics, and mathematics with applied learning. Students develop expertise in programming, machine learning, data mining, and statistical modeling to address complex real-world challenges. The program emphasizes interdisciplinary applications in health, ocean studies, business, and environmental science—reflecting Dalhousie’s research strengths. Hands-on learning through co-op placements, industry projects, and research opportunities connects students with employers across Atlantic Canada and beyond. The curriculum also highlights ethical data practices and clear communication of insights. Graduates are prepared for careers in analytics, AI, and applied research, or for advanced graduate-level studies.
+          <br><br> 
+          Class Reuqirements (Compared To Alberta High Schools)
+          <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Two Of: Physics 30 Or Biology 30 Or Chemistry 30 or Math 31 or CTS Computing Science 30</li>
+              <li>One Approved Option</li>
+            </ul>
+          Competitive Average: <strong>Mid 80s</strong>
+        </div>
+      </div>
+    </div>
+</section>
   </main>
 
-  <!-- Footer -->
-  <footer>
-    <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;">
-      <div style="flex: 1 1 200px;">
-        <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">Pages</h4>
-        <ul style="list-style: none; padding: 0; font-size: 1.2rem; line-height: 2;">
-          <li><a href="Index.html">Homepage</a></li>
-          <li><a href="UniDegrees.html">Uni Degrees</a></li>
-          <li><a href="Tips.html">Tips for Uni</a></li>
-          <li><a href="Jobs.html">Jobs in Tech</a></li>
-          <li><a href="JobInterviews.html">Interviews To-Do's</a></li>
-          <li><a href="Enhance.html">Enhancement for Career</a></li>
+  <!-- Full-width footer OUTSIDE main -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div style="flex:1 1 200px;">
+        <h4 style="font-size:1.5rem;margin-bottom:1rem;color:white;">Pages</h4>
+        <ul style="list-style:none;padding:0;font-size:1.2rem;line-height:2;">
+          <li><a href="Index.html" style="color:white;text-decoration:none;">Homepage</a></li>
+          <li><a href="UniDegrees.html" style="color:white;text-decoration:none;">Uni Degrees</a></li>
+          <li><a href="Tips.html" style="color:white;text-decoration:none;">Tips for Uni</a></li>
+          <li><a href="Jobs.html" style="color:white;text-decoration:none;">Jobs in Tech</a></li>
+          <li><a href="JobInterviews.html" style="color:white;text-decoration:none;">Interviews To-Do's</a></li>
+          <li><a href="Enhance.html" style="color:white;text-decoration:none;">Enhancement for Career</a></li>
         </ul>
       </div>
-      <div style="flex: 1 1 200px;">
-        <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">Contact Me</h4>
-        <p style="font-size: 1.2rem; line-height: 1.8;">
-          Have questions or suggestions?<br/>
-          <a href="mailto:vrijsheth@gmail.com">Email me</a>
+
+      <div style="flex:1 1 200px;">
+        <h4 style="font-size:1.5rem;margin-bottom:1rem;color:white;">Contact Me</h4>
+        <p style="font-size:1.2rem;line-height:1.8;margin:0 0 .5rem 0;">
+          Have questions or suggestions?<br />
+          <a href="mailto:vrijsheth@gmail.com" style="color:#00bfff;text-decoration:underline;">Email me</a>
+        </p>
+        <!-- Added References link -->
+        <p style="font-size:1.2rem;line-height:1.8;margin:0;">
+          <a href="https://docs.google.com/document/d/1nL6xvg3iPARvubePDFuu2vIOSWxPJbZY6LOc5hBLge0/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+            References (Google Doc)
+          </a>
         </p>
       </div>
-      <div style="flex: 1 1 200px; text-align: right;">
-        <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">Follow Me</h4>
-        <a href="https://www.linkedin.com/in/vrij-sheth/" target="_blank" style="margin-right: 10px;">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="30" height="30" style="filter: invert(100%);"/>
+
+      <div style="flex:1 1 200px;text-align:right;">
+        <h4 style="font-size:1.5rem;margin-bottom:1rem;color:white;">Follow Me</h4>
+        <a href="https://www.linkedin.com/in/vrij-sheth/" target="_blank" style="margin-right:10px;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="30" height="30" style="filter:invert(100%);" />
         </a>
-        <a href="https://www.instagram.com/_vrij.s" target="_blank" style="margin-right: 10px;">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="30" height="30" style="filter: invert(100%);"/>
+        <a href="https://www.instagram.com/_vrij.s?igsh=bnJwenRtb2pjMTFr&utm_source=qr" target="_blank" style="margin-right:10px;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="30" height="30" style="filter:invert(100%);" />
         </a>
         <a href="https://www.facebook.com/vrij.sheth.7" target="_blank">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="30" height="30" style="filter: invert(100%);"/>
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="30" height="30" style="filter:invert(100%);" />
         </a>
       </div>
     </div>
@@ -350,7 +615,6 @@
       menu.classList.toggle('show');
     }
 
-    // Scroll reveal
     (function(){
       const io = new IntersectionObserver((entries)=>{
         for(const e of entries){
@@ -362,7 +626,6 @@
       document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     })();
 
-    // Submenu behavior (mobile + accessibility)
     (function(){
       const parent = document.querySelector('.has-submenu');
       if(!parent) return;
@@ -372,7 +635,7 @@
       toggle.addEventListener('click', (e)=>{
         const isDesktop = window.matchMedia('(min-width: 768px)').matches;
         if(!isDesktop){
-          e.preventDefault();             // prevent navigation only on mobile
+          e.preventDefault();
           parent.classList.toggle('open');
           const expanded = parent.classList.contains('open');
           toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
@@ -404,4 +667,8 @@
   </script>
 </body>
 </html>
-```
+
+
+
+
+

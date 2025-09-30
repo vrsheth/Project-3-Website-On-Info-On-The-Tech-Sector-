@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +16,6 @@
       transition: background-color 0.4s ease;
     }
 
-    /* Sticky Navigation */
     .navbar {
       position: fixed;
       top: 0;
@@ -32,198 +30,90 @@
       z-index: 1000;
     }
 
-    .navbar-title {
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
+    .navbar-title { text-align: center; font-size: 1.5rem; font-weight: bold; }
 
     .menu-toggle {
-      position: absolute;
-      left: 1rem;
-      top: 1.1rem;
-      width: 30px;
-      height: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      cursor: pointer;
-      z-index: 1100;
+      position: absolute; left: 1rem; top: 1.1rem; width: 30px; height: 22px;
+      display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; z-index: 1100;
     }
-    .menu-toggle span {
-      display: block;
-      height: 4px;
-      background: white;
-      border-radius: 4px;
-      transition: all 0.3s ease;
-    }
+    .menu-toggle span { display: block; height: 4px; background: white; border-radius: 4px; transition: all 0.3s ease; }
     .menu-toggle.open span:nth-child(1){ transform: rotate(45deg) translate(5px,5px); }
     .menu-toggle.open span:nth-child(2){ opacity: 0; }
     .menu-toggle.open span:nth-child(3){ transform: rotate(-45deg) translate(6px,-6px); }
 
-    /* Dropdown container (mobile-first collapsed) */
     .menu-items {
-      max-height: 0;
-      overflow: hidden;
-      background-color: #011d3a;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      transition: max-height 0.4s ease-in-out;
-      border-top: 2px solid #007acc;
-      border-radius: 0 0 10px 10px;
+      max-height: 0; overflow: hidden; background-color: #011d3a;
+      list-style: none; margin: 0; padding: 0; transition: max-height 0.4s ease-in-out;
+      border-top: 2px solid #007acc; border-radius: 0 0 10px 10px;
     }
     .menu-items.show { max-height: 700px; }
-
-    /* Top-level links */
     .menu-items > li a {
-      display: block;
-      padding: 0.8rem 2rem;
-      color: white;
-      text-decoration: none;
-      font-size: 1.2rem;
-      font-weight: 500;
-      transition: background 0.3s, padding-left 0.3s;
+      display: block; padding: 0.8rem 2rem; color: white; text-decoration: none;
+      font-size: 1.2rem; font-weight: 500; transition: background 0.3s, padding-left 0.3s;
     }
-    .menu-items > li a:hover {
-      background-color: #003366;
-      padding-left: 2.5rem;
-    }
+    .menu-items > li a:hover { background-color: #003366; padding-left: 2.5rem; }
 
     .menu-items li { position: relative; }
 
-    /* Toggle anchor row with caret */
-    .has-submenu > .submenu-toggle {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+    .has-submenu > .submenu-toggle { display: flex; align-items: center; justify-content: space-between; }
     .has-submenu > .submenu-toggle .caret {
-      margin-left: 8px;
-      width: 0; height: 0;
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-      border-top: 6px solid #fff;
+      margin-left: 8px; width: 0; height: 0;
+      border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 6px solid #fff;
       transition: transform .2s ease;
     }
 
-    /* Base submenu rules (mobile-first) */
-    .submenu {
-      display: none;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      background-color: #011d3a;
-      border-top: 1px solid #007acc;
-    }
-    .submenu a {
-      display: block;
-      padding: 0.7rem 2.5rem;
-      color: #fff;
-      text-decoration: none;
-      font-size: 1.1rem;
-    }
+    .submenu { display: none; list-style: none; padding: 0; margin: 0; background-color: #011d3a; border-top: 1px solid #007acc; }
+    .submenu a { display: block; padding: 0.7rem 2.5rem; color: #fff; text-decoration: none; font-size: 1.1rem; }
     .submenu a:hover { background-color: #003366; }
-
-    /* Mobile/keyboard open state */
     .has-submenu.open > .submenu { display: block; }
     .has-submenu.open > .submenu-toggle .caret { transform: rotate(180deg); }
 
-    /* Desktop: submenu expands in-flow and pushes content down */
     @media (min-width: 768px) {
       .menu-items { position: relative; }
       .has-submenu { display: block; }
-
       .has-submenu .submenu {
-        position: static;
-        display: block;          /* make it part of flow */
-        overflow: hidden;
-        max-height: 0;           /* collapsed by default */
-        border: 0;
-        border-top: 1px solid #007acc;
-        border-radius: 0 0 10px 10px;
-        transition: max-height 0.35s ease;
+        position: static; display: block; overflow: hidden; max-height: 0; border: 0;
+        border-top: 1px solid #007acc; border-radius: 0 0 10px 10px; transition: max-height 0.35s ease;
       }
-      .has-submenu:hover > .submenu {
-        max-height: 800px;       /* enough to reveal items; pushes below content down */
-      }
-      .has-submenu:hover > .submenu-toggle .caret {
-        transform: rotate(180deg);
-      }
+      .has-submenu:hover > .submenu { max-height: 800px; }
+      .has-submenu:hover > .submenu-toggle .caret { transform: rotate(180deg); }
     }
 
-    main {
-      padding: 2rem;
-      padding-top: 200px;
-      position: relative;
-      z-index: 1;
-    }
+    main { padding: 2rem; padding-top: 200px; position: relative; z-index: 1; min-height: 60vh; }
 
-    /* Info boxes */
     .info-container { max-width: 1000px; margin: 0 auto; }
 
-    .info-box {
-      display: flex;
-      border: 2px solid #003366;
-      border-radius: 10px;
-      overflow: hidden;
-      background: white;
-      margin-bottom: 2rem;
-    }
+    .info-box { display: flex; border: 2px solid #003366; border-radius: 10px; overflow: hidden; background: white; margin-bottom: 2rem; }
 
-    .info-title {
-      min-width: 220px;
-      background: #003366;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 1rem;
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-      font-weight: 700;
-    }
+    .info-media { min-width: 220px; max-width: 260px; display: grid; place-items: center; background: #0184ff; }
+    .info-media img { width: 100%; height: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
 
-    .info-text {
-      flex: 1;
-      padding: 1.5rem;
-      font-size: 1.2rem;
-      color: #003366;
-    }
+    .info-text { flex: 1; padding: 1.5rem; font-size: 1.2rem; color: #003366; display: flex; flex-direction: column; gap: 15px; }
 
-    /* Footer */
-    footer {
-      background-color: #002244;
-      color: white;
-      padding: 2rem 1rem;
-      margin-top: 4rem;
+    /* Full-width footer */
+    .site-footer {
+      background-color:#002244; color:white; padding:2rem 1rem; margin-top:4rem; width:100%; box-sizing:border-box;
     }
-    footer a { color: white; text-decoration: none; }
-    footer a:hover { color: #00bfff; }
+    .site-footer .footer-inner{
+      width:100%; max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:2rem;
+    }
+    .site-footer a { color:#00bfff; text-decoration: underline; }
 
-    /* Scroll fade-in */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 700ms ease, transform 700ms ease;
-      will-change: opacity, transform;
-    }
-    .reveal.show {
-      opacity: 1;
-      transform: none;
-    }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 700ms ease, transform 700ms ease; will-change: opacity, transform; }
+    .reveal.show { opacity: 1; transform: none; }
 
     @media (prefers-reduced-motion: reduce) {
-      .reveal {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
-      }
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
+
+    @media (max-width: 640px) {
+      .info-box { flex-direction: column; }
+      .info-media { width: 100%; max-width: 100%; min-height: 200px; }
+      .info-media img { aspect-ratio: 16 / 9; }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
   <header class="navbar">
     <div class="menu-toggle" id="hamburger" onclick="toggleMenu(this)">
       <span></span><span></span><span></span>
@@ -231,12 +121,10 @@
     <div class="navbar-title">Info On The Tech Sector</div>
   </header>
 
-  <!-- Dropdown Nav -->
   <ul class="menu-items" id="menu" aria-label="Primary">
     <br><br><br>
     <li><a href="Index.html">Homepage</a></li>
     <li><a href="Tips.html">Tips for Uni</a></li>
-
     <li class="has-submenu">
       <a href="UniDegrees.html" class="submenu-toggle" aria-haspopup="true" aria-expanded="false">
         Uni Degrees
@@ -251,93 +139,204 @@
         <li role="none"><a role="menuitem" href="ComputerEngineering.html">Computer Engineering</a></li>
       </ul>
     </li>
-
     <li><a href="Jobs.html">Jobs in Tech</a></li>
     <li><a href="JobInterviews.html">Interview To-Do's</a></li>
   </ul>
 
-  <!-- Main Content -->
   <main id="main-content">
     <section class="info-container">
       <h1 style="text-align:center; font-size:clamp(2rem, 5vw, 2.5rem); color:#003366; margin-bottom:2rem;">
-        University Tech Degrees
+        Schools That Offer Information Technology
       </h1>
 
       <div class="info-box reveal">
-        <div class="info-title">Computer Science</div>
-        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
-          <div style="flex:1;">Placeholder</div>
+        <div class="info-media">
+          <img src="images/York.png" alt="MRU" style="width:205px; height:80px;"/>
+        </div>
+        <div class="info-text">
+          <div>
+            York University’s Information Technology (IT) program equips students with the knowledge to design, develop, and manage complex information systems while bridging technical expertise with business strategy. The curriculum covers areas such as programming, databases, systems architecture, project management, and data analytics, while also emphasizing how organizations leverage technology to achieve their goals. Students benefit from hands-on labs, group projects, and internship opportunities, ensuring both practical experience and theoretical grounding. The program can be pursued through either a Bachelor of Arts (BA), focusing more on technical and applied IT, or a Bachelor of Commerce (BCom), which integrates IT with business and management studies.
+            <br><br> 
+            Class Reuqirements (Compared To Alberta High Schools)
+            <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+            </ul>
+            Competitive Average: <strong>Low To Mid 80s</strong>
+            <br>
+          </div>
         </div>
       </div>
 
       <div class="info-box reveal">
-        <div class="info-title">Software Engineering</div>
-        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
-          <div style="flex:1;">Placeholder</div>
+        <div class="info-media">
+          <img src="images/SAIT.png" alt="SAIT" style="width:100px; height:150px;"/>
+        </div>
+        <div class="info-text">
+          <div>
+            SAIT’s Information Technology (IT) program focuses on preparing students with practical, career-ready skills to meet the needs of today’s tech industry. The two-year diploma blends core technical training in areas such as programming, networking, databases, cloud systems, and cybersecurity with problem-solving and teamwork experience through applied projects. Students gain hands-on exposure in SAIT’s labs and can choose specializations to align with career paths like software development, network administration, or systems analysis. With strong industry connections and co-op opportunities, the program emphasizes employability, giving graduates the skills to step directly into IT roles or continue their studies toward a bachelor’s degree.
+            <br><br> 
+            Class Reuqirements (Compared To Alberta High Schools)
+            <ul>
+              <li>55% in English Langauge Arts 30-1 or 60% in English Langauge Arts 30-2</li>
+              <li>50% Min in Math 30-1 or 60% Min in Math 30-2</li>
+            </ul>
+            Competitive Average: <strong>Mid 70s</strong>
+            <br>
+          </div>
+        </div>
+      </div>
+
+       <div class="info-box reveal">
+        <div class="info-media">
+          <img src="images/NAIT.png" alt="NAIT" style="width:200px; height:100px;"/>
+        </div>
+        <div class="info-text">
+          <div>
+            NAIT’s Information Technology program provides students with a strong foundation in computer systems, software, and networks while emphasizing hands-on, applied learning. The two-year diploma covers key areas such as programming, web development, databases, operating systems, networking, and cybersecurity, allowing students to develop both technical expertise and problem-solving skills. Courses are delivered with a practical focus in NAIT’s labs, ensuring graduates can apply their knowledge directly in workplace settings. Students can also choose specialization streams, preparing them for diverse career paths in software development, systems administration, or IT support, with opportunities to bridge into further degree studies or industry certifications.
+            <br><br> 
+            Class Reuqirements (Compared To Alberta High Schools)
+            <ul>
+              <li>55% in English Langauge Arts 30-1 or 60% in English Langauge Arts 30-2</li>
+              <li>50% Min in Math 30-1 or 60% Min in Math 30-2</li>
+            </ul>
+            Competitive Average: <strong>High 70s</strong>
+          </div>
         </div>
       </div>
 
       <div class="info-box reveal">
-        <div class="info-title">Computer Engineering</div>
-        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
-          <div style="flex:1;">Placeholder</div>
+      <div class="info-media">
+        <img src="images/BCIT.png" alt="BCIT" style="width:205px; height:205px;"/>
+      </div>
+      <div class="info-text">
+        <div>
+          BCIT’s Information Technology program is designed to give students a balance of technical expertise and applied problem-solving skills that meet industry needs. The program combines coursework in programming, databases, networking, systems analysis, web technologies, and cybersecurity with hands-on lab experience in real-world environments. Students learn how to design, implement, and manage IT solutions while working on projects that mirror workplace scenarios. With options to specialize in areas such as software development, networking, or systems administration, the program emphasizes both technical depth and teamwork. Graduates are well-prepared to enter the workforce directly or to pursue further studies and professional certifications.
+          <br><br> 
+          Class Reuqirements (Compared To Alberta High Schools)
+          <ul>
+            <li>English Langauge Arts 30-1</li>
+            <li>Math 30-1</li>
+          </ul>
+          Competitive Average: <strong>Low 80s</strong>
         </div>
       </div>
+    </div>
 
-      <div class="info-box reveal">
-        <div class="info-title">Information Technology</div>
-        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
-          <div style="flex:1;">Placeholder</div>
+    <div class="info-box reveal">
+      <div class="info-media">
+        <img src="images/OT.png" alt="OT" style="width:200px; height:70px;"/>
+      </div>
+      <div class="info-text">
+        <div>
+          Ontario Tech University’s Information Technology program blends technical skills with applied learning, preparing students to design, manage, and innovate IT solutions for modern organizations. The curriculum covers programming, databases, networking, cybersecurity, systems analysis, and cloud technologies, while also integrating problem-solving, project management, and teamwork. Students gain extensive hands-on experience through labs, case studies, and optional co-op placements, ensuring they graduate with both theoretical knowledge and practical industry readiness. With opportunities to specialize in areas such as networking, security, or software development, the program positions graduates for careers across diverse IT sectors or for further academic and professional advancement.
+          <br><br> 
+          Class Reuqirements (Compared To Alberta High Schools)
+          <ul>
+            <li>English Langauge Arts 30-1</li>
+            <li>Math 30-1 or 30-2</li>
+          </ul>
+          Competitive Average: <strong>Low 80s</strong>
         </div>
       </div>
+    </div>
 
-      <div class="info-box reveal">
-        <div class="info-title">Computer Information Systems</div>
-        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
-          <div style="flex:1;">Placeholder</div>
+    <div class="info-box reveal">
+      <div class="info-media">
+        <img src="images/Concordia.png" alt="Concordia" style="width:200px; height:200px;"/>
+      </div>
+      <div class="info-text">
+        <div>
+          Concordia University’s Information Technology program emphasizes both the technical and organizational sides of computing, preparing students to implement and manage IT solutions in real-world contexts. The program includes courses in programming, databases, networking, systems integration, cybersecurity, and project management, ensuring students develop a comprehensive understanding of modern IT environments. Learning is highly applied, with labs, team-based projects, and opportunities for internships that connect classroom knowledge to industry practice. By combining technical training with communication and problem-solving skills, Concordia equips graduates to pursue careers in software development, systems administration, IT consulting, and other technology-driven fields.
+          <br><br> 
+          Class Reuqirements (Compared To Alberta High Schools)
+          <ul>
+            <li>English Langauge Arts 30-1</li>
+            <li>Math 30-1</li>
+          </ul>
+          Competitive Average: <strong>Low 70s</strong>
         </div>
       </div>
+    </div>
 
-      <div class="info-box reveal">
-        <div class="info-title">Data Science</div>
-        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
-          <div style="flex:1;">Placeholder</div>
+    <div class="info-box reveal">
+      <div class="info-media">
+        <img src="images/TMU.png" alt="TMU" style="width:200px; height:125px;"/>
+      </div>
+      <div class="info-text">
+        <div>
+          Toronto Metropolitan University’s (TMU) Information Technology Management (ITM) program blends business education with technical training, focusing on how organizations use technology to achieve strategic goals. The curriculum covers programming, databases, systems analysis, networking, cybersecurity, and project management while also integrating courses in business, communication, and leadership. Students gain hands-on experience through labs, case studies, and the option of co-op placements, preparing them to bridge the gap between technical teams and business leaders. With its mix of applied learning and industry connections, the program equips graduates for careers in IT consulting, systems management, software development, and technology-driven business roles.
+          <br><br> 
+          Class Reuqirements (Compared To Alberta High Schools)
+          <ul>
+            <li>English Langauge Arts 30-1</li>
+            <li>Math 30-1</li>
+          </ul>
+          Competitive Average: <strong>Mid 80s</strong>
         </div>
       </div>
-    </section>
+    </div>
+
+    <div class="info-box reveal">
+      <div class="info-media">
+        <img src="images/Seneca.png" alt="Seneca" style="width:200px; height:70px;"/>
+      </div>
+      <div class="info-text">
+        <div>
+          Seneca College’s Information Technology program provides students with practical, career-focused training in computer systems and emerging technologies. The curriculum includes programming, networking, databases, operating systems, cloud computing, and cybersecurity, giving students both breadth and depth in IT. Hands-on labs, applied projects, and co-op opportunities ensure strong workplace readiness, while specialization options allow students to focus on areas such as software development, systems administration, or IT support. With strong ties to industry and an emphasis on real-world problem solving, the program prepares graduates to move directly into IT careers or pursue further academic pathways.
+          <br><br> 
+          Class Reuqirements (Compared To Alberta High Schools)
+          <ul>
+            <li>English Langauge Arts 30-1 or 30-2</li>
+            <li>Math 30-1 or 30-2</li>
+          </ul>
+          Competitive Average: <strong>Mid To High 70s</strong>
+        </div>
+      </div>
+    </div>
+
+     </section>
   </main>
 
-  <!-- Footer -->
-  <footer>
-    <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;">
-      <div style="flex: 1 1 200px;">
-        <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">Pages</h4>
-        <ul style="list-style: none; padding: 0; font-size: 1.2rem; line-height: 2;">
-          <li><a href="Index.html">Homepage</a></li>
-          <li><a href="UniDegrees.html">Uni Degrees</a></li>
-          <li><a href="Tips.html">Tips for Uni</a></li>
-          <li><a href="Jobs.html">Jobs in Tech</a></li>
-          <li><a href="JobInterviews.html">Interviews To-Do's</a></li>
-          <li><a href="Enhance.html">Enhancement for Career</a></li>
+  <!-- Full-width footer OUTSIDE main -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div style="flex:1 1 200px;">
+        <h4 style="font-size:1.5rem;margin-bottom:1rem;color:white;">Pages</h4>
+        <ul style="list-style:none;padding:0;font-size:1.2rem;line-height:2;">
+          <li><a href="Index.html" style="color:white;text-decoration:none;">Homepage</a></li>
+          <li><a href="UniDegrees.html" style="color:white;text-decoration:none;">Uni Degrees</a></li>
+          <li><a href="Tips.html" style="color:white;text-decoration:none;">Tips for Uni</a></li>
+          <li><a href="Jobs.html" style="color:white;text-decoration:none;">Jobs in Tech</a></li>
+          <li><a href="JobInterviews.html" style="color:white;text-decoration:none;">Interviews To-Do's</a></li>
+          <li><a href="Enhance.html" style="color:white;text-decoration:none;">Enhancement for Career</a></li>
         </ul>
       </div>
-      <div style="flex: 1 1 200px;">
-        <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">Contact Me</h4>
-        <p style="font-size: 1.2rem; line-height: 1.8;">
-          Have questions or suggestions?<br/>
-          <a href="mailto:vrijsheth@gmail.com">Email me</a>
+
+      <div style="flex:1 1 200px;">
+        <h4 style="font-size:1.5rem;margin-bottom:1rem;color:white;">Contact Me</h4>
+        <p style="font-size:1.2rem;line-height:1.8;margin:0 0 .5rem 0;">
+          Have questions or suggestions?<br />
+          <a href="mailto:vrijsheth@gmail.com" style="color:#00bfff;text-decoration:underline;">Email me</a>
+        </p>
+        <!-- References link added here -->
+        <p style="font-size:1.2rem;line-height:1.8;margin:0;">
+          <a href="https://docs.google.com/document/d/1nL6xvg3iPARvubePDFuu2vIOSWxPJbZY6LOc5hBLge0/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+            References (Google Doc)
+          </a>
         </p>
       </div>
-      <div style="flex: 1 1 200px; text-align: right;">
-        <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">Follow Me</h4>
-        <a href="https://www.linkedin.com/in/vrij-sheth/" target="_blank" style="margin-right: 10px;">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="30" height="30" style="filter: invert(100%);"/>
+
+      <div style="flex:1 1 200px;text-align:right;">
+        <h4 style="font-size:1.5rem;margin-bottom:1rem;color:white;">Follow Me</h4>
+        <a href="https://www.linkedin.com/in/vrij-sheth/" target="_blank" style="margin-right:10px;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="30" height="30" style="filter:invert(100%);" />
         </a>
-        <a href="https://www.instagram.com/_vrij.s" target="_blank" style="margin-right: 10px;">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="30" height="30" style="filter: invert(100%);"/>
+        <a href="https://www.instagram.com/_vrij.s?igsh=bnJwenRtb2pjMTFr&utm_source=qr" target="_blank" style="margin-right:10px;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="30" height="30" style="filter:invert(100%);" />
         </a>
         <a href="https://www.facebook.com/vrij.sheth.7" target="_blank">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="30" height="30" style="filter: invert(100%);"/>
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="30" height="30" style="filter:invert(100%);" />
         </a>
       </div>
     </div>
@@ -350,7 +349,6 @@
       menu.classList.toggle('show');
     }
 
-    // Scroll reveal
     (function(){
       const io = new IntersectionObserver((entries)=>{
         for(const e of entries){
@@ -362,7 +360,6 @@
       document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     })();
 
-    // Submenu behavior (mobile + accessibility)
     (function(){
       const parent = document.querySelector('.has-submenu');
       if(!parent) return;
@@ -372,7 +369,7 @@
       toggle.addEventListener('click', (e)=>{
         const isDesktop = window.matchMedia('(min-width: 768px)').matches;
         if(!isDesktop){
-          e.preventDefault();             // prevent navigation only on mobile
+          e.preventDefault();
           parent.classList.toggle('open');
           const expanded = parent.classList.contains('open');
           toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
@@ -404,4 +401,3 @@
   </script>
 </body>
 </html>
-```

@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +16,6 @@
       transition: background-color 0.4s ease;
     }
 
-    /* Sticky Navigation */
     .navbar {
       position: fixed;
       top: 0;
@@ -61,7 +59,6 @@
     .menu-toggle.open span:nth-child(2){ opacity: 0; }
     .menu-toggle.open span:nth-child(3){ transform: rotate(-45deg) translate(6px,-6px); }
 
-    /* Dropdown container (mobile-first collapsed) */
     .menu-items {
       max-height: 0;
       overflow: hidden;
@@ -75,7 +72,6 @@
     }
     .menu-items.show { max-height: 700px; }
 
-    /* Top-level links */
     .menu-items > li a {
       display: block;
       padding: 0.8rem 2rem;
@@ -92,7 +88,6 @@
 
     .menu-items li { position: relative; }
 
-    /* Toggle anchor row with caret */
     .has-submenu > .submenu-toggle {
       display: flex;
       align-items: center;
@@ -107,7 +102,6 @@
       transition: transform .2s ease;
     }
 
-    /* Base submenu rules (mobile-first) */
     .submenu {
       display: none;
       list-style: none;
@@ -125,31 +119,24 @@
     }
     .submenu a:hover { background-color: #003366; }
 
-    /* Mobile/keyboard open state */
     .has-submenu.open > .submenu { display: block; }
     .has-submenu.open > .submenu-toggle .caret { transform: rotate(180deg); }
 
-    /* Desktop: submenu expands in-flow and pushes content down */
     @media (min-width: 768px) {
       .menu-items { position: relative; }
       .has-submenu { display: block; }
-
       .has-submenu .submenu {
         position: static;
-        display: block;          /* make it part of flow */
+        display: block;
         overflow: hidden;
-        max-height: 0;           /* collapsed by default */
+        max-height: 0;
         border: 0;
         border-top: 1px solid #007acc;
         border-radius: 0 0 10px 10px;
         transition: max-height 0.35s ease;
       }
-      .has-submenu:hover > .submenu {
-        max-height: 800px;       /* enough to reveal items; pushes below content down */
-      }
-      .has-submenu:hover > .submenu-toggle .caret {
-        transform: rotate(180deg);
-      }
+      .has-submenu:hover > .submenu { max-height: 800px; }
+      .has-submenu:hover > .submenu-toggle .caret { transform: rotate(180deg); }
     }
 
     main {
@@ -157,9 +144,9 @@
       padding-top: 200px;
       position: relative;
       z-index: 1;
+      min-height: 60vh;
     }
 
-    /* Info boxes */
     .info-container { max-width: 1000px; margin: 0 auto; }
 
     .info-box {
@@ -171,17 +158,19 @@
       margin-bottom: 2rem;
     }
 
-    .info-title {
+    .info-media {
       min-width: 220px;
-      background: #003366;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 1rem;
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-      font-weight: 700;
+      max-width: 260px;
+      display: grid;
+      place-items: center;
+      background: #0184ff;
+    }
+    .info-media img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
     }
 
     .info-text {
@@ -189,19 +178,31 @@
       padding: 1.5rem;
       font-size: 1.2rem;
       color: #003366;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
 
-    /* Footer */
-    footer {
-      background-color: #002244;
-      color: white;
-      padding: 2rem 1rem;
-      margin-top: 4rem;
+    /* Full-width footer */
+    .site-footer {
+      background-color:#002244;
+      color:white;
+      padding:2rem 1rem;
+      margin-top:4rem;
+      width:100%;
+      box-sizing:border-box;
     }
-    footer a { color: white; text-decoration: none; }
-    footer a:hover { color: #00bfff; }
+    .site-footer .footer-inner{
+      width:100%;
+      max-width:1400px;
+      margin:0 auto;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      gap:2rem;
+    }
+    .site-footer a { color:#00bfff; text-decoration:underline; }
 
-    /* Scroll fade-in */
     .reveal {
       opacity: 0;
       transform: translateY(24px);
@@ -214,16 +215,17 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .reveal {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
-      }
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
+
+    @media (max-width: 640px) {
+      .info-box { flex-direction: column; }
+      .info-media { width: 100%; max-width: 100%; min-height: 200px; }
+      .info-media img { aspect-ratio: 16 / 9; }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
   <header class="navbar">
     <div class="menu-toggle" id="hamburger" onclick="toggleMenu(this)">
       <span></span><span></span><span></span>
@@ -231,12 +233,10 @@
     <div class="navbar-title">Info On The Tech Sector</div>
   </header>
 
-  <!-- Dropdown Nav -->
   <ul class="menu-items" id="menu" aria-label="Primary">
     <br><br><br>
     <li><a href="Index.html">Homepage</a></li>
     <li><a href="Tips.html">Tips for Uni</a></li>
-
     <li class="has-submenu">
       <a href="UniDegrees.html" class="submenu-toggle" aria-haspopup="true" aria-expanded="false">
         Uni Degrees
@@ -251,93 +251,248 @@
         <li role="none"><a role="menuitem" href="ComputerEngineering.html">Computer Engineering</a></li>
       </ul>
     </li>
-
     <li><a href="Jobs.html">Jobs in Tech</a></li>
     <li><a href="JobInterviews.html">Interview To-Do's</a></li>
   </ul>
 
-  <!-- Main Content -->
   <main id="main-content">
     <section class="info-container">
       <h1 style="text-align:center; font-size:clamp(2rem, 5vw, 2.5rem); color:#003366; margin-bottom:2rem;">
-        University Tech Degrees
+        Schools That Offer Computer Engineering
       </h1>
 
+      <section>
       <div class="info-box reveal">
-        <div class="info-title">Computer Science</div>
-        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
-          <div style="flex:1;">Placeholder</div>
+        <div class="info-media">
+          <img src="images/UOFA.png" alt="UOFA" style="width:205px; height:205px;"/>
+        </div>
+        <div class="info-text">
+          <div>
+            The University of Alberta’s Computer Engineering program blends computer science and electrical engineering to prepare students for careers in hardware and software systems. Students gain skills in programming, microprocessors, embedded systems, digital circuits, and computer architecture. The program emphasizes both theory and hands-on design through labs and projects. With strong industry ties and research opportunities, UAlberta offers specializations in areas like artificial intelligence, robotics, and networking. Graduates are well-prepared for roles in technology development, hardware design, and systems integration.
+            <br><br> 
+            Class Reuqirements (Compared To Alberta High Schools)
+            <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Math 31</li>
+              <li>Chemistry 30</li>
+              <li>Physics 30</li>
+            </ul>
+            Competitive Average: <strong>COMMON FIRST YEAR - Low 90s</strong>
+          </div>
+        </div>
+      </div>
+
+       <div class="info-box reveal">
+        <div class="info-media">
+          <img src="images/UOFW.png" alt="Waterloo" style="width:205px; height:205px;"/>
+        </div>
+        <div class="info-text">
+          <div>
+            The University of Waterloo’s Computer Engineering program is one of Canada’s most recognized, combining computer science, electrical engineering, and mathematics. Students study hardware and software design, digital systems, embedded computing, networks, and AI. A standout feature is Waterloo’s world-renowned co-op program, giving students up to two years of paid work experience with leading tech companies. The program emphasizes problem-solving, innovation, and entrepreneurship, with access to cutting-edge labs and research. Graduates are highly sought after in fields like software development, chip design, cybersecurity, and emerging technologies.
+            <br><br> 
+            Class Reuqirements (Compared To Alberta High Schools)
+            <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Math 31</li>
+              <li>Chemistry 30</li>
+              <li>Physics 30</li>
+            </ul>
+            Competitive Average: <strong>Low To Mid 90s</strong>
+          </div>
         </div>
       </div>
 
       <div class="info-box reveal">
-        <div class="info-title">Software Engineering</div>
-        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
-          <div style="flex:1;">Placeholder</div>
+      <div class="info-media">
+        <img src="images/McGill.svg" alt="McGill" style="width:180px; height:235px;"/>
+      </div>
+      <div class="info-text">
+        <div>
+          The McGill University Computer Engineering program integrates computer science with electrical engineering to provide a strong foundation in both hardware and software systems. Students explore digital logic, microprocessors, operating systems, computer networks, and VLSI design. The program emphasizes analytical problem-solving and hands-on lab experience, supported by McGill’s strong research culture. With opportunities for design projects, research, and industry partnerships in Montréal’s growing tech hub, graduates are well-prepared for careers in software, hardware, and systems engineering.
+          <br><br> 
+          Class Reuqirements (Compared To Alberta High Schools)
+           <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Math 31</li>
+              <li>Chemistry 30</li>
+              <li>Physics 30</li>
+            </ul>
+          Competitive Average: <strong>Mid 90s</strong>, 
         </div>
       </div>
+    </div>
 
-      <div class="info-box reveal">
-        <div class="info-title">Computer Engineering</div>
-        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
-          <div style="flex:1;">Placeholder</div>
+     <div class="info-box reveal">
+      <div class="info-media">
+        <img src="images/McMaster.png" alt="McMaster" style="width:180px; height: 95px;"/>
+      </div>
+      <div class="info-text">
+        <div>
+          The McMaster University Computer Engineering program offers a blend of computer science and electrical engineering, giving students expertise in both software and hardware. Core areas include digital systems, microprocessors, embedded computing, operating systems, and networks. The program emphasizes hands-on design through labs and capstone projects, alongside strong theoretical foundations. McMaster’s co-op program provides valuable industry experience with top employers. With research strengths in health technology, AI, and advanced computing, graduates are well-prepared for careers in technology design, software, hardware, and innovative engineering fields.
+          <br><br> 
+          Class Reuqirements (Compared To Alberta High Schools)
+          <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Math 31</li>
+              <li>Chemistry 30</li>
+              <li>Physics 30</li>
+            </ul>
+          Competitive Average: <strong>Low 90s</strong>, 
         </div>
       </div>
+    </div>
 
-      <div class="info-box reveal">
-        <div class="info-title">Information Technology</div>
-        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
-          <div style="flex:1;">Placeholder</div>
+    <div class="info-box reveal">
+      <div class="info-media">
+        <img src="images/UOFT.png" alt="UOFT" style="width:200px; height: 200px;"/>
+      </div>
+      <div class="info-text">
+        <div>
+          The University of Toronto’s Computer Engineering program is one of the most prestigious in Canada, combining computer science, mathematics, and electrical engineering. Students study programming, computer architecture, digital systems, embedded computing, operating systems, and AI. The program balances theory with extensive lab and design project experience, including a major capstone project in the final year. U of T also offers strong research opportunities and access to Toronto’s thriving tech ecosystem. Graduates are highly sought after in industries ranging from software and hardware engineering to cutting-edge fields like machine learning, robotics, and cybersecurity.
+          <br><br> 
+          Class Reuqirements (Compared To Alberta High Schools)
+          <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Math 31</li>
+              <li>Chemistry 30</li>
+              <li>Physics 30</li>
+          </ul>
+          Competitive Average: <strong>COMMON FIRST YEAR - Low to Mid 90s</strong>, 
         </div>
       </div>
+    </div>
 
-      <div class="info-box reveal">
-        <div class="info-title">Computer Information Systems</div>
-        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
-          <div style="flex:1;">Placeholder</div>
+    <div class="info-box reveal">
+      <div class="info-media">
+        <img src="images/Western.png" alt="Western" style="width:210px; height:65px;"/>
+      </div>
+      <div class="info-text">
+        <div>
+          The Western University Computer Engineering program blends hardware and software studies within a strong engineering foundation. Students explore digital systems, microprocessors, operating systems, computer networks, and embedded design, while also building core problem-solving and programming skills. The program emphasizes teamwork and real-world applications through labs, projects, and design competitions. Western’s co-op and internship opportunities connect students with industry experience across Canada. Graduates are prepared for careers in software development, hardware design, systems engineering, and advanced technology sectors.
+          <br><br> 
+          Class Reuqirements (Compared To Alberta High Schools)
+         <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Math 31</li>
+              <li>Chemistry 30</li>
+              <li>Physics 30</li>
+          </ul>
+          Competitive Average: <strong>COMMON FIRST YEAR - High 80s</strong>
         </div>
       </div>
+    </div>
 
-      <div class="info-box reveal">
-        <div class="info-title">Data Science</div>
-        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
-          <div style="flex:1;">Placeholder</div>
+    <div class="info-box reveal">
+      <div class="info-media">
+        <img src="images/UBC.png" alt="UBC" style="width:210px; height:210px;"/>
+      </div>
+      <div class="info-text">
+        <div>
+          The University of British Columbia’s Computer Engineering program combines computing, electrical engineering, and applied sciences to prepare students for both hardware and software careers. Students study computer architecture, digital systems, embedded design, operating systems, networks, and AI. The program emphasizes innovation and hands-on learning through labs, design studios, and a final-year capstone project. UBC also offers extensive co-op opportunities with leading tech companies and startups, especially in Vancouver’s growing tech hub. Graduates are well-prepared for roles in software, hardware, and emerging fields like robotics, cybersecurity, and data systems.
+          <br><br> 
+          Class Reuqirements (Compared To Alberta High Schools)
+          <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Math 31</li>
+              <li>Chemistry 30</li>
+              <li>Physics 30</li>
+          </ul>
+          Competitive Average: <strong>COMMON FIRST YEAR - Low 90s</strong>
         </div>
       </div>
+    </div>
+
+    <div class="info-box reveal">
+      <div class="info-media">
+        <img src="images/UBC.png" alt="UBC" style="width:210px; height:210px;"/>
+      </div>
+      <div class="info-text">
+        <div>
+          The University of British Columbia’s Computer Engineering program combines computing, electrical engineering, and applied sciences to prepare students for both hardware and software careers. Students study computer architecture, digital systems, embedded design, operating systems, networks, and AI. The program emphasizes innovation and hands-on learning through labs, design studios, and a final-year capstone project. UBC also offers extensive co-op opportunities with leading tech companies and startups, especially in Vancouver’s growing tech hub. Graduates are well-prepared for roles in software, hardware, and emerging fields like robotics, cybersecurity, and data systems.
+          <br><br> 
+          Class Reuqirements (Compared To Alberta High Schools)
+          <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Math 31</li>
+              <li>Chemistry 30</li>
+              <li>Physics 30</li>
+          </ul>
+          Competitive Average: <strong>COMMON FIRST YEAR - Low 90s</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box reveal">
+      <div class="info-media">
+        <img src="images/Guelph.png" alt="UBC" style="width:210px; height:210px;"/>
+      </div>
+      <div class="info-text">
+        <div>
+          he University of Guelph’s Computer Engineering program blends computer science and electrical engineering, focusing on designing both hardware and software systems. Students study digital circuits, microprocessors, embedded systems, networks, and computer architecture, while also developing strong programming and problem-solving skills. The program emphasizes applied learning through labs, design projects, and team-based work. With access to co-op placements and research opportunities, students gain valuable real-world experience. Graduates are prepared for careers in software and hardware engineering, embedded computing, and innovative technology development.
+          <br><br> 
+          Class Reuqirements (Compared To Alberta High Schools)
+          <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Math 31</li>
+              <li>Chemistry 30</li>
+              <li>Physics 30</li>
+          </ul>
+          Competitive Average: <strong>High 80s</strong>
+        </div>
+      </div>
+    </div>
+</section>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer>
-    <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;">
-      <div style="flex: 1 1 200px;">
-        <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">Pages</h4>
-        <ul style="list-style: none; padding: 0; font-size: 1.2rem; line-height: 2;">
-          <li><a href="Index.html">Homepage</a></li>
-          <li><a href="UniDegrees.html">Uni Degrees</a></li>
-          <li><a href="Tips.html">Tips for Uni</a></li>
-          <li><a href="Jobs.html">Jobs in Tech</a></li>
-          <li><a href="JobInterviews.html">Interviews To-Do's</a></li>
-          <li><a href="Enhance.html">Enhancement for Career</a></li>
+  <!-- Full-width footer OUTSIDE main -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div style="flex:1 1 200px;">
+        <h4 style="font-size:1.5rem;margin-bottom:1rem;color:white;">Pages</h4>
+        <ul style="list-style:none;padding:0;font-size:1.2rem;line-height:2;">
+          <li><a href="Index.html" style="color:white;text-decoration:none;">Homepage</a></li>
+          <li><a href="UniDegrees.html" style="color:white;text-decoration:none;">Uni Degrees</a></li>
+          <li><a href="Tips.html" style="color:white;text-decoration:none;">Tips for Uni</a></li>
+          <li><a href="Jobs.html" style="color:white;text-decoration:none;">Jobs in Tech</a></li>
+          <li><a href="JobInterviews.html" style="color:white;text-decoration:none;">Interview To-Do's</a></li>
+          <li><a href="Enhance.html" style="color:white;text-decoration:none;">Enhancement for Career</a></li>
         </ul>
       </div>
-      <div style="flex: 1 1 200px;">
-        <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">Contact Me</h4>
-        <p style="font-size: 1.2rem; line-height: 1.8;">
-          Have questions or suggestions?<br/>
-          <a href="mailto:vrijsheth@gmail.com">Email me</a>
+
+      <div style="flex:1 1 200px;">
+        <h4 style="font-size:1.5rem;margin-bottom:1rem;color:white;">Contact Me</h4>
+        <p style="font-size:1.2rem;line-height:1.8;margin:0 0 .5rem 0;">
+          Have questions or suggestions?<br />
+          <a href="mailto:vrijsheth@gmail.com" style="color:#00bfff;text-decoration:underline;">Email me</a>
+        </p>
+        <!-- Added References link -->
+        <p style="font-size:1.2rem;line-height:1.8;margin:0;">
+          <a href="https://docs.google.com/document/d/1nL6xvg3iPARvubePDFuu2vIOSWxPJbZY6LOc5hBLge0/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+            References (Google Doc)
+          </a>
         </p>
       </div>
-      <div style="flex: 1 1 200px; text-align: right;">
-        <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">Follow Me</h4>
-        <a href="https://www.linkedin.com/in/vrij-sheth/" target="_blank" style="margin-right: 10px;">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="30" height="30" style="filter: invert(100%);"/>
+
+      <div style="flex:1 1 200px;text-align:right;">
+        <h4 style="font-size:1.5rem;margin-bottom:1rem;color:white;">Follow Me</h4>
+        <a href="https://www.linkedin.com/in/vrij-sheth/" target="_blank" style="margin-right:10px;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="30" height="30" style="filter:invert(100%);" />
         </a>
-        <a href="https://www.instagram.com/_vrij.s" target="_blank" style="margin-right: 10px;">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="30" height="30" style="filter: invert(100%);"/>
+        <a href="https://www.instagram.com/_vrij.s?igsh=bnJwenRtb2pjMTFr&utm_source=qr" target="_blank" style="margin-right:10px;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="30" height="30" style="filter:invert(100%);" />
         </a>
         <a href="https://www.facebook.com/vrij.sheth.7" target="_blank">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="30" height="30" style="filter: invert(100%);"/>
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="30" height="30" style="filter:invert(100%);" />
         </a>
       </div>
     </div>
@@ -350,7 +505,6 @@
       menu.classList.toggle('show');
     }
 
-    // Scroll reveal
     (function(){
       const io = new IntersectionObserver((entries)=>{
         for(const e of entries){
@@ -362,7 +516,6 @@
       document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     })();
 
-    // Submenu behavior (mobile + accessibility)
     (function(){
       const parent = document.querySelector('.has-submenu');
       if(!parent) return;
@@ -372,7 +525,7 @@
       toggle.addEventListener('click', (e)=>{
         const isDesktop = window.matchMedia('(min-width: 768px)').matches;
         if(!isDesktop){
-          e.preventDefault();             // prevent navigation only on mobile
+          e.preventDefault();
           parent.classList.toggle('open');
           const expanded = parent.classList.contains('open');
           toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
@@ -404,4 +557,3 @@
   </script>
 </body>
 </html>
-```

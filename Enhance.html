@@ -9,9 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
-    * {
-      font-family: 'Teko', sans-serif;
-    }
+    * { font-family: 'Teko', sans-serif; }
 
     body {
       margin: 0;
@@ -60,18 +58,9 @@
       border-radius: 4px;
       transition: all 0.3s ease;
     }
-
-    .menu-toggle.open span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-
-    .menu-toggle.open span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .menu-toggle.open span:nth-child(3) {
-      transform: rotate(-45deg) translate(6px, -6px);
-    }
+    .menu-toggle.open span:nth-child(1){ transform: rotate(45deg) translate(5px, 5px); }
+    .menu-toggle.open span:nth-child(2){ opacity: 0; }
+    .menu-toggle.open span:nth-child(3){ transform: rotate(-45deg) translate(6px, -6px); }
 
     .menu-items {
       max-height: 0;
@@ -84,10 +73,7 @@
       border-top: 2px solid #007acc;
       border-radius: 0 0 10px 10px;
     }
-
-    .menu-items.show {
-      max-height: 500px;
-    }
+    .menu-items.show { max-height: 500px; }
 
     .menu-items li a {
       display: block;
@@ -98,24 +84,18 @@
       font-weight: 500;
       transition: background 0.3s, padding-left 0.3s;
     }
-
-    .menu-items li a:hover {
-      background-color: #003366;
-      padding-left: 2.5rem;
-    }
+    .menu-items li a:hover { background-color: #003366; padding-left: 2.5rem; }
 
     main {
       padding: 2rem;
       padding-top: 200px;
       position: relative;
       z-index: 1;
+      min-height: 60vh;
     }
 
     /* Info boxes */
-    .info-container {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
+    .info-container { max-width: 1000px; margin: 0 auto; }
 
     .info-box {
       display: flex;
@@ -146,44 +126,42 @@
       color: #003366;
     }
 
-    /* Footer */
-    footer {
+    /* Full-width footer */
+    .site-footer {
       background-color: #002244;
       color: white;
       padding: 2rem 1rem;
       margin-top: 4rem;
+      width: 100%;
+      box-sizing: border-box;
     }
-
-    footer a {
-      color: white;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      color: #00bfff;
+    .site-footer a { color: #00bfff; text-decoration: underline; }
+    .site-footer .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+      width: 100%;
     }
 
     /* Scroll fade-in */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 700ms ease, transform 700ms ease;
-  will-change: opacity, transform;
-}
-.reveal.show {
-  opacity: 1;
-  transform: none;
-}
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 700ms ease, transform 700ms ease;
+      will-change: opacity, transform;
+    }
+    .reveal.show {
+      opacity: 1;
+      transform: none;
+    }
 
-/* Respect reduced-motion */
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-}
-
+    /* Respect reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -191,9 +169,7 @@
   <!-- Navigation -->
   <header class="navbar">
     <div class="menu-toggle" id="hamburger" onclick="toggleMenu(this)">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </div>
     <div class="navbar-title">Info On The Tech Sector</div>
   </header>
@@ -212,15 +188,17 @@
   <main id="main-content">
     <section class="info-container">
       <h1 style="text-align:center; font-size:clamp(2rem, 5vw, 2.5rem); color:#003366; margin-bottom:2rem;">Career Enhancements</h1>
+
       <div class="info-box reveal">
         <div class="info-title">Do Internships</div>
         <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
           <div style="flex:1;">
             Doing internships during university is important because they give you hands-on experience that goes beyond what you learn in class. They let you apply your skills in real-world projects, helping you understand how tech teams actually work. Internships also build your resume and make you more competitive when applying for jobs after graduation. On top of that, they give you a chance to network with professionals, which can lead to job offers or future opportunities. Most importantly, internships help you figure out what areas of tech you enjoy most, guiding your career path with real insight.
           </div>
-        <img src="images/Internship.jpg" alt="Internships" style="width:150px; height:100px; object-fit:cover; border:2px solid #ccc; flex-shrink:0;">
+          <img src="images/Internship.jpg" alt="Internships" style="width:150px; height:100px; object-fit:cover; border:2px solid #ccc; flex-shrink:0;">
+        </div>
       </div>
-    </div>
+
       <div class="info-box reveal">
         <div class="info-title">Update Your Github</div>
         <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
@@ -229,9 +207,10 @@
           </div>
           <img src="images/Github.webp" alt="GitHub Logo" style="width:100px; height:100px; object-fit:cover; border:2px solid #ccc; flex-shrink:0;">
         </div>
-    </div>
-    <div class="info-box reveal">
-      <div class="info-title">Connect On LinkedIn</div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-title">Connect On LinkedIn</div>
         <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
           <div style="flex:1;">
             Connecting on LinkedIn is important because it helps you build a professional network that can open doors to internships, jobs, and collaborations. Recruiters often use LinkedIn to find candidates, so having connections makes your profile more visible and credible. It’s also a way to stay updated on industry trends, company news, and opportunities shared by your network. Beyond that, connecting with classmates, professors, and colleagues ensures you maintain long-term professional relationships that may benefit you in the future.
@@ -239,97 +218,108 @@
           <img src="images/LinkedIn.png" alt="LinkedIn Logo" style="width:100px; height:100px; object-fit:cover; border:2px solid #ccc; flex-shrink:0;">
         </div>
       </div>
+
       <div class="info-box reveal">
         <div class="info-title">Do Personal Projects</div>
-          <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
-            <div style="flex:1;">
-              Doing personal projects is important because they let you apply what you’ve learned in class to real problems and creative ideas. They help you practice coding, problem-solving, and design skills in ways assignments might not cover. Personal projects also give you something unique to showcase on GitHub, LinkedIn, or in interviews, making you stand out from other candidates. Most importantly, they show passion, initiative, and the ability to learn on your own—qualities that employers value highly.
-            </div>
-            <img src="images/Projects.jpg" alt="Personal Project" style="width:150px; height:100px; object-fit:cover; border:2px solid #ccc; flex-shrink:0;">
+        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
+          <div style="flex:1;">
+            Doing personal projects is important because they let you apply what you’ve learned in class to real problems and creative ideas. They help you practice coding, problem-solving, and design skills in ways assignments might not cover. Personal projects also give you something unique to showcase on GitHub, LinkedIn, or in interviews, making you stand out from other candidates. Most importantly, they show passion, initiative, and the ability to learn on your own—qualities that employers value highly.
           </div>
-        </div>
-        <div class="info-box reveal">
-          <div class="info-title">Go To Networking Events</div>
-            <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
-              <div style="flex:1;">
-                Going to networking events is important because they give you the chance to meet professionals, recruiters, and peers in your field. These connections can lead to internships, job opportunities, or mentorship that you might not find online. Networking events also let you practice introducing yourself, talking about your goals, and building confidence in professional settings. Beyond that, you gain insights into industry trends and career paths directly from people working in tech.
-              </div>
-              <img src="images/Networking.jpg" alt="Networking Event" style="width:150px; height:100px; object-fit:cover; border:2px solid #ccc; flex-shrink:0;">
-            </div>
-          </div>
-      <div class="info-box reveal">
-        <div class="info-title">Get Certifications</div>
-          <div class="info-text">
-            Doing certifications in tech is valuable because they prove your knowledge and skills in specific areas that employers are looking for. While a degree shows your broad education, certifications highlight specialized expertise and commitment to continuous learning. They can make your resume stronger, help you stand out in a competitive job market, and sometimes even lead to higher-paying roles. Certifications also give you confidence when working with tools or technologies, since they involve structured learning and assessments.
-            <br>
-            Some great examples of certifications to consider include:
-            <br> 
-              <ul>
-                <li><strong>CompTIA A+</strong> or <strong>CompTIA Security+</strong> (good foundations in IT and cybersecurity)</li>
-                <li><strong>AWS Certified Cloud Practitioner</strong> (introduction to cloud computing, widely recognized)</li>
-                <li><strong>Microsoft Azure Fundamentals</strong> (cloud services with Microsoft’s platform)</li>
-                <li><strong>Google IT Support Professional Certificate</strong> (practical IT skills for entry-level jobs)</li>
-                <li><strong>Cisco CCNA</strong> (networking fundamentals and infrastructure)</li>
-              </ul>
-            <br> 
-            By earning certifications, you not only strengthen your technical skills but also show employers that you’re serious about growing in the tech field.
+          <img src="images/Projects.jpg" alt="Personal Project" style="width:150px; height:100px; object-fit:cover; border:2px solid #ccc; flex-shrink:0;">
         </div>
       </div>
 
-  <!-- Footer -->
-  <footer>
-    <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;">
-      <div style="flex: 1 1 200px;">
-        <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">Pages</h4>
-        <ul style="list-style: none; padding: 0; font-size: 1.2rem; line-height: 2;">
-          <li><a href="Index.html">Homepage</a></li>
-          <li><a href="UniDegrees.html">Uni Degrees</a></li>
-          <li><a href="Tips.html">Tips for Uni</a></li>
-          <li><a href="Jobs.html">Jobs in Tech</a></li>
-          <li><a href="JobInterviews.html">Interviews To-Do's</a></li>
-          <li><a href="Enhance.html">Enhancement for Career</a></li>
+      <div class="info-box reveal">
+        <div class="info-title">Go To Networking Events</div>
+        <div class="info-text" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
+          <div style="flex:1;">
+            Going to networking events is important because they give you the chance to meet professionals, recruiters, and peers in your field. These connections can lead to internships, job opportunities, or mentorship that you might not find online. Networking events also let you practice introducing yourself, talking about your goals, and building confidence in professional settings. Beyond that, you gain insights into industry trends and career paths directly from people working in tech.
+          </div>
+          <img src="images/Networking.jpg" alt="Networking Event" style="width:150px; height:100px; object-fit:cover; border:2px solid #ccc; flex-shrink:0;">
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-title">Get Certifications</div>
+        <div class="info-text">
+          Doing certifications in tech is valuable because they prove your knowledge and skills in specific areas that employers are looking for. While a degree shows your broad education, certifications highlight specialized expertise and commitment to continuous learning. They can make your resume stronger, help you stand out in a competitive job market, and sometimes even lead to higher-paying roles. Certifications also give you confidence when working with tools or technologies, since they involve structured learning and assessments.
+          <br>
+          Some great examples of certifications to consider include:
+          <ul>
+            <li><strong>CompTIA A+</strong> or <strong>CompTIA Security+</strong> (good foundations in IT and cybersecurity)</li>
+            <li><strong>AWS Certified Cloud Practitioner</strong> (introduction to cloud computing, widely recognized)</li>
+            <li><strong>Microsoft Azure Fundamentals</strong> (cloud services with Microsoft’s platform)</li>
+            <li><strong>Google IT Support Professional Certificate</strong> (practical IT skills for entry-level jobs)</li>
+            <li><strong>Cisco CCNA</strong> (networking fundamentals and infrastructure)</li>
+          </ul>
+          By earning certifications, you not only strengthen your technical skills but also show employers that you’re serious about growing in the tech field.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Full-width footer OUTSIDE main -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div style="flex:1 1 200px;">
+        <h4 style="font-size:1.5rem; margin-bottom:1rem;">Pages</h4>
+        <ul style="list-style:none; padding:0; font-size:1.2rem; line-height:2;">
+          <li><a href="Index.html" style="color:white; text-decoration:none;">Homepage</a></li>
+          <li><a href="UniDegrees.html" style="color:white; text-decoration:none;">Uni Degrees</a></li>
+          <li><a href="Tips.html" style="color:white; text-decoration:none;">Tips for Uni</a></li>
+          <li><a href="Jobs.html" style="color:white; text-decoration:none;">Jobs in Tech</a></li>
+          <li><a href="JobInterviews.html" style="color:white; text-decoration:none;">Interviews To-Do's</a></li>
+          <li><a href="Enhance.html" style="color:white; text-decoration:none;">Enhancement for Career</a></li>
         </ul>
       </div>
-      <div style="flex: 1 1 200px;">
-        <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">Contact Me</h4>
-        <p style="font-size: 1.2rem; line-height: 1.8;">
+
+      <div style="flex:1 1 200px;">
+        <h4 style="font-size:1.5rem; margin-bottom:1rem;">Contact Me</h4>
+        <p style="font-size:1.2rem; line-height:1.8; margin:0 0 .5rem 0;">
           Have questions or suggestions?<br />
           <a href="mailto:vrijsheth@gmail.com">Email me</a>
         </p>
+        <!-- References link -->
+        <p style="font-size:1.2rem; line-height:1.8; margin:0;">
+          <a href="https://docs.google.com/document/d/1nL6xvg3iPARvubePDFuu2vIOSWxPJbZY6LOc5hBLge0/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+            References (Google Doc)
+          </a>
+        </p>
       </div>
-      <div style="flex: 1 1 200px; text-align: right;">
-        <h4 style="font-size: 1.5rem; margin-bottom: 1rem;">Follow Me</h4>
-        <a href="https://www.linkedin.com/in/vrij-sheth/" target="_blank" style="margin-right: 10px;">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="30" height="30" style="filter: invert(100%);" />
+
+      <div style="flex:1 1 200px; text-align:right;">
+        <h4 style="font-size:1.5rem; margin-bottom:1rem;">Follow Me</h4>
+        <a href="https://www.linkedin.com/in/vrij-sheth/" target="_blank" rel="noopener noreferrer" style="margin-right:10px;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="30" height="30" style="filter:invert(100%);" />
         </a>
-        <a href="https://www.instagram.com/_vrij.s" target="_blank" style="margin-right: 10px;">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="30" height="30" style="filter: invert(100%);" />
+        <a href="https://www.instagram.com/_vrij.s" target="_blank" rel="noopener noreferrer" style="margin-right:10px;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="30" height="30" style="filter:invert(100%);" />
         </a>
-        <a href="https://www.facebook.com/vrij.sheth.7" target="_blank">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="30" height="30" style="filter: invert(100%);" />
+        <a href="https://www.facebook.com/vrij.sheth.7" target="_blank" rel="noopener noreferrer">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="30" height="30" style="filter:invert(100%);" />
         </a>
       </div>
     </div>
   </footer>
 
   <script>
-  function toggleMenu(icon) {
-    const menu = document.getElementById('menu');
-    icon.classList.toggle('open');
-    menu.classList.toggle('show');
-  }
+    function toggleMenu(icon) {
+      const menu = document.getElementById('menu');
+      icon.classList.toggle('open');
+      menu.classList.toggle('show');
+    }
 
-  (function () {
-    const io = new IntersectionObserver((entries) => {
-      for (const e of entries) {
-        if (e.isIntersecting) {
-          e.target.classList.add('show');   // fade in
-        } else {
-          e.target.classList.remove('show'); // fade out when leaving
+    (function () {
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) { e.target.classList.add('show'); }
+          else { e.target.classList.remove('show'); }
         }
-      }
-    }, { threshold: 0.15, rootMargin: "0px 0px -10% 0px" });
+      }, { threshold: 0.15, rootMargin: "0px 0px -10% 0px" });
 
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-  })();
-</script>
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    })();
+  </script>
+</body>
+</html>
+

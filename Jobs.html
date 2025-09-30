@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Info On The Tech Sector</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --nav-h: 60px;
+      --blue-900: #002244;
+      --blue-800: #011d3a;
+      --blue-700: #003366;
+      --blue-500: #007acc;
+      --bg: #f8f9fa;
+      --text: #003366;
+    }
+
+    * { box-sizing: border-box; font-family: 'Teko', sans-serif; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background-color .4s ease;
+    }
+
+    /* Sticky Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: var(--blue-900);
+      color: #fff;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+
+    .navbar-title {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .menu-toggle {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 36px;
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      z-index: 1100;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      color: #fff;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 28px;
+      height: 4px;
+      background: currentColor;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    .menu-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .menu-toggle.open span:nth-child(2) { opacity: 0; }
+    .menu-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+
+    .menu-items {
+      max-height: 0;
+      overflow: hidden;
+      background-color: var(--blue-800);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      transition: max-height 0.4s ease-in-out;
+      border-top: 2px solid var(--blue-500);
+      border-radius: 0 0 10px 10px;
+    }
+    .menu-items.show { max-height: 500px; }
+
+    .menu-items li a {
+      display: block;
+      padding: 0.8rem 2rem;
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 500;
+      transition: background 0.3s, padding-left 0.3s;
+      font-family: 'Teko', sans-serif; /* fixed comma */
+    }
+    .menu-items li a:hover {
+      background-color: var(--blue-700);
+      padding-left: 2.5rem;
+    }
+
+    /* Main */
+    main {
+      flex: 1 0 auto;
+      padding: 2rem;
+      padding-top: calc(var(--nav-h) + 1.5rem);
+    }
+    .info-container { max-width: 1000px; margin: 0 auto; }
+    h1.page-title {
+      text-align: center;
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      color: var(--text);
+      margin: 0 0 2rem;
+      letter-spacing: .4px;
+    }
+
+    /* Cards */
+    .info-box {
+      display: flex;
+      flex-direction: column;
+      border: 2px solid var(--blue-700);
+      border-radius: 10px;
+      overflow: hidden;
+      background: #fff;
+      margin-bottom: 2rem;
+    }
+    .info-media {
+      width: 100%;
+      min-height: 70px;
+      display: grid;
+      place-items: center;
+      background: var(--blue-700);
+      color: #fff;
+      padding: .75rem 1rem;
+    }
+    .info-title { font-size: clamp(1.3rem, 3.5vw, 1.8rem); font-weight: 700; text-align: center; }
+    .info-text {
+      flex: 1;
+      padding: 1.25rem 1.5rem 1.6rem;
+      font-size: 1.2rem;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* Reveal animation */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.show { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
+
+    /* Footer */
+    footer {
+      flex-shrink: 0;
+      background: var(--blue-900);
+      color: #fff;
+      padding: 2rem 1rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .footer-wrap {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    footer h4 { margin: 0 0 .75rem; font-size: 1.3rem; }
+    footer a { color: #00bfff; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .footer-list { list-style: none; padding: 0; margin: 0; line-height: 1.8; }
+
+    /* Social icons row */
+    .socials {
+      display: flex;
+      gap: .9rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .social-link {
+      display: inline-grid;
+      place-items: center;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.08);
+      transition: transform .15s ease, background .15s ease;
+    }
+    .social-link:hover { transform: translateY(-2px); background: rgba(255,255,255,.15); }
+    .social-link svg { width: 22px; height: 22px; fill: #fff; display: block; }
+  </style>
+</head>
+<body>
+  <!-- Header / Navbar -->
+  <header class="navbar">
+    <button
+      class="menu-toggle"
+      id="hamburger"
+      aria-label="Toggle navigation menu"
+      aria-controls="menu"
+      aria-expanded="false"
+      onclick="toggleMenu(this)"
+      type="button"
+    >
+      <span></span><span></span><span></span>
+    </button>
+    <div class="navbar-title">Info On The Tech Sector</div>
+  </header>
+
+  <!-- Primary nav (collapsible on mobile) -->
+  <nav id="site-menu" aria-label="Primary">
+    <ul class="menu-items" id="menu">
+      <br><br><br>
+      <li><a href="Index.html">Homepage</a></li>
+      <li><a href="UniDegrees.html">Uni Degrees</a></li>
+      <li><a href="Tips.html">Tips for Uni</a></li>
+      <li><a href="JobInterviews.html">Interviews To-Do's</a></li>
+      <li><a href="Enhance.html">Enhancement for Career</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="info-container">
+      <h1 class="page-title">Jobs In The Tech Industry</h1>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Software Engineer</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Designs, builds, and maintains software applications across platforms.</li>
+            <li><strong>Expectations:</strong> Full development lifecycle (planning → coding → testing → deployment). Collaborates with product managers, designers, QA.</li>
+            <li><strong>Languages/Tools:</strong> Java, C++, Python, JavaScript, Git, SQL, CI/CD.</li>
+            <li><strong>Learn:</strong> Problem-solving, scalable architecture, debugging, teamwork in agile/scrum.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Frontend Developer</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Builds the client-facing parts of web apps with accessible, responsive, high-performance UI.</li>
+            <li><strong>Expectations:</strong> Convert designs to code, manage state, optimize performance, handle cross-browser issues, collaborate with UX.</li>
+            <li><strong>Languages/Tools:</strong> HTML, CSS, JavaScript, TypeScript, React, Vue, Angular, Vite, Webpack.</li>
+            <li><strong>Learn:</strong> UX principles, accessibility (WCAG), component patterns, testing, performance profiling.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Backend Developer</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Builds server-side logic, APIs, and data layers powering applications.</li>
+            <li><strong>Expectations:</strong> Design REST/GraphQL APIs, handle auth, integrate databases, ensure reliability and security.</li>
+            <li><strong>Languages/Tools:</strong> Node.js, Java, Python, Go, C#, SQL, PostgreSQL, MongoDB, Redis, gRPC.</li>
+            <li><strong>Learn:</strong> API design, data modeling, caching, concurrency, observability.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Full-Stack Developer</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Works across frontend and backend to deliver end-to-end features.</li>
+            <li><strong>Expectations:</strong> Build UIs, APIs, databases, and deploy apps; collaborate across roles; own features.</li>
+            <li><strong>Languages/Tools:</strong> React/Next.js, Node.js/Express, Django/Flask, SQL/NoSQL, Docker.</li>
+            <li><strong>Learn:</strong> System thinking, tradeoffs, deployment, CI/CD, product sense.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Mobile App Developer</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Builds native or cross-platform mobile apps for iOS/Android.</li>
+            <li><strong>Expectations:</strong> Implement screens, navigation, offline storage, performance, and releases.</li>
+            <li><strong>Languages/Tools:</strong> Swift/SwiftUI, Kotlin/Jetpack, Flutter (Dart), React Native.</li>
+            <li><strong>Learn:</strong> Mobile UX, lifecycle, push notifications, app store pipelines.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Game Developer</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Creates interactive games spanning gameplay, graphics, physics, and tooling.</li>
+            <li><strong>Expectations:</strong> Implement mechanics, optimize rendering, collaborate with art/design, profile performance.</li>
+            <li><strong>Languages/Tools:</strong> C++, C#, Unity, Unreal Engine, shaders, Blender.</li>
+            <li><strong>Learn:</strong> Real-time systems, engines, asset pipelines, math for games.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">DevOps Engineer</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Automates software delivery and infrastructure management.</li>
+            <li><strong>Expectations:</strong> Build CI/CD, manage IaC, configure monitoring, improve developer productivity.</li>
+            <li><strong>Languages/Tools:</strong> Bash, Python, Docker, Kubernetes, Terraform, Jenkins/GitHub Actions.</li>
+            <li><strong>Learn:</strong> Automation, reliability, scaling, incident response, cost control.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Cloud Engineer</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Designs and operates systems on AWS, Azure, or GCP.</li>
+            <li><strong>Expectations:</strong> Build secure architectures, network/VPC design, backups, observability.</li>
+            <li><strong>Languages/Tools:</strong> AWS/Azure/GCP, Terraform, Kubernetes, IAM, CloudWatch/Stackdriver.</li>
+            <li><strong>Learn:</strong> Cloud patterns, reliability, compliance, multi-region strategies.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Data Engineer</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Builds data pipelines and platforms for analytics and ML.</li>
+            <li><strong>Expectations:</strong> ETL/ELT, orchestration, schema design, data quality and governance.</li>
+            <li><strong>Languages/Tools:</strong> Python, SQL, Spark, Airflow, Kafka, Snowflake/BigQuery.</li>
+            <li><strong>Learn:</strong> Batch/streaming, warehouse/lakehouse, performance tuning.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Machine Learning Engineer</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Trains, evaluates, and deploys ML models into production.</li>
+            <li><strong>Expectations:</strong> Feature engineering, model serving, monitoring, experiment tracking.</li>
+            <li><strong>Languages/Tools:</strong> Python, TensorFlow, PyTorch, scikit-learn, MLflow, Kubeflow.</li>
+            <li><strong>Learn:</strong> MLOps, model lifecycle, drift detection, A/B testing.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">AI Research Scientist</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Develops new algorithms and advances in AI/ML.</li>
+            <li><strong>Expectations:</strong> Prototype models, run experiments, publish, collaborate with engineering.</li>
+            <li><strong>Languages/Tools:</strong> Python, PyTorch/TensorFlow, JAX, HPC, experiment tools.</li>
+            <li><strong>Learn:</strong> Deep learning theory, RL, optimization, foundation models.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Web Developer</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Builds websites and web apps, often integrating CMS and SEO.</li>
+            <li><strong>Expectations:</strong> Implement pages, themes, plugins, optimize for performance and accessibility.</li>
+            <li><strong>Languages/Tools:</strong> HTML, CSS, JavaScript, PHP, WordPress, React.</li>
+            <li><strong>Learn:</strong> SEO, hosting, CDN, site security, accessibility best practices.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Systems Programmer</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Writes low-level software (OS components, drivers, runtimes).</li>
+            <li><strong>Expectations:</strong> Focus on efficiency, concurrency, memory management, portability.</li>
+            <li><strong>Languages/Tools:</strong> C, C++, Rust, Assembly, gdb, perf.</li>
+            <li><strong>Learn:</strong> OS internals, synchronization, performance profiling, ABI stability.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Embedded Systems Engineer</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Develops firmware and software for constrained devices.</li>
+            <li><strong>Expectations:</strong> Work with microcontrollers, sensors, real-time constraints, power budgets.</li>
+            <li><strong>Languages/Tools:</strong> C/C++, RTOS, UART/I2C/SPI, ARM, Arduino, Zephyr.</li>
+            <li><strong>Learn:</strong> Hardware interfaces, real-time design, debugging with logic analyzers/JTAG.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">AR/VR Developer</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Builds immersive augmented and virtual reality experiences.</li>
+            <li><strong>Expectations:</strong> 3D interaction, rendering pipelines, device SDKs, performance on headsets.</li>
+            <li><strong>Languages/Tools:</strong> Unity, Unreal, C#, C++, OpenXR, Blender.</li>
+            <li><strong>Learn:</strong> Spatial UX, optimization, shaders, input systems and tracking.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Data Scientist</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Extracts insights, builds models, and informs decisions with data.</li>
+            <li><strong>Expectations:</strong> EDA, feature engineering, modeling, visualization, stakeholder communication.</li>
+            <li><strong>Languages/Tools:</strong> Python, R, SQL, Pandas, NumPy, scikit-learn, Tableau/Power BI.</li>
+            <li><strong>Learn:</strong> Statistics, experimentation, causal inference, storytelling with data.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Database Administrator (DBA)</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Manages databases for availability, performance, and security.</li>
+            <li><strong>Expectations:</strong> Backups, replication, tuning queries/indexes, access control, upgrades.</li>
+            <li><strong>Languages/Tools:</strong> SQL, PostgreSQL, MySQL, Oracle, SQL Server, monitoring tools.</li>
+            <li><strong>Learn:</strong> HA/DR strategies, partitioning, profiling, auditing and compliance.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Cybersecurity Analyst</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Detects, investigates, and responds to threats.</li>
+            <li><strong>Expectations:</strong> Monitor SIEM, triage alerts, perform IR playbooks, harden systems.</li>
+            <li><strong>Languages/Tools:</strong> Python, Bash, SIEM (Splunk), EDR, IDS/IPS, Nmap, Wireshark.</li>
+            <li><strong>Learn:</strong> MITRE ATT&CK, threat intel, forensics, security operations.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Penetration Tester (Ethical Hacker)</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Simulates attacks to identify vulnerabilities and risks.</li>
+            <li><strong>Expectations:</strong> Scope engagements, exploit findings, report remediation steps.</li>
+            <li><strong>Languages/Tools:</strong> Python, Bash, Burp Suite, Metasploit, Kali, OWASP tools.</li>
+            <li><strong>Learn:</strong> Exploit chains, web/app/mobile security, secure coding patterns.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">IT Support Specialist</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Resolves end-user issues and maintains desktops, apps, and peripherals.</li>
+            <li><strong>Expectations:</strong> Ticket triage, troubleshooting, installs, documentation, customer service.</li>
+            <li><strong>Languages/Tools:</strong> Windows/macOS/Linux, PowerShell/Bash, MDM, ITSM platforms.</li>
+            <li><strong>Learn:</strong> Support workflows, networking basics, asset management, soft skills.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Site Reliability Engineer (SRE)</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Improves reliability and scalability through software engineering.</li>
+            <li><strong>Expectations:</strong> SLO/SLIs, automation, on-call, incident reviews, capacity planning.</li>
+            <li><strong>Languages/Tools:</strong> Go/Python, Kubernetes, Prometheus, Grafana, Terraform.</li>
+            <li><strong>Learn:</strong> Reliability math, chaos testing, robust automation, postmortems culture.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Blockchain Developer</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Builds decentralized apps and smart contracts.</li>
+            <li><strong>Expectations:</strong> Write/verify contracts, manage wallets, security audits, gas optimization.</li>
+            <li><strong>Languages/Tools:</strong> Solidity, Rust, EVM, Hardhat/Foundry, Web3.js/ethers.js.</li>
+            <li><strong>Learn:</strong> Cryptography, consensus, token standards, on-chain/off-chain design.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Robotics Engineer</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Designs robotic systems combining hardware, control, and software.</li>
+            <li><strong>Expectations:</strong> Integrate sensors/actuators, plan motion, ensure safety and reliability.</li>
+            <li><strong>Languages/Tools:</strong> C++, Python, ROS, MATLAB, OpenCV, microcontrollers.</li>
+            <li><strong>Learn:</strong> Controls, kinematics, perception, SLAM, real-time constraints.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Product Manager (Tech)</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Owns product vision and outcomes; aligns engineering, design, and business.</li>
+            <li><strong>Expectations:</strong> Roadmaps, prioritization, specs, experiments, stakeholder communication.</li>
+            <li><strong>Languages/Tools:</strong> Jira, Notion, SQL, analytics (Amplitude/GA), A/B testing tools.</li>
+            <li><strong>Learn:</strong> Product strategy, discovery, metrics, customer empathy, leadership.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">UI/UX Designer</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Designs intuitive interfaces and user experiences through research and prototyping.</li>
+            <li><strong>Expectations:</strong> Wireframes, user flows, usability tests, design systems, handoff to devs.</li>
+            <li><strong>Languages/Tools:</strong> Figma, Adobe XD, Sketch, HTML/CSS basics, prototyping tools.</li>
+            <li><strong>Learn:</strong> Human-centered design, accessibility, heuristics, visual systems thinking.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">IT Project Manager</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Plans and delivers IT projects on scope, time, and budget.</li>
+            <li><strong>Expectations:</strong> Schedules, risk logs, standups, stakeholder updates, vendor coordination.</li>
+            <li><strong>Languages/Tools:</strong> Jira, MS Project, Confluence, Agile/Scrum, Kanban.</li>
+            <li><strong>Learn:</strong> Delivery frameworks, negotiation, budgeting, change management.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Business Analyst (Tech)</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Translates business needs into technical requirements and solutions.</li>
+            <li><strong>Expectations:</strong> Requirements gathering, process mapping, acceptance testing, documentation.</li>
+            <li><strong>Languages/Tools:</strong> SQL, Excel, UML/BPMN, Jira/Confluence.</li>
+            <li><strong>Learn:</strong> Stakeholder management, scoping, data-informed decision making.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Quality Assurance (QA) Engineer</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Ensures product quality via manual and automated testing.</li>
+            <li><strong>Expectations:</strong> Test plans, automation suites, regression/perf tests, bug triage.</li>
+            <li><strong>Languages/Tools:</strong> Java/Python/JS, JUnit, PyTest, Selenium, Cypress, Playwright.</li>
+            <li><strong>Learn:</strong> Test design, reliability mindset, CI integration, non-functional testing.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Network Engineer</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Designs, secures, and operates computer networks.</li>
+            <li><strong>Expectations:</strong> Configure routers/switches/VPNs, troubleshoot latency, ensure uptime.</li>
+            <li><strong>Languages/Tools:</strong> Cisco/Juniper, VLANs, BGP/OSPF, Wireshark, Python for automation.</li>
+            <li><strong>Learn:</strong> Protocols, segmentation, zero-trust, cloud networking and SD-WAN.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Systems Analyst</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Evaluates and improves IT systems to meet organizational needs.</li>
+            <li><strong>Expectations:</strong> Analyze workflows, propose solutions, coordinate implementation and testing.</li>
+            <li><strong>Languages/Tools:</strong> SQL, ERD/UML, ERP/CRM platforms, scripting.</li>
+            <li><strong>Learn:</strong> Systems integration, change control, documentation and training.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Security Engineer</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Designs and implements security controls in software and infrastructure.</li>
+            <li><strong>Expectations:</strong> Threat modeling, secure SDLC, code reviews, secrets management, hardening.</li>
+            <li><strong>Languages/Tools:</strong> Python, Go, SAST/DAST tools, Vault/KMS, TLS/PKI, IAM.</li>
+            <li><strong>Learn:</strong> AppSec, crypto basics, container/cloud security, policy/compliance.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Platform Engineer</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Builds internal platforms that empower developers to ship quickly.</li>
+            <li><strong>Expectations:</strong> Golden paths, templates, self-service infra, reliability and DX.</li>
+            <li><strong>Languages/Tools:</strong> Kubernetes, Terraform, Backstage, GitOps, Helm, Go/Python.</li>
+            <li><strong>Learn:</strong> Developer productivity, abstractions, multi-tenant architecture, SLAs.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Data Analyst</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Turns raw data into dashboards and insights for business decisions.</li>
+            <li><strong>Expectations:</strong> Query data, build reports, define metrics, validate data quality.</li>
+            <li><strong>Languages/Tools:</strong> SQL, Excel, Python, Tableau/Power BI, dbt basics.</li>
+            <li><strong>Learn:</strong> KPI design, stakeholder communication, data modeling fundamentals.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Site Developer (CMS/No-Code)</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Ships sites quickly using CMS and no/low-code builders.</li>
+            <li><strong>Expectations:</strong> Theme customization, integrations, SEO, performance tuning.</li>
+            <li><strong>Languages/Tools:</strong> WordPress, Webflow, Shopify, Liquid, basic HTML/CSS/JS.</li>
+            <li><strong>Learn:</strong> Rapid delivery, client needs, conversion optimization, content ops.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Solutions Architect</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Designs end-to-end technical solutions for customer requirements.</li>
+            <li><strong>Expectations:</strong> Discovery, architecture diagrams, PoCs, RFPs, stakeholder alignment.</li>
+            <li><strong>Languages/Tools:</strong> Cloud (AWS/Azure/GCP), APIs, networking, security, IaC.</li>
+            <li><strong>Learn:</strong> Tradeoff analysis, scalability, cost modeling, presales communication.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media"><div class="info-title">Technical Writer</div></div>
+        <div class="info-text">
+          <ul>
+            <li><strong>Description:</strong> Creates documentation, guides, and tutorials for products and APIs.</li>
+            <li><strong>Expectations:</strong> Work with SMEs, structure content, ensure clarity and consistency.</li>
+            <li><strong>Languages/Tools:</strong> Markdown, Docs-as-code, Git, static site generators, API refs.</li>
+            <li><strong>Learn:</strong> Developer empathy, information architecture, editorial processes.</li>
+          </ul>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-wrap">
+
+      <!-- Footer Navigation -->
+      <div>
+        <h4>Pages</h4>
+        <ul class="footer-list">
+          <li><a href="Index.html">Homepage</a></li>
+          <li><a href="UniDegrees.html">Uni Degrees</a></li>
+          <li><a href="Tips.html">Tips for Uni</a></li>
+          <li><a href="Jobs.html">Jobs in Tech</a></li>
+          <li><a href="JobInterviews.html">Interviews To-Do's</a></li>
+          <li><a href="Enhance.html">Enhancement for Career</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h4>Contact Me</h4>
+        <p style="font-size:1.2rem;line-height:1.8;">
+          Have questions or suggestions?<br />
+          <a href="mailto:vrijsheth@gmail.com">Email me</a>
+        </p>
+      </div>
+
+      <!-- Social Media -->
+      <div style="text-align:right;">
+        <h4>Follow Me</h4>
+        <a aria-label="LinkedIn profile" href="https://www.linkedin.com/in/vrij-sheth/" target="_blank" style="margin-right:10px;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="30" height="30" style="filter:invert(100%);" />
+        </a>
+        <a aria-label="Instagram profile" href="https://www.instagram.com/_vrij.s?igsh=bnJwenRtb2pjMTFr&utm_source=qr" target="_blank" style="margin-right:10px;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="30" height="30" style="filter:invert(100%);" />
+        </a>
+        <a aria-label="Facebook profile" href="https://www.facebook.com/vrij.sheth.7" target="_blank">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="30" height="30" style="filter:invert(100%);" />
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== Mobile menu =====
+    const menu = document.getElementById('menu');
+    const hamburger = document.getElementById('hamburger');
+
+    function toggleMenu(icon) {
+      const isOpen = menu.classList.toggle('show');   // controls dropdown open/close
+      icon.classList.toggle('open', isOpen);          // animate hamburger
+      icon.setAttribute('aria-expanded', String(isOpen));
+    }
+
+    function closeMenu() {
+      if (menu.classList.contains('show')) {
+        menu.classList.remove('show');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    // Close when clicking a link
+    document.querySelectorAll('#menu a').forEach(a => a.addEventListener('click', closeMenu));
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target) && !hamburger.contains(e.target)) closeMenu();
+    });
+    // Close on Escape
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+    // Close when resizing to desktop
+    window.addEventListener('resize', () => { if (window.innerWidth >= 900) closeMenu(); });
+
+    // ===== Reveal-on-scroll =====
+    const revealEls = document.querySelectorAll('.reveal');
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('show');
+          else entry.target.classList.remove('show');
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+
+      revealEls.forEach(el => io.observe(el));
+    } else {
+      // Fallback: if IO not supported, just show everything
+      revealEls.forEach(el => el.classList.add('show'));
+    }
+  </script>
+</body>
+</html>

@@ -14,277 +14,84 @@
       --card-bg: #0b2e5b;
     }
 
-    * {
-      font-family: 'Teko', sans-serif;
-      box-sizing: border-box;
-    }
+    * { font-family: 'Teko', sans-serif; box-sizing: border-box; }
 
-    body {
-      margin: 0;
-      background: #f8f9fa;
-      transition: background 0.4s ease;
-    }
-
-    body.modal-open {
-      overflow: hidden;
-    }
-
-    .blurred {
-      filter: blur(6px);
-      transition: filter 0.25s ease;
-    }
+    body { margin: 0; background: #f8f9fa; transition: background 0.4s ease; }
+    body.modal-open { overflow: hidden; }
+    .blurred { filter: blur(6px); transition: filter 0.25s ease; }
 
     .navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      height: 60px;
-      background: var(--nav);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      z-index: 1000;
+      position: fixed; top: 0; width: 100%; height: 60px; background: var(--nav); color: #fff;
+      display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 1000;
     }
-
-    .navbar-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
+    .navbar-title { font-size: 1.5rem; font-weight: 700; }
 
     .menu-toggle {
-      position: absolute;
-      left: 1rem;
-      top: 1.1rem;
-      width: 30px;
-      height: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      cursor: pointer;
-      z-index: 1100;
+      position: absolute; left: 1rem; top: 1.1rem; width: 30px; height: 22px; display: flex; flex-direction: column;
+      justify-content: space-between; cursor: pointer; z-index: 1100;
     }
-
-    .menu-toggle span {
-      display: block;
-      height: 4px;
-      background: #fff;
-      border-radius: 4px;
-      transition: 0.3s ease;
-    }
-
-    .menu-toggle.open span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-
-    .menu-toggle.open span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .menu-toggle.open span:nth-child(3) {
-      transform: rotate(-45deg) translate(6px, -6px);
-    }
+    .menu-toggle span { display: block; height: 4px; background: #fff; border-radius: 4px; transition: 0.3s ease; }
+    .menu-toggle.open span:nth-child(1){ transform: rotate(45deg) translate(5px, 5px); }
+    .menu-toggle.open span:nth-child(2){ opacity: 0; }
+    .menu-toggle.open span:nth-child(3){ transform: rotate(-45deg) translate(6px, -6px); }
 
     .menu-items {
-      max-height: 0;
-      overflow: hidden;
-      background: var(--nav-darker);
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      transition: max-height 0.4s ease;
-      border-top: 2px solid var(--accent);
-      border-radius: 0 0 10px 10px;
+      max-height: 0; overflow: hidden; background: var(--nav-darker); list-style: none; margin: 0; padding: 0;
+      transition: max-height 0.4s ease; border-top: 2px solid var(--accent); border-radius: 0 0 10px 10px;
     }
-
-    .menu-items.show {
-      max-height: 500px;
-    }
-
+    .menu-items.show { max-height: 500px; }
     .menu-items li a {
-      display: block;
-      padding: 0.8rem 2rem;
-      color: #fff;
-      text-decoration: none;
-      font-size: 1.2rem;
-      font-weight: 500;
-      transition: 0.3s;
+      display: block; padding: 0.8rem 2rem; color: #fff; text-decoration: none; font-size: 1.2rem; font-weight: 500; transition: 0.3s;
     }
+    .menu-items li a:hover { background: var(--accent-dark); padding-left: 2.5rem; }
 
-    .menu-items li a:hover {
-      background: var(--accent-dark);
-      padding-left: 2.5rem;
-    }
+    main { padding: 2rem; padding-top: 200px; position: relative; z-index: 1; }
 
-    main {
-      padding: 2rem;
-      padding-top: 200px;
-      position: relative;
-      z-index: 1;
-    }
-
-    h1.page-title {
-      text-align: center;
-      font-size: clamp(2.2rem, 6vw, 3rem);
-      color: var(--accent-dark);
-      margin: 0 0 1.25rem;
-    }
-
-    p.page-sub {
-      text-align: center;
-      color: #334;
-      font-size: clamp(1.1rem, 3.5vw, 1.4rem);
-      margin: 0 auto 2rem;
-      max-width: 900px;
-    }
+    h1.page-title { text-align: center; font-size: clamp(2.2rem, 6vw, 3rem); color: var(--accent-dark); margin: 0 0 1.25rem; }
+    p.page-sub { text-align: center; color: #334; font-size: clamp(1.1rem, 3.5vw, 1.4rem); margin: 0 auto 2rem; max-width: 900px; }
 
     .cards-wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      place-items: center;
+      max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; place-items: center;
     }
-
-    @media (max-width: 900px) {
-      .cards-wrap {
-        grid-template-columns: 1fr;
-        max-width: 520px;
-      }
-    }
+    @media (max-width: 900px) { .cards-wrap { grid-template-columns: 1fr; max-width: 520px; } }
 
     .tip-card {
-      width: 100%;
-      aspect-ratio: 1/1;
-      max-width: 320px;
-      background: linear-gradient(145deg, var(--card-bg), #073265);
-      color: #fff;
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
-      cursor: pointer;
-      transition: 0.18s ease;
-      border: 2px solid rgba(255, 255, 255, 0.07);
-      padding: 1rem;
+      width: 100%; aspect-ratio: 1/1; max-width: 320px; background: linear-gradient(145deg, var(--card-bg), #073265);
+      color: #fff; border-radius: 20px; display: flex; align-items: center; justify-content: center; text-align: center;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.25); cursor: pointer; transition: 0.18s ease; border: 2px solid rgba(255,255,255,0.07); padding: 1rem;
     }
+    .tip-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.32); }
+    .tip-card h3 { font-size: clamp(1.5rem, 4vw, 2rem); margin: 0; }
 
-    .tip-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
+    /* Full-width footer */
+    footer.site-footer {
+      background: var(--nav); color: #fff; padding: 2rem 1rem; margin-top: 4rem; width: 100%; box-sizing: border-box;
     }
-
-    .tip-card h3 {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      margin: 0;
-    }
-
-    footer {
-      background: var(--nav);
-      color: #fff;
-      padding: 2rem 1rem;
-      margin-top: 4rem;
-    }
-
-    footer a {
-      color: #fff;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      color: #00bfff;
-    }
+    footer.site-footer a { color: #fff; text-decoration: none; }
+    footer.site-footer a:hover { color: #00bfff; }
 
     .modal-overlay {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(2px);
-      opacity: 0;
-      visibility: hidden;
-      transition: 0.22s ease;
-      z-index: 2000;
-      padding: 1rem;
+      position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(2px); opacity: 0; visibility: hidden; transition: 0.22s ease; z-index: 2000; padding: 1rem;
     }
-
-    .modal-overlay.show {
-      opacity: 1;
-      visibility: visible;
-    }
-
+    .modal-overlay.show { opacity: 1; visibility: visible; }
     .modal-bubble {
-      width: 95%;
-      max-width: 900px;
-      max-height: 80vh;
-      background: #fff;
-      border-radius: 24px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      transform: translateY(12px);
-      opacity: 0;
-      transition: 0.22s ease;
+      width: 95%; max-width: 900px; max-height: 80vh; background: #fff; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+      display: flex; flex-direction: column; overflow: hidden; transform: translateY(12px); opacity: 0; transition: 0.22s ease;
     }
+    .modal-overlay.show .modal-bubble { transform: translateY(0); opacity: 1; }
+    .modal-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 2px solid #e9ecef; }
+    .modal-title { font-size: 2rem; color: var(--accent-dark); margin: 0; }
+    .modal-close { border: none; background: var(--accent-dark); color: #fff; border-radius: 10px; padding: 0.4rem 0.75rem; font-size: 1.05rem; cursor: pointer; }
+    .modal-close:hover { background: var(--accent); }
+    .modal-body { padding: 1rem 1.25rem 1.25rem; overflow: auto; font-size: 1.2rem; color: #12345a; }
 
-    .modal-overlay.show .modal-bubble {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    .modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 1rem 1.25rem;
-      border-bottom: 2px solid #e9ecef;
-    }
-
-    .modal-title {
-      font-size: 2rem;
-      color: var(--accent-dark);
-      margin: 0;
-    }
-
-    .modal-close {
-      border: none;
-      background: var(--accent-dark);
-      color: #fff;
-      border-radius: 10px;
-      padding: 0.4rem 0.75rem;
-      font-size: 1.05rem;
-      cursor: pointer;
-    }
-
-    .modal-close:hover {
-      background: var(--accent);
-    }
-
-    .modal-body {
-      padding: 1rem 1.25rem 1.25rem;
-      overflow: auto;
-      font-size: 1.2rem;
-      color: #12345a;
-    }
-
-    .tip-content {
-      display: none;
-    }
+    .tip-content { display: none; }
   </style>
 </head>
 <body>
   <header class="navbar" id="navbar">
-    <div class="menu-toggle" id="hamburger" onclick="toggleMenu(this)">
-      <span></span><span></span><span></span>
-    </div>
+    <div class="menu-toggle" id="hamburger" onclick="toggleMenu(this)"><span></span><span></span><span></span></div>
     <div class="navbar-title">Info On The Tech Sector</div>
   </header>
 
@@ -307,6 +114,7 @@
       <button class="tip-card" data-target="after"><h3>After The Interview</h3></button>
     </section>
 
+    <!-- Hidden content sections for modal -->
     <section class="tip-content" id="content-before">
       <h4>Before the Interview</h4>
       <ul>
@@ -339,33 +147,49 @@
         <li>Stay positive and view each interview as practice Even if the outcome isn’t what you hoped for, treat each interview as valuable experience. Every attempt builds confidence and sharpens your skills for the next one.</li>
       </ul>
     </section>
-
-    <footer id="footer">
-      <div style="max-width:1200px;margin:auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem;">
-        <div style="flex:1 1 200px;">
-          <h4 style="font-size:1.5rem;margin-bottom:1rem;">Pages</h4>
-          <ul style="list-style:none;padding:0;font-size:1.2rem;line-height:2;">
-            <li><a href="Index.html">Homepage</a></li>
-            <li><a href="UniDegrees.html">Uni Degrees</a></li>
-            <li><a href="Tips.html">Tips for Uni</a></li>
-            <li><a href="Jobs.html">Jobs in Tech</a></li>
-            <li><a href="JobInterviews.html">Interviews To-Do's</a></li>
-            <li><a href="Enhance.html">Enhancement for Career</a></li>
-          </ul>
-        </div>
-        <div style="flex:1 1 200px;">
-          <h4 style="font-size:1.5rem;margin-bottom:1rem;">Contact Me</h4>
-          <p style="font-size:1.2rem;line-height:1.8;">Have questions or suggestions?<br /><a href="mailto:vrijsheth@gmail.com">Email me</a></p>
-        </div>
-        <div style="flex:1 1 200px;text-align:right;">
-          <h4 style="font-size:1.5rem;margin-bottom:1rem;">Follow Me</h4>
-          <a href="https://www.linkedin.com/in/vrij-sheth/" target="_blank" style="margin-right:10px;"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" width="30" height="30" style="filter:invert(100%)"/></a>
-          <a href="https://www.instagram.com/_vrij.s" target="_blank" style="margin-right:10px;"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" width="30" height="30" style="filter:invert(100%)"/></a>
-          <a href="https://www.facebook.com/vrij.sheth.7" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" width="30" height="30" style="filter:invert(100%)"/></a>
-        </div>
-      </div>
-    </footer>
   </main>
+
+  <!-- Moved OUTSIDE <main> so it spans full width -->
+  <footer class="site-footer" id="footer">
+    <div style="max-width:1200px;margin:auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem;">
+      <div style="flex:1 1 200px;">
+        <h4 style="font-size:1.5rem;margin-bottom:1rem;">Pages</h4>
+        <ul style="list-style:none;padding:0;font-size:1.2rem;line-height:2;">
+          <li><a href="Index.html">Homepage</a></li>
+          <li><a href="UniDegrees.html">Uni Degrees</a></li>
+          <li><a href="Tips.html">Tips for Uni</a></li>
+          <li><a href="Jobs.html">Jobs in Tech</a></li>
+          <li><a href="JobInterviews.html">Interviews To-Do's</a></li>
+          <li><a href="Enhance.html">Enhancement for Career</a></li>
+        </ul>
+      </div>
+      <div style="flex:1 1 200px;">
+        <h4 style="font-size:1.5rem;margin-bottom:1rem;">Contact Me</h4>
+        <p style="font-size:1.2rem;line-height:1.8;">
+          Have questions or suggestions?<br />
+          <a href="mailto:vrijsheth@gmail.com">Email me</a>
+        </p>
+        <!-- References link added here -->
+        <p style="font-size:1.2rem;line-height:1.8;margin:.3rem 0 0;">
+          <a href="https://docs.google.com/document/d/1nL6xvg3iPARvubePDFuu2vIOSWxPJbZY6LOc5hBLge0/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+            References (Google Doc)
+          </a>
+        </p>
+      </div>
+      <div style="flex:1 1 200px;text-align:right;">
+        <h4 style="font-size:1.5rem;margin-bottom:1rem;">Follow Me</h4>
+        <a href="https://www.linkedin.com/in/vrij-sheth/" target="_blank" style="margin-right:10px;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" width="30" height="30" style="filter:invert(100%)"/>
+        </a>
+        <a href="https://www.instagram.com/_vrij.s" target="_blank" style="margin-right:10px;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" width="30" height="30" style="filter:invert(100%)"/>
+        </a>
+        <a href="https://www.facebook.com/vrij.sheth.7" target="_blank">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" width="30" height="30" style="filter:invert(100%)"/>
+        </a>
+      </div>
+    </div>
+  </footer>
 
   <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
     <div class="modal-bubble">
@@ -379,51 +203,52 @@
 
   <script>
     function toggleMenu(icon) {
-      const menu = document.getElementById('menu')
-      icon.classList.toggle('open')
-      menu.classList.toggle('show')
+      const menu = document.getElementById('menu');
+      icon.classList.toggle('open');
+      menu.classList.toggle('show');
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      const $ = id => document.getElementById(id)
-      const overlay = $('modalOverlay')
-      const bodyEl = $('modalBody')
-      const titleEl = $('modalTitle')
-      const main = $('main-content')
-      const nav = $('navbar')
-      const footer = $('footer')
+      const $ = id => document.getElementById(id);
+      const overlay = $('modalOverlay');
+      const bodyEl = $('modalBody');
+      const titleEl = $('modalTitle');
+      const main = $('main-content');
+      const nav = $('navbar');
+      const footer = $('footer');
 
       function openModal({ title, html }) {
-        titleEl.textContent = title || 'Details'
-        bodyEl.innerHTML = html || '<p>No content</p>'
-        overlay.classList.add('show')
-        document.body.classList.add('modal-open')
-        ;[main, nav, footer].forEach(el => el && el.classList.add('blurred'))
-        overlay.setAttribute('aria-hidden', 'false')
+        titleEl.textContent = title || 'Details';
+        bodyEl.innerHTML = html || '<p>No content</p>';
+        overlay.classList.add('show');
+        document.body.classList.add('modal-open');
+        [main, nav, footer].forEach(el => el && el.classList.add('blurred'));
+        overlay.setAttribute('aria-hidden', 'false');
       }
 
       function closeModal() {
-        overlay.classList.remove('show')
-        document.body.classList.remove('modal-open')
-        ;[main, nav, footer].forEach(el => el && el.classList.remove('blurred'))
-        overlay.setAttribute('aria-hidden', 'true')
-        setTimeout(() => { bodyEl.innerHTML = '' }, 220)
+        overlay.classList.remove('show');
+        document.body.classList.remove('modal-open');
+        [main, nav, footer].forEach(el => el && el.classList.remove('blurred'));
+        overlay.setAttribute('aria-hidden', 'true');
+        setTimeout(() => { bodyEl.innerHTML = '' }, 220);
       }
 
-      $('modalClose').addEventListener('click', closeModal)
-      overlay.addEventListener('click', e => { if (e.target === overlay) closeModal() })
-      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal() })
+      $('modalClose').addEventListener('click', closeModal);
+      overlay.addEventListener('click', e => { if (e.target === overlay) closeModal() });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal() });
 
       document.querySelectorAll('.tip-card').forEach(card => {
         card.addEventListener('click', () => {
-          const key = card.dataset.target
-          const section = $(`content-${key}`)
-          const html = section ? section.innerHTML : ''
-          const title = card.textContent.trim()
-          openModal({ title, html })
-        })
-      })
-    })
+          const key = card.dataset.target;
+          const section = document.getElementById(`content-${key}`);
+          const html = section ? section.innerHTML : '';
+          const title = card.textContent.trim();
+          openModal({ title, html });
+        });
+      });
+    });
   </script>
 </body>
 </html>
+

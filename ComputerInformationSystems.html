@@ -144,6 +144,7 @@
       padding-top: 200px;
       position: relative;
       z-index: 1;
+      min-height: 60vh;
     }
 
     .info-container { max-width: 1000px; margin: 0 auto; }
@@ -157,7 +158,6 @@
       margin-bottom: 2rem;
     }
 
-    /* New image panel replacing .info-title */
     .info-media {
       min-width: 220px;
       max-width: 260px;
@@ -183,15 +183,25 @@
       gap: 15px;
     }
 
-    footer {
+    /* Full-width footer */
+    .site-footer {
       background-color:#002244;
       color:white;
       padding:2rem 1rem;
-      font-family:'Teko',sans-serif;
       margin-top:4rem;
       width:100%;
       box-sizing:border-box;
     }
+    .site-footer .footer-inner{
+      width:100%;
+      max-width:1400px;
+      margin:0 auto;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      gap:2rem;
+    }
+    .site-footer a { color:#00bfff; text-decoration:underline; }
 
     .reveal {
       opacity: 0;
@@ -289,7 +299,7 @@
         </div>
       </div>
 
-       <div class="info-box reveal">
+      <div class="info-box reveal">
         <div class="info-media">
           <img src="images/Okangan.png" alt="Okangan" style="width:200px; height:500px;"/>
         </div>
@@ -308,79 +318,87 @@
       </div>
 
       <div class="info-box reveal">
-      <div class="info-media">
-        <img src="images/Athebasca.png" alt="Athabsaca" style="width:205px; height:205px;"/>
-      </div>
-      <div class="info-text">
-        <div>
-          Athabasca’s Bachelor of Science in Computing and Information Systems is fully online and open, making it one of the most flexible CIS programs in Canada. Students can start at almost any time of year, study at their own pace, and balance learning with work or personal commitments. This flexibility is especially attractive for working professionals or those outside major cities. The program combines computer science fundamentals with information systems management, covering topics from programming to databases and networking. Students can also choose minors, such as Business Administration, AI, or Information Systems Management, to customize their degree. Athabasca’s online platform emphasizes independent learning but also provides online forums, tutor support, and resources. Graduates develop both technical and managerial skills, preparing them for careers in IT, consulting, and management. Employers value Athabasca’s CIS degree because it shows both discipline and adaptability. Overall, it’s a strong option if you want a recognized CIS degree without being tied to a campus location.
-          <br><br> 
-          Class Reuqirements (Compared To Alberta High Schools)
-          <ul>
-            <li>English Langauge Arts 30-1</li>
-            <li>Math 30-1</li>
-          </ul>
-          Competitive Average: <strong>High 70s to Low 80s</strong>
+        <div class="info-media">
+          <img src="images/Athebasca.png" alt="Athabsaca" style="width:205px; height:205px;"/>
         </div>
-      </div>
-    </div>
-
-    <div class="info-box reveal">
-      <div class="info-media">
-        <img src="images/Windsor.webp" alt="UOFW" style="width:200px; height:70px;"/>
-      </div>
-      <div class="info-text">
-        <div>
-          Windsor’s BSc Honours in Computer Information Systems offers the benefits of a research-driven university combined with co-op opportunities. Students gain practical work experience during their degree, which strengthens job prospects upon graduation. The program is structured to provide a strong foundation in computer science while emphasizing information systems, databases, and organizational IT needs. Windsor’s location right across the border from Detroit offers unique cross-border job and networking opportunities in both Canada and the U.S. Class sizes in computing are moderate, providing access to resources while still allowing student-professor interaction. The program integrates business and management concepts, preparing students for IT leadership roles as well as technical development. Windsor also has strong industry partnerships, leading to good graduate employment outcomes. The program appeals to students who want a comprehensive CIS education with strong career readiness through co-op.
-          <br><br> 
-          Class Reuqirements (Compared To Alberta High Schools)
-          <ul>
-            <li>English Langauge Arts 30-1</li>
-            <li>Math 30-1</li>
-          </ul>
-          Competitive Average: <strong>Mid</strong>
-        </div>
-      </div>
-    </div>
-
-      <footer style="background-color:#002244;color:white;padding:2rem 1rem;font-family:'Teko',sans-serif;margin-top:4rem;width:100%;box-sizing:border-box;">
-        <div style="width:100%;display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem;">
-          <div style="flex:1 1 200px;">
-            <h4 style="font-size:1.5rem;margin-bottom:1rem;color:white;">Pages</h4>
-            <ul style="list-style:none;padding:0;font-size:1.2rem;line-height:2;">
-              <li><a href="Index.html" style="color:white;text-decoration:none;">Homepage</a></li>
-              <li><a href="UniDegrees.html" style="color:white;text-decoration:none;">Uni Degrees</a></li>
-              <li><a href="Tips.html" style="color:white;text-decoration:none;">Tips for Uni</a></li>
-              <li><a href="Jobs.html" style="color:white;text-decoration:none;">Jobs in Tech</a></li>
-              <li><a href="JobInterviews.html" style="color:white;text-decoration:none;">Interviews To-Do's</a></li>
-              <li><a href="Enhance.html" style="color:white;text-decoration:none;">Enhancement for Career</a></li>
+        <div class="info-text">
+          <div>
+            Athabasca’s Bachelor of Science in Computing and Information Systems is fully online and open, making it one of the most flexible CIS programs in Canada. Students can start at almost any time of year, study at their own pace, and balance learning with work or personal commitments. This flexibility is especially attractive for working professionals or those outside major cities. The program combines computer science fundamentals with information systems management, covering topics from programming to databases and networking. Students can also choose minors, such as Business Administration, AI, or Information Systems Management, to customize their degree. Athabasca’s online platform emphasizes independent learning but also provides online forums, tutor support, and resources. Graduates develop both technical and managerial skills, preparing them for careers in IT, consulting, and management. Employers value Athabasca’s CIS degree because it shows both discipline and adaptability. Overall, it’s a strong option if you want a recognized CIS degree without being tied to a campus location.
+            <br><br> 
+            Class Reuqirements (Compared To Alberta High Schools)
+            <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
             </ul>
-          </div>
-
-          <div style="flex:1 1 200px;">
-            <h4 style="font-size:1.5rem;margin-bottom:1rem;color:white;">Contact Me</h4>
-            <p style="font-size:1.2rem;line-height:1.8;">
-              Have questions or suggestions?<br />
-              <a href="mailto:vrijsheth@gmail.com" style="color:#00bfff;text-decoration:underline;">Email me</a>
-            </p>
-          </div>
-
-          <div style="flex:1 1 200px;text-align:right;">
-            <h4 style="font-size:1.5rem;margin-bottom:1rem;color:white;">Follow Me</h4>
-            <a href="https://www.linkedin.com/in/vrij-sheth/" target="_blank" style="margin-right:10px;">
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="30" height="30" style="filter:invert(100%);" />
-            </a>
-            <a href="https://www.instagram.com/_vrij.s?igsh=bnJwenRtb2pjMTFr&utm_source=qr" target="_blank" style="margin-right:10px;">
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="30" height="30" style="filter:invert(100%);" />
-            </a>
-            <a href="https://www.facebook.com/vrij.sheth.7" target="_blank">
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="30" height="30" style="filter:invert(100%);" />
-            </a>
+            Competitive Average: <strong>High 70s to Low 80s</strong>
           </div>
         </div>
-      </footer>
+      </div>
+
+      <div class="info-box reveal">
+        <div class="info-media">
+          <img src="images/Windsor.webp" alt="UOFW" style="width:200px; height:70px;"/>
+        </div>
+        <div class="info-text">
+          <div>
+            Windsor’s BSc Honours in Computer Information Systems offers the benefits of a research-driven university combined with co-op opportunities. Students gain practical work experience during their degree, which strengthens job prospects upon graduation. The program is structured to provide a strong foundation in computer science while emphasizing information systems, databases, and organizational IT needs. Windsor’s location right across the border from Detroit offers unique cross-border job and networking opportunities in both Canada and the U.S. Class sizes in computing are moderate, providing access to resources while still allowing student-professor interaction. The program integrates business and management concepts, preparing students for IT leadership roles as well as technical development. Windsor also has strong industry partnerships, leading to good graduate employment outcomes. The program appeals to students who want a comprehensive CIS education with strong career readiness through co-op.
+            <br><br> 
+            Class Reuqirements (Compared To Alberta High Schools)
+            <ul>
+              <li>English Langauge Arts 30-1</li>
+              <li>Math 30-1</li>
+            </ul>
+            Competitive Average: <strong>Mid</strong>
+          </div>
+        </div>
+      </div>
+
     </section>
   </main>
+
+  <!-- Full-width footer OUTSIDE main -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div style="flex:1 1 200px;">
+        <h4 style="font-size:1.5rem;margin-bottom:1rem;color:white;">Pages</h4>
+        <ul style="list-style:none;padding:0;font-size:1.2rem;line-height:2;">
+          <li><a href="Index.html" style="color:white;text-decoration:none;">Homepage</a></li>
+          <li><a href="UniDegrees.html" style="color:white;text-decoration:none;">Uni Degrees</a></li>
+          <li><a href="Tips.html" style="color:white;text-decoration:none;">Tips for Uni</a></li>
+          <li><a href="Jobs.html" style="color:white;text-decoration:none;">Jobs in Tech</a></li>
+          <li><a href="JobInterviews.html" style="color:white;text-decoration:none;">Interviews To-Do's</a></li>
+          <li><a href="Enhance.html" style="color:white;text-decoration:none;">Enhancement for Career</a></li>
+        </ul>
+      </div>
+
+      <div style="flex:1 1 200px;">
+        <h4 style="font-size:1.5rem;margin-bottom:1rem;color:white;">Contact Me</h4>
+        <p style="font-size:1.2rem;line-height:1.8;margin:0 0 .5rem 0;">
+          Have questions or suggestions?<br />
+          <a href="mailto:vrijsheth@gmail.com" style="color:#00bfff;text-decoration:underline;">Email me</a>
+        </p>
+        <!-- Added References link -->
+        <p style="font-size:1.2rem;line-height:1.8;margin:0;">
+          <a href="https://docs.google.com/document/d/1nL6xvg3iPARvubePDFuu2vIOSWxPJbZY6LOc5hBLge0/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+            References (Google Doc)
+          </a>
+        </p>
+      </div>
+
+      <div style="flex:1 1 200px;text-align:right;">
+        <h4 style="font-size:1.5rem;margin-bottom:1rem;color:white;">Follow Me</h4>
+        <a href="https://www.linkedin.com/in/vrij-sheth/" target="_blank" style="margin-right:10px;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="30" height="30" style="filter:invert(100%);" />
+        </a>
+        <a href="https://www.instagram.com/_vrij.s?igsh=bnJwenRtb2pjMTFr&utm_source=qr" target="_blank" style="margin-right:10px;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="30" height="30" style="filter:invert(100%);" />
+        </a>
+        <a href="https://www.facebook.com/vrij.sheth.7" target="_blank">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="30" height="30" style="filter:invert(100%);" />
+        </a>
+      </div>
+    </div>
+  </footer>
 
   <script>
     function toggleMenu(icon){

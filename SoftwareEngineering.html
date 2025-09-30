@@ -39,19 +39,26 @@
     .menu-toggle {
       position: absolute;
       left: 1rem;
-      top: 1.1rem;
-      width: 30px;
-      height: 22px;
-      display: flex;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 36px;
+      display: inline-flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
       cursor: pointer;
       z-index: 1100;
+      border: 0;
+      background: transparent;
+      color: #fff;
     }
     .menu-toggle span {
       display: block;
+      width: 28px;
       height: 4px;
-      background: white;
+      background: currentColor;
       border-radius: 4px;
       transition: all 0.3s ease;
     }
@@ -157,7 +164,6 @@
       margin-bottom: 2rem;
     }
 
-    /* New image panel replacing .info-title */
     .info-media {
       min-width: 220px;
       max-width: 260px;
@@ -217,14 +223,21 @@
 </head>
 <body>
   <header class="navbar">
-    <div class="menu-toggle" id="hamburger" onclick="toggleMenu(this)">
+    <button
+      class="menu-toggle"
+      id="hamburger"
+      aria-label="Toggle navigation menu"
+      aria-controls="menu"
+      aria-expanded="false"
+      onclick="toggleMenu(this)"
+      type="button"
+    >
       <span></span><span></span><span></span>
-    </div>
+    </button>
     <div class="navbar-title">Info On The Tech Sector</div>
   </header>
 
   <ul class="menu-items" id="menu" aria-label="Primary">
-    <br><br><br>
     <li><a href="Index.html">Homepage</a></li>
     <li><a href="Tips.html">Tips for Uni</a></li>
     <li class="has-submenu">
@@ -253,38 +266,38 @@
 
       <div class="info-box reveal">
         <div class="info-media">
-          <img src="images/UOFC.png" alt="UOFC" style="width:205px; height:150px;"/>
+          <img src="images/UOFC.png" alt="University of Calgary logo" style="width:205px; height:150px;"/>
         </div>
         <div class="info-text">
           <div>
             The University of Calgary’s (U of C) Software Engineering program is strong because it combines a solid foundation in computer science with practical engineering principles. Students learn not only how to code, but also how to design, build, and manage complex software systems in a structured, team-based environment. The program is accredited by the Canadian Engineering Accreditation Board (CEAB), which means graduates can pursue their Professional Engineer (P.Eng.) designation. With access to co-op opportunities, research projects, and connections to Calgary’s growing tech sector, students gain valuable hands-on experience and industry exposure. Overall, it prepares graduates with both the technical depth and professional skills needed for diverse software careers.
             <br><br> 
-            Class Reuqirements (Compared To Alberta High Schools)
+            <strong>Class Requirements (compared to Alberta high schools)</strong>
             <ul>
-              <li>English Langauge Arts 30-1</li>
+              <li>English Language Arts 30-1</li>
               <li>Math 30-1</li>
               <li>Math 31</li>
               <li>Chemistry 30</li>
-              <li>Physics 30 Or Biology 30</li>
+              <li>Physics 30 or Biology 30</li>
             </ul>
             Competitive Average: <strong>High 80s</strong>
             <br>
-            *Note: University Of Calgary does require all engineering students to do a common first year of engineering.*
+            <em>Note: The University of Calgary requires all engineering students to complete a common first year.</em>
           </div>
         </div>
       </div>
 
       <div class="info-box reveal">
         <div class="info-media">
-          <img src="images/UOFA.png" alt="UOFA" style="width:205px; height:205px;"/>
+          <img src="images/UOFA.png" alt="University of Alberta logo" style="width:205px; height:205px;"/>
         </div>
         <div class="info-text">
           <div>
             The University of Alberta’s Software Engineering program is well-regarded for its strong mix of computer science and engineering. It’s accredited by the CEAB, so graduates can work toward their P.Eng. designation. Students benefit from cutting-edge research opportunities, industry connections in Edmonton’s growing tech sector, and access to co-op placements that provide real-world experience. The program emphasizes teamwork, problem-solving, and innovation, preparing graduates for careers in software development, systems design, and emerging technologies.
             <br><br> 
-            Class Reuqirements (Compared To Alberta High Schools)
+            <strong>Class Requirements (compared to Alberta high schools)</strong>
             <ul>
-              <li>English Langauge Arts 30-1</li>
+              <li>English Language Arts 30-1</li>
               <li>Math 30-1</li>
               <li>Math 31</li>
               <li>Chemistry 30</li>
@@ -292,155 +305,153 @@
             </ul>
             Competitive Average: <strong>High 80s</strong>
             <br>
-            *Note: University Of Alberta does require all science engineering students to do a common first year of engineering.*
+            <em>Note: The University of Alberta requires engineering students to complete a common first year.</em>
           </div>
         </div>
       </div>
 
-       <div class="info-box reveal">
+      <div class="info-box reveal">
         <div class="info-media">
-          <img src="images/UOFW.png" alt="Waterloo" style="width:205px; height:205px;"/>
+          <img src="images/UOFW.png" alt="University of Waterloo logo" style="width:205px; height:205px;"/>
         </div>
         <div class="info-text">
           <div>
             The University of Waterloo’s Software Engineering program is one of the most recognized in Canada. Jointly offered by the Faculty of Mathematics and the Faculty of Engineering, it blends deep computer science knowledge with engineering principles. The program is CEAB-accredited, allowing graduates to pursue a P.Eng. designation. Waterloo is especially known for its world-class co-op program, giving students up to two years of paid industry experience with leading tech companies in Canada and abroad. With strong ties to global tech hubs and a reputation for innovation, it provides an excellent launchpad for careers in software development, AI, and entrepreneurship.
             <br><br> 
-            Class Reuqirements (Compared To Alberta High Schools)
+            <strong>Class Requirements (compared to Alberta high schools)</strong>
             <ul>
-              <li>English Langauge Arts 30-1</li>
+              <li>English Language Arts 30-1</li>
               <li>Math 30-1</li>
               <li>Math 31</li>
               <li>Chemistry 30</li>
               <li>Physics 30</li>
             </ul>
-            Competitive Average: <strong>Low To Mid 90s</strong>
+            Competitive Average: <strong>Low to Mid 90s</strong>
           </div>
         </div>
       </div>
 
       <div class="info-box reveal">
-      <div class="info-media">
-        <img src="images/UOFO.png" alt="UOFO" style="width:205px; height:205px;"/>
-      </div>
-      <div class="info-text">
-        <div>
-          The University of Ottawa’s Software Engineering program combines a strong foundation in computer science with engineering design and problem-solving. It is CEAB-accredited, giving graduates the pathway to a P.Eng. designation. The program offers bilingual study options (English and French), co-op placements, and opportunities to work on real-world projects with Ottawa’s thriving tech sector, including companies in software, AI, and cybersecurity. Students graduate with both technical expertise and professional skills that prepare them for diverse careers in technology.
-          <br><br> 
-          Class Reuqirements (Compared To Alberta High Schools)
-          <ul>
-            <li>English Langauge Arts 30-1</li>
-            <li>Math 30-1</li>
-            <li>Math 31</li>
-            <li><strong>One Of:</strong>Chemistry 30, Physics 30, Biology 30 or Computer Science 30</li>
-          </ul>
-          Competitive Average: <strong>High 80s</strong>
+        <div class="info-media">
+          <img src="images/UOFO.png" alt="University of Ottawa logo" style="width:205px; height:205px;"/>
+        </div>
+        <div class="info-text">
+          <div>
+            The University of Ottawa’s Software Engineering program combines a strong foundation in computer science with engineering design and problem-solving. It is CEAB-accredited, giving graduates the pathway to a P.Eng. designation. The program offers bilingual study options (English and French), co-op placements, and opportunities to work on real-world projects with Ottawa’s thriving tech sector, including companies in software, AI, and cybersecurity. Students graduate with both technical expertise and professional skills that prepare them for diverse careers in technology.
+            <br><br> 
+            <strong>Class Requirements (compared to Alberta high schools)</strong>
+            <ul>
+              <li>English Language Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Math 31</li>
+              <li><strong>One of:</strong> Chemistry 30, Physics 30, Biology 30, or Computer Science 30</li>
+            </ul>
+            Competitive Average: <strong>High 80s</strong>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="info-box reveal">
-      <div class="info-media">
-        <img src="images/CU.png" alt="Carleton" style="width:205px; height:205px;"/>
-      </div>
-      <div class="info-text">
-        <div>
-          Carleton University’s Software Engineering program focuses on building reliable, large-scale software systems by combining computer science and engineering principles. It is CEAB-accredited, so graduates can pursue their P.Eng. designation. Located in Ottawa, Carleton offers strong co-op opportunities with government agencies, research labs, and tech companies in the capital’s thriving industry. The program emphasizes teamwork, problem-solving, and hands-on experience, preparing students for careers in software development, systems design, and emerging technologies.
-          <br><br> 
-          Class Reuqirements (Compared To Alberta High Schools)
-          <ul>
-            <li>Math 30-1</li>
-            <li>Chemistry 30</li>
-            <li>Phsyics 30</li>
-            <li>Biology 30 or Math 31 (Math 31 Recommended)</li>
-          </ul>
-          Competitive Average: <strong>Mid to High 80s</strong>
-        </div>
-      </div>
-    </div>
 
       <div class="info-box reveal">
-      <div class="info-media">
-        <img src="images/McGill.svg" alt="McGill" style="width:180px; height:235px;"/>
-      </div>
-      <div class="info-text">
-        <div>
-          McGill University’s Software Engineering program offers a strong mix of computer science fundamentals and engineering practices. Accredited by the CEAB, it provides graduates the option to pursue their P.Eng. designation. Students benefit from McGill’s reputation for academic excellence, research opportunities, and co-op placements that connect them with industry in Montreal’s vibrant tech sector. The program prepares graduates with both technical depth and professional skills to succeed in software development, AI, and cutting-edge technologies.
-          <br><br> 
-          Class Reuqirements (Compared To Alberta High Schools)
-          <ul>
-            <li>Math 30-1</li>
-            <li>Math 31</li>
-            <li>Two of Phsyics 30, Chemistry 30 or Biology 30</li>
-            <li>English Language Arts 30-1</li>
-          </ul>
-          Competitive Average: <strong>Mid to High 90s (Top 5 Classes chosen are mid to high 90s, While all Math and sciences are low 90's, But combined must be mid 90s.)</strong>, 
+        <div class="info-media">
+          <img src="images/CU.png" alt="Carleton University logo" style="width:205px; height:205px;"/>
+        </div>
+        <div class="info-text">
+          <div>
+            Carleton University’s Software Engineering program focuses on building reliable, large-scale software systems by combining computer science and engineering principles. It is CEAB-accredited, so graduates can pursue their P.Eng. designation. Located in Ottawa, Carleton offers strong co-op opportunities with government agencies, research labs, and tech companies in the capital’s thriving industry. The program emphasizes teamwork, problem-solving, and hands-on experience, preparing students for careers in software development, systems design, and emerging technologies.
+            <br><br> 
+            <strong>Class Requirements (compared to Alberta high schools)</strong>
+            <ul>
+              <li>Math 30-1</li>
+              <li>Chemistry 30</li>
+              <li>Physics 30</li>
+              <li>Biology 30 or Math 31 <em>(Math 31 recommended)</em></li>
+            </ul>
+            Competitive Average: <strong>Mid to High 80s</strong>
+          </div>
         </div>
       </div>
-    </div>
 
-     <div class="info-box reveal">
-      <div class="info-media">
-        <img src="images/McMaster.png" alt="McMaster" style="width:180px; height: 95px;"/>
-      </div>
-      <div class="info-text">
-        <div>
-          McMaster University’s Software Engineering program blends strong computer science foundations with core engineering principles to train students in designing and managing complex software systems. It is CEAB-accredited, enabling graduates to pursue their P.Eng. designation. The program emphasizes experiential learning through labs, projects, and a robust co-op program that connects students with industry partners in Hamilton, Toronto, and beyond. With a focus on innovation, teamwork, and problem-solving, McMaster prepares graduates for successful careers in software development, AI, and emerging technologies.
-          <br><br> 
-          Class Reuqirements (Compared To Alberta High Schools)
-          <ul>
-            <li>Math 31</li>
-            <li>English Langauge Arts 30-1</li>
-            <li>Chemistry 30</li>
-            <li>Physics 30</li>
-          </ul>
-          Competitive Average: <strong>COMMON FIRST YEAR - Minimum of 87%, Competitive Average: High 80s to Low 90s</strong>, 
+      <div class="info-box reveal">
+        <div class="info-media">
+          <img src="images/McGill.svg" alt="McGill University logo" style="width:180px; height:235px;"/>
+        </div>
+        <div class="info-text">
+          <div>
+            McGill University’s Software Engineering program offers a strong mix of computer science fundamentals and engineering practices. Accredited by the CEAB, it provides graduates the option to pursue their P.Eng. designation. Students benefit from McGill’s reputation for academic excellence, research opportunities, and co-op placements that connect them with industry in Montreal’s vibrant tech sector. The program prepares graduates with both technical depth and professional skills to succeed in software development, AI, and cutting-edge technologies.
+            <br><br> 
+            <strong>Class Requirements (compared to Alberta high schools)</strong>
+            <ul>
+              <li>Math 30-1</li>
+              <li>Math 31</li>
+              <li>Two of Physics 30, Chemistry 30, or Biology 30</li>
+              <li>English Language Arts 30-1</li>
+            </ul>
+            Competitive Average: <strong>Mid to High 90s</strong>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="info-box reveal">
-      <div class="info-media">
-        <img src="images/York.png" alt="York" style="width:180px; height: 50px;"/>
-      </div>
-      <div class="info-text">
-        <div>
-          York University’s Software Engineering program provides a solid foundation in computer science, engineering design, and problem-solving. It is CEAB-accredited, giving graduates the pathway to a P.Eng. designation. Students benefit from hands-on labs, projects, and co-op placements, as well as access to Toronto’s large and diverse tech industry. The program emphasizes collaboration, innovation, and technical depth, preparing graduates for careers in software development, systems design, and emerging fields like AI and cybersecurity.
-          <br><br> 
-          Class Reuqirements (Compared To Alberta High Schools)
-          <ul>
-            <li>Math 30-1, 30-2</li>
-            <li>Math 31</li>
-            <li>English Langauge Arts 30-1</li>
-            <li>Chemistry 30</li>
-            <li>Physics 30</li>
-          </ul>
-          Competitive Average: <strong>COMMON FIRST YEAR - Low to Mid 80s</strong>, 
+      <div class="info-box reveal">
+        <div class="info-media">
+          <img src="images/McMaster.png" alt="McMaster University logo" style="width:180px; height: 95px;"/>
+        </div>
+        <div class="info-text">
+          <div>
+            McMaster University’s Software Engineering program blends strong computer science foundations with core engineering principles to train students in designing and managing complex software systems. It is CEAB-accredited, enabling graduates to pursue their P.Eng. designation. The program emphasizes experiential learning through labs, projects, and a robust co-op program that connects students with industry partners in Hamilton, Toronto, and beyond. With a focus on innovation, teamwork, and problem-solving, McMaster prepares graduates for successful careers in software development, AI, and emerging technologies.
+            <br><br> 
+            <strong>Class Requirements (compared to Alberta high schools)</strong>
+            <ul>
+              <li>Math 31</li>
+              <li>English Language Arts 30-1</li>
+              <li>Chemistry 30</li>
+              <li>Physics 30</li>
+            </ul>
+            Competitive Average: <strong>Common first year – minimum ~87%; competitive: High 80s to Low 90s</strong>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="info-box reveal">
-      <div class="info-media">
-        <img src="images/Western.png" alt="Western" style="width:210px; height:65px;"/>
-      </div>
-      <div class="info-text">
-        <div>
-          Western University’s Software Engineering program combines computer science knowledge with core engineering training to prepare students for building complex, reliable software systems. It is CEAB-accredited, so graduates can work toward their P.Eng. designation. Students gain experience through labs, design projects, and a strong co-op/internship program, while also benefiting from Western’s reputation for leadership and innovation. With access to London’s tech community and connections across Canada, graduates are well-prepared for careers in software development, systems design, and advanced technologies.
-          <br><br> 
-          Class Reuqirements (Compared To Alberta High Schools)
-          <ul>
-            <li>English Langauge Arts 30-1</li>
-            <li>Math 30-1</li>
-            <li>Math 31</li>
-            <li>Chemistry 30</li>
-            <li>Physics 30</li>
-          </ul>
-          Competitive Average: <strong>High 80s To Low 90s</strong>
+      <div class="info-box reveal">
+        <div class="info-media">
+          <img src="images/York.png" alt="York University logo" style="width:180px; height: 50px;"/>
+        </div>
+        <div class="info-text">
+          <div>
+            York University’s Software Engineering program provides a solid foundation in computer science, engineering design, and problem-solving. It is CEAB-accredited, giving graduates the pathway to a P.Eng. designation. Students benefit from hands-on labs, projects, and co-op placements, as well as access to Toronto’s large and diverse tech industry. The program emphasizes collaboration, innovation, and technical depth, preparing graduates for careers in software development, systems design, and emerging fields like AI and cybersecurity.
+            <br><br> 
+            <strong>Class Requirements (compared to Alberta high schools)</strong>
+            <ul>
+              <li>Math 30-1 or 30-2</li>
+              <li>Math 31</li>
+              <li>English Language Arts 30-1</li>
+              <li>Chemistry 30</li>
+              <li>Physics 30</li>
+            </ul>
+            Competitive Average: <strong>Common first year – Low to Mid 80s</strong>
+          </div>
         </div>
       </div>
-    </div>
 
-
+      <div class="info-box reveal">
+        <div class="info-media">
+          <img src="images/Western.png" alt="Western University logo" style="width:210px; height:65px;"/>
+        </div>
+        <div class="info-text">
+          <div>
+            Western University’s Software Engineering program combines computer science knowledge with core engineering training to prepare students for building complex, reliable software systems. It is CEAB-accredited, so graduates can work toward their P.Eng. designation. Students gain experience through labs, design projects, and a strong co-op/internship program, while also benefiting from Western’s reputation for leadership and innovation. With access to London’s tech community and connections across Canada, graduates are well-prepared for careers in software development, systems design, and advanced technologies.
+            <br><br> 
+            <strong>Class Requirements (compared to Alberta high schools)</strong>
+            <ul>
+              <li>English Language Arts 30-1</li>
+              <li>Math 30-1</li>
+              <li>Math 31</li>
+              <li>Chemistry 30</li>
+              <li>Physics 30</li>
+            </ul>
+            Competitive Average: <strong>High 80s to Low 90s</strong>
+          </div>
+        </div>
+      </div>
 
       <footer style="background-color:#002244;color:white;padding:2rem 1rem;font-family:'Teko',sans-serif;margin-top:4rem;width:100%;box-sizing:border-box;">
         <div style="width:100%;display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem;">
@@ -466,13 +477,13 @@
 
           <div style="flex:1 1 200px;text-align:right;">
             <h4 style="font-size:1.5rem;margin-bottom:1rem;color:white;">Follow Me</h4>
-            <a href="https://www.linkedin.com/in/vrij-sheth/" target="_blank" style="margin-right:10px;">
+            <a aria-label="LinkedIn profile" href="https://www.linkedin.com/in/vrij-sheth/" target="_blank" style="margin-right:10px;">
               <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="30" height="30" style="filter:invert(100%);" />
             </a>
-            <a href="https://www.instagram.com/_vrij.s?igsh=bnJwenRtb2pjMTFr&utm_source=qr" target="_blank" style="margin-right:10px;">
+            <a aria-label="Instagram profile" href="https://www.instagram.com/_vrij.s?igsh=bnJwenRtb2pjMTFr&utm_source=qr" target="_blank" style="margin-right:10px;">
               <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="30" height="30" style="filter:invert(100%);" />
             </a>
-            <a href="https://www.facebook.com/vrij.sheth.7" target="_blank">
+            <a aria-label="Facebook profile" href="https://www.facebook.com/vrij.sheth.7" target="_blank">
               <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="30" height="30" style="filter:invert(100%);" />
             </a>
           </div>
@@ -484,8 +495,9 @@
   <script>
     function toggleMenu(icon){
       const menu = document.getElementById('menu');
-      icon.classList.toggle('open');
-      menu.classList.toggle('show');
+      const isOpen = menu.classList.toggle('show');
+      icon.classList.toggle('open', isOpen);
+      icon.setAttribute('aria-expanded', String(isOpen));
     }
 
     (function(){
@@ -540,3 +552,4 @@
   </script>
 </body>
 </html>
+
